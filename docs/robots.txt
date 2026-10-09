@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mystify59.github.io/sitemap.xml
