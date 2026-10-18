@@ -9,7 +9,7 @@ const portrait = avatar
 type Project = {
     slug: string; title: string; company: string; year?: string; description: string;
     role: string; timeline: string; team: string; platform: string;
-    coverImage: string; heroImage: string; hoverImage?: string;
+    coverImage: string; heroImage: string; hoverImage?: string; cardSummary?: string; heroCaption?: string;
     sections: {name: string; heading: string; blocks: {type: string; text?: string; src?: string; alt?: string; href?: string}[]}[]
 }
 
@@ -21,7 +21,7 @@ export function Page({page, projects, assets}: {page: string; projects: Project[
     const nav = page === 'about' ? 'about' : page === 'resume' ? 'resume' : 'home'
 
     const media = (project: Project) => {
-        const animated = project.slug === 'street-pulse' || project.slug === 's00'
+        const animated = project.slug === 'street-pulse'
         return <div className="project-media">
             {animated ? <div className="cover-mount" data-project={project.slug}><ExplodedProjectCover projectSlug={project.slug}/></div>
             : <><img src={image(project.coverImage)} alt={project.title + ' project cover'} width="800" height="600" loading="lazy"/>
@@ -31,6 +31,7 @@ export function Page({page, projects, assets}: {page: string; projects: Project[
     const card = (project: Project) => <a className="project-card" key={project.slug} href={path('case-studies/' + project.slug + '/')}>
         {media(project)}
         <div className="card-meta"><span className="card-title">{project.title}</span><span className="card-credit">{project.company}{project.year ? ' · ' + project.year : ''}</span></div>
+        {project.cardSummary && <p className="card-summary">{project.cardSummary}</p>}
     </a>
     const zoomImage = (src: string, alt: string, eager = false) => <button className="image-zoom" type="button" aria-label={'Enlarge image: ' + alt}>
         <img src={image(src)} alt={alt} loading={eager ? 'eager' : 'lazy'}/>
@@ -88,7 +89,12 @@ export function Page({page, projects, assets}: {page: string; projects: Project[
                     <div className="resume-download"><a className="button button-secondary" href={path('Boxuan_Wang_CV.pdf')} target="_blank" rel="noopener">View CV (PDF)</a></div>
                     <section className="resume-section" aria-label="Experience">
                         <article className="job-entry"><h2 className="entry-title">Humanoid Development Intern @ Li Auto</h2><p className="entry-date">July – September 2026</p><p className="entry-copy">Designed connector parts and structural supports in SolidWorks, supported by Ansys analysis. Redesigned upper-torso load paths as part of the team, reducing torso weight by 18% and meeting fatigue requirements in Ansys simulations with a safety factor of 3. Developed AI-assisted workflows for 3D-printable validation structures and collected motion-demonstration data using wearable tracking and VR.</p></article>
-                        <article className="job-entry"><h2 className="entry-title">Cooperative Robot Intern @ elibot</h2><p className="entry-date">July – August 2024</p><p className="entry-copy">Built a Python data-logging system to track incoming, produced and shipped robots. Created joint-specific fatigue-test sequences and logged faults during testing. Contributed to remote-control app and web interfaces, webpage UX, and the English translation and visual layout of robot user manuals.</p></article>
+                        <article className="job-entry"><h2 className="entry-title">Cooperative Robot Intern @ elibot</h2><p className="entry-date">July – August 2023</p><p className="entry-copy">Built a Python data-logging system to track incoming, produced and shipped robots. Created joint-specific fatigue-test sequences and logged faults during testing. Contributed to remote-control app and web interfaces, webpage UX, and the English translation and visual layout of robot user manuals.</p></article>
+                    </section>
+                    <section className="resume-section" aria-labelledby="projects-title"><h2 className="section-label" id="projects-title">Selected engineering projects</h2>
+                        <article className="job-entry"><h3 className="entry-title">Autonomous Football Robot</h3><p className="entry-date">2025 · Team robotics project</p><p className="entry-copy">Contributed to team model training and ball-tracking code using OpenMV and Edge Impulse, and to autonomous navigation and task-execution code on an existing robot platform.</p></article>
+                        <article className="job-entry"><h3 className="entry-title"><a href={path('case-studies/thermofluids/')}>SUV Aerodynamics and Battery Cooling ↗</a></h3><p className="entry-date">2026 · Thermofluids project</p><p className="entry-copy">Built SUV geometry in Fusion and a 400,000-cell Ansys Fluent model to analyse pressure distribution and rear-wake behaviour. Contributed to the team's cold-plate design study, considering flow distribution, heat transfer and system complexity.</p></article>
+                        <article className="job-entry"><h3 className="entry-title"><a href={path('case-studies/street-pulse/')}>Street Pulse ↗</a></h3><p className="entry-date">2025 · Team interactive-floor project</p><p className="entry-copy">Prototyped electronics, assembled and tested one functional vibration module, and developed the research, tessellation and exterior design. Other team members handled software.</p></article>
                     </section>
                     <section className="resume-section" aria-labelledby="tools-title"><h2 className="section-label" id="tools-title">Tools powering my work</h2><div className="tools-grid">
                         {[
@@ -110,7 +116,7 @@ export function Page({page, projects, assets}: {page: string; projects: Project[
                     <header className="case-header"><a className="back-link" href={path() + '#projects'}>← All projects</a><h1 className="case-title">{project.title}</h1><p className="case-description">{project.description}</p>
                         <dl className="project-facts">{[['Role',project.role],['Timeline',project.timeline],['Team',project.team],['Focus',project.platform]].filter(([,value]) => value).map(([label,value]) => <div className="fact" key={label}><dt className="fact-label">{label}</dt><dd className="fact-value">{value}</dd></div>)}</dl>
                     </header>
-                    <div className="case-hero">{zoomImage(project.heroImage, project.title + ' project overview', true)}</div>
+                    <div className="case-hero">{zoomImage(project.heroImage, project.heroCaption || project.title + ' project overview', true)}{project.heroCaption && <p className="case-caption">{project.heroCaption}</p>}</div>
                     <div className="case-layout">
                         <nav className="case-nav" aria-label="Case study sections">{project.sections.map((section,i) => <a key={i} href={'#section-' + i}>{section.name}</a>)}</nav>
                         <div className="case-body">{project.sections.map((section,i) => <section className="case-section" key={i} id={'section-' + i} aria-labelledby={'heading-' + i}>

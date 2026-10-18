@@ -24,6 +24,18 @@ for(const project of siteContent.projects) {
 }
 const assets = {}
 async function saveAsset(url) {
+    if (url?.startsWith('project-assets/')) {
+        const localRoot = path.resolve(root, 'project-assets');
+        const localPath = path.resolve(root, url);
+        if (!localPath.startsWith(localRoot + path.sep)) throw new Error('Invalid local image path: ' + url);
+        const extension = path.extname(localPath).toLowerCase();
+        if (!['.png','.jpg','.jpeg','.webp','.avif','.svg'].includes(extension)) throw new Error('Unexpected local media format: '+url);
+        const bytes = await fs.readFile(localPath);
+        const name = crypto.createHash('sha256').update(bytes).digest('hex').slice(0,18)+extension;
+        await fs.writeFile(path.join(dist,'assets',name),bytes);
+        assets[url] = 'assets/'+name;
+        return;
+    }
     if(!url || !/^https:\/\//.test(url)) throw new Error('Missing or invalid portfolio image: '+url)
     const parsed = new URL(url)
     const extension = path.extname(parsed.pathname).toLowerCase()

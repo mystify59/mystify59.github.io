@@ -1,5 +1,7 @@
 // Public portfolio copy migrated from the current website.
 // Team attribution and prototype/simulation limits are preserved.
+import { thermofluidsProject } from './thermofluids.mjs';
+
 export const siteContent = {
   "projects": [
     {
@@ -783,3 +785,19 @@ export const siteContent = {
     }
   ]
 };
+
+// Lead with robotics evidence while retaining the wider design-engineering work.
+siteContent.projects.push(thermofluidsProject);
+const projectOrder = ['s00', 'street-pulse', 'thermofluids', 'aircraft-seating', 'aquatorium'];
+siteContent.projects.sort((a, b) => projectOrder.indexOf(a.slug) - projectOrder.indexOf(b.slug));
+const cardSummaries = {
+  s00: 'Humanoid structure · CAD and assembly studies',
+  'street-pulse': 'Electronics prototyping · Assembly and testing',
+  'aircraft-seating': 'Modular seat concept · CAD and Eco Audit',
+  aquatorium: 'Individual concepts · Team product development',
+};
+for (const project of siteContent.projects) {
+  if (cardSummaries[project.slug]) project.cardSummary = cardSummaries[project.slug];
+  // Preserve the user's 12 October choice of the original, static S00 assembly.
+  if (project.slug === 's00') project.coverImage = project.heroImage;
+}
