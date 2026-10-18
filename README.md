@@ -1,6 +1,6 @@
 # Boxuan Wang — portfolio
 
-An independent static portfolio for GitHub Pages, based on the approved dark-blue Tabfolio design. It includes Street Pulse, Aquatorium, Li Auto S00, RE-seat, About and Resume pages. Project attribution distinguishes personal contributions, team work, concept renders and simulation results.
+An independent static portfolio for GitHub Pages, based on the approved dark-blue Tabfolio design. It includes Li Auto S00, Street Pulse, Thermofluids, RE-seat, Aquatorium, About and Resume pages. Project attribution distinguishes personal contributions, team work, concept renders and simulation results.
 
 ## Edit and preview
 
@@ -20,8 +20,9 @@ GitHub Pages serves `docs/` from the `main` branch. After building, commit the s
 
 Only public website material belongs here. Original application drafts, source CAD, private project archives and personal evidence records are maintained outside this repository.
 
-Design credit: Tabfolio by Sebastian. Portfolio text and project work belong to their respective contributors; the project pages retain team and reference credits. The illustrations used on the Street Pulse and S00 covers are source-based reconstructions, not dimensioned CAD drawings.
-# 18 October 2026 portfolio update
+Design credit: Tabfolio by Sebastian. Portfolio text and project work belong to their respective contributors; the project pages retain team and reference credits. The Street Pulse cover illustration is a source-based reconstruction, not a dimensioned CAD drawing. S00 uses the original assembled CAD image.
+
+## 18 October 2026 portfolio update
 
 Thermofluids is a new case study at `/case-studies/thermofluids/`, using selected original Fusion, Fluent and cold-plate images from the project report. Its 2026 date was confirmed by the author. Individual aerodynamics and team battery-cooling contributions are explicit; simulation does not imply physical validation.
 
