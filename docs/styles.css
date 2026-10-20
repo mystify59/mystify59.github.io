@@ -87,7 +87,7 @@ button { cursor: pointer; }
 
 .about-layout { display: grid; grid-template-columns: .77fr 1fr; gap: 40px; align-items: start; margin-bottom: 80px; }
 .about-photo { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 20px; overflow: hidden; }
-.about-photo img { width: 100%; height: 100%; object-fit: cover; }
+.about-photo img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.1); transform-origin: center top; }
 .about-copy { padding-top: 0; }
 .about-title { font-size: 28px; line-height: 1.3; letter-spacing: -.7px; margin-bottom: 40px; }
 .about-title span { color: var(--muted); }

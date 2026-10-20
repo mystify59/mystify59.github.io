@@ -66,7 +66,7 @@ export function Page({page, projects, revivals = [], assets}: {page: string; pro
 
                 {page === 'about' && <>
                     <section className="about-layout" aria-labelledby="about-title">
-                        <img className="about-photo" src={image(portrait)} alt="Portrait of Boxuan Wang" width="600" height="600"/>
+                        <div className="about-photo"><img src={image(portrait)} alt="Portrait of Boxuan Wang" width="600" height="600"/></div>
                         <div className="about-copy">
                             <h1 className="about-title" id="about-title">Hi, I’m Boxuan.<br/><span>Design Engineering student at Imperial College London</span></h1>
                             <div className="about-body">
