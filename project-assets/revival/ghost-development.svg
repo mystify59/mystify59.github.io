@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-labelledby="title description">
+  <title id="title">Ghost — in development</title>
+  <desc id="description">A typographic cover for Project Revival 02. Research and system planning; no finished-product image.</desc>
+  <rect width="800" height="600" fill="#19283c"/>
+  <g fill="#a6c9ff" font-family="Manrope, Arial, sans-serif" text-anchor="middle">
+    <text x="400" y="265" font-size="72" font-weight="500" letter-spacing="-2">Ghost</text>
+    <text x="400" y="320" font-size="20" font-weight="500">In development</text>
+  </g>
+  <text x="400" y="372" fill="#b8c2cf" font-family="Manrope, Arial, sans-serif" font-size="16" text-anchor="middle">Research &amp; system planning</text>
+</svg>

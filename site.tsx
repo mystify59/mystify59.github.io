@@ -10,14 +10,21 @@ type Project = {
     slug: string; title: string; company: string; year?: string; description: string;
     role: string; timeline: string; team: string; platform: string;
     coverImage: string; heroImage: string; hoverImage?: string; cardSummary?: string; heroCaption?: string;
+    destination?: string; kind?: string; backHref?: string; backLabel?: string;
     sections: {name: string; heading: string; blocks: {type: string; text?: string; src?: string; alt?: string; href?: string}[]}[]
 }
 
-export function Page({page, projects, assets}: {page: string; projects: Project[]; assets: Record<string,string>}) {
-    const depth = page === 'home' || page === '404' ? 0 : page.startsWith('case-studies/') ? 2 : 1
+export function projectRoute(project: Project) {
+    return (project.destination || '/case-studies/' + project.slug + '/').replace(/^\/+|\/+$/g, '')
+}
+
+export function Page({page, projects, revivals = [], assets}: {page: string; projects: Project[]; revivals?: Project[]; assets: Record<string,string>}) {
+    const depth = page === 'home' || page === '404' ? 0 : page.split('/').length
     const path = (value = '') => (page === '404' ? '/' : '../'.repeat(depth)) + value
     const image = (url: string) => path(assets[url] || url)
-    const project = projects.find(p => page === 'case-studies/' + p.slug)
+    const project = [...projects, ...revivals].find(p => page === projectRoute(p))
+    const isSeries = project?.kind === 'series'
+    const isRevival = revivals.some(p => p.slug === project?.slug)
     const nav = page === 'about' ? 'about' : page === 'resume' ? 'resume' : 'home'
 
     const media = (project: Project) => {
@@ -28,7 +35,7 @@ export function Page({page, projects, assets}: {page: string; projects: Project[
                 {project.slug === 'aircraft-seating' && project.hoverImage && <img className="hover-image" src={image(project.hoverImage)} alt="" width="800" height="600" loading="lazy"/>}</>}
         </div>
     }
-    const card = (project: Project) => <a className="project-card" key={project.slug} href={path('case-studies/' + project.slug + '/')}>
+    const card = (project: Project) => <a className="project-card" key={project.slug} href={path(projectRoute(project) + '/')}>
         {media(project)}
         <div className="card-meta"><span className="card-title">{project.title}</span><span className="card-credit">{project.company}{project.year ? ' · ' + project.year : ''}</span></div>
         {project.cardSummary && <p className="card-summary">{project.cardSummary}</p>}
@@ -113,9 +120,13 @@ export function Page({page, projects, assets}: {page: string; projects: Project[
                 </div>}
 
                 {project && <>
-                    <header className="case-header"><a className="back-link" href={path() + '#projects'}>← All projects</a><h1 className="case-title">{project.title}</h1><p className="case-description">{project.description}</p>
+                    <header className="case-header"><a className="back-link" href={project.backHref ? path(project.backHref.replace(/^\//, '')) : path() + '#projects'}>{project.backLabel || '← All projects'}</a><h1 className="case-title">{project.title}</h1><p className="case-description">{project.description}</p>
                         <dl className="project-facts">{[['Role',project.role],['Timeline',project.timeline],['Team',project.team],['Focus',project.platform]].filter(([,value]) => value).map(([label,value]) => <div className="fact" key={label}><dt className="fact-label">{label}</dt><dd className="fact-value">{value}</dd></div>)}</dl>
                     </header>
+                    {isSeries ? <>
+                        <div className="revival-intro">{project.sections.flatMap(section => section.blocks).filter(block => block.type === 'paragraph').map((block,i) => <p key={i}>{block.text}</p>)}</div>
+                        <section className="revival-menu" aria-labelledby="revival-menu-title"><h2 className="section-label" id="revival-menu-title">Choose a revival</h2><div className="projects-grid">{revivals.map(card)}</div></section>
+                    </> : <>
                     <div className="case-hero">{zoomImage(project.heroImage, project.heroCaption || project.title + ' project overview', true)}{project.heroCaption && <p className="case-caption">{project.heroCaption}</p>}</div>
                     <div className="case-layout">
                         <nav className="case-nav" aria-label="Case study sections">{project.sections.map((section,i) => <a key={i} href={'#section-' + i}>{section.name}</a>)}</nav>
@@ -124,7 +135,8 @@ export function Page({page, projects, assets}: {page: string; projects: Project[
                             {section.blocks.map((block,j) => block.type === 'image' && block.src ? <figure className="case-figure" key={j}>{zoomImage(block.src, block.alt || section.name)}{block.alt && <figcaption className="case-caption">{block.alt}</figcaption>}</figure> : block.type === 'heading' ? <h3 className="case-block" key={j}>{block.text}</h3> : block.type === 'link' ? <p className="case-block" key={j}><a href={block.href} target="_blank" rel="noopener noreferrer">{block.text}</a></p> : <p className="case-block" key={j}>{block.text}</p>)}
                         </section>)}</div>
                     </div>
-                    <section className="next-projects" aria-labelledby="more-projects"><h2 className="section-label" id="more-projects">More projects</h2><div className="projects-grid">{projects.filter(p => p.slug !== project.slug).slice(0,2).map(card)}</div></section>
+                    <section className="next-projects" aria-labelledby="more-projects">{isRevival && <a className="back-link" href={path('project-revival/')}>← All revivals</a>}<h2 className="section-label" id="more-projects">{isRevival ? 'More revivals' : 'More projects'}</h2><div className="projects-grid">{(isRevival ? revivals : projects).filter(p => p.slug !== project.slug).slice(0,2).map(card)}</div></section>
+                    </>}
                 </>}
                 {page === '404' && <section className="case-header"><h1 className="case-title">Page not found</h1><p className="case-description">This link may have moved. Browse the portfolio to find the project.</p><a className="button" href={path()}>View projects</a></section>}
             </main>

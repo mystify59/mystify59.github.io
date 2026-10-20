@@ -13,10 +13,11 @@ const staging = path.join(root, '.build')
 const cache = path.join(root, 'asset-cache')
 await Promise.all([fs.mkdir(dist,{recursive:true}),fs.mkdir(staging,{recursive:true}),fs.mkdir(cache,{recursive:true}),fs.mkdir(path.join(dist,'assets'),{recursive:true})])
 await build({entryPoints:[path.join(root,'site.tsx')],outfile:path.join(staging,'site.mjs'),platform:'node',format:'esm',bundle:true,packages:'external',jsx:'transform'})
-const {Page,sharedAssets,siteBiography} = await import('./.build/site.mjs?time=' + Date.now())
+const {Page,sharedAssets,siteBiography,projectRoute} = await import('./.build/site.mjs?time=' + Date.now())
 
 const urls = new Set(sharedAssets)
-for(const project of siteContent.projects) {
+const allProjects = [...siteContent.projects, ...(siteContent.revivals || [])]
+for(const project of allProjects) {
     urls.add(project.coverImage)
     urls.add(project.heroImage)
     if(project.slug==='aircraft-seating' && project.hoverImage) urls.add(project.hoverImage)
@@ -75,12 +76,12 @@ await fs.copyFile(path.join(root,'styles.css'),path.join(dist,'styles.css'))
 await build({entryPoints:[path.join(root,'client.tsx')],outfile:path.join(dist,'client.js'),platform:'browser',format:'iife',bundle:true,minify:true,jsx:'transform',define:{'process.env.NODE_ENV':'"production"'}})
 await fs.cp(path.join(root,'public'),dist,{recursive:true})
 const origin='https://mystify59.github.io'
-const pages=[{key:'home',route:'',title:'Boxuan Wang | Design Engineering Portfolio',description:siteBiography},{key:'about',route:'about/',title:'About | Boxuan Wang',description:siteBiography},{key:'resume',route:'resume/',title:'Resume | Boxuan Wang',description:'Experience, education and skills in design engineering, mechanical design and robotics.'},...siteContent.projects.map(project=>({key:'case-studies/'+project.slug,route:'case-studies/'+project.slug+'/',title:project.title+' | Boxuan Wang',description:project.description})),{key:'404',route:'404.html',title:'Page not found | Boxuan Wang',description:'Browse Boxuan Wang’s design engineering portfolio.'}]
+const pages=[{key:'home',route:'',title:'Boxuan Wang | Design Engineering Portfolio',description:siteBiography},{key:'about',route:'about/',title:'About | Boxuan Wang',description:siteBiography},{key:'resume',route:'resume/',title:'Resume | Boxuan Wang',description:'Experience, education and skills in design engineering, mechanical design and robotics.'},...allProjects.map(project=>({key:projectRoute(project),route:projectRoute(project)+'/',title:project.title+' | Boxuan Wang',description:project.description})),{key:'404',route:'404.html',title:'Page not found | Boxuan Wang',description:'Browse Boxuan Wang’s design engineering portfolio.'}]
 const escape = value => String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))
 for(const page of pages) {
-    const depth=page.key==='home'||page.key==='404'?0:page.key.startsWith('case-studies/')?2:1
+    const depth=page.key==='home'||page.key==='404'?0:page.key.split('/').length
     const prefix=page.key==='404'?'/':'../'.repeat(depth)
-    const content=renderToStaticMarkup(React.createElement(Page,{page:page.key,projects:siteContent.projects,assets}))
+    const content=renderToStaticMarkup(React.createElement(Page,{page:page.key,projects:siteContent.projects,revivals:siteContent.revivals,assets}))
     const html='<!doctype html>\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#111315"><title>'+escape(page.title)+'</title><meta name="description" content="'+escape(page.description)+'"><meta property="og:title" content="'+escape(page.title)+'"><meta property="og:description" content="'+escape(page.description)+'"><meta property="og:type" content="website"><meta property="og:url" content="'+origin+'/'+page.route+'"><meta property="og:image" content="'+origin+'/'+assets[sharedAssets[0]]+'"><link rel="canonical" href="'+origin+'/'+page.route+'"><link rel="icon" href="'+prefix+assets[sharedAssets[0]]+'"><link rel="preload" href="'+prefix+'assets/manrope.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="'+prefix+'styles.css"></head><body>'+content+'<script src="'+prefix+'client.js" defer></script></body></html>'
     const output=page.key==='404'?path.join(dist,'404.html'):path.join(dist,page.route,'index.html')
     await fs.mkdir(path.dirname(output),{recursive:true})

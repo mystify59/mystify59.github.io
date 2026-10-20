@@ -55,17 +55,21 @@ button { cursor: pointer; }
 .button { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 11px 13px; border-radius: 17px; background: var(--blue); color: #11151b; border: 1px solid transparent; font-size: 14px; font-weight: 600; line-height: 1.4; transition: background-color 160ms; }
 .button-secondary { background: linear-gradient(135deg, #23282e, #191d21); color: var(--blue-text); border: 1px solid #353a41; }
 
-.projects-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; padding-bottom: 80px; }
+.projects-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 24px; padding-bottom: 80px; }
 .project-card { min-width: 0; }
 .project-card, .project-card > a { display: block; }
 .project-media { position: relative; width: 100%; aspect-ratio: 4 / 3; overflow: hidden; border-radius: 20px; background: var(--surface-soft); }
 .project-media > img, .project-media > video { width: 100%; height: 100%; object-fit: cover; }
 .project-media img.hover-image { position: absolute; inset: 0; opacity: 0; transform: scale(1.055); transition: opacity .65s cubic-bezier(.22, 1, .36, 1), transform .65s cubic-bezier(.22, 1, .36, 1); }
 .project-media > div { width: 100%; height: 100%; }
-.card-meta { display: flex; gap: 12px; justify-content: space-between; align-items: flex-start; padding-top: 8px; color: var(--muted); font-size: 14px; line-height: 1.55; }
-.card-title { font-size: inherit; font-weight: 500; }
+.card-meta { display: flex; gap: 12px; justify-content: space-between; align-items: flex-start; padding-top: 12px; color: var(--muted); font-size: 14px; line-height: 1.55; }
+.card-title { color: var(--text); font-size: 16px; font-weight: 500; }
 .card-summary { margin: 5px 0 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
 .card-credit { flex-shrink: 0; text-align: right; }
+.revival-intro { max-width: 850px; margin-bottom: 48px; color: var(--muted); }
+.revival-intro p:last-child { margin-bottom: 0; }
+.revival-menu { border-top: 1px solid var(--line); padding-top: 48px; }
+.revival-menu > .section-label { margin-bottom: 32px; }
 
 .site-footer { border-top: 1px solid var(--line); padding-block: 80px 116px; font-size: 14px; }
 .footer-grid { display: grid; grid-template-columns: 1.6fr .7fr .8fr; gap: 56px; }
@@ -167,8 +171,8 @@ h3.case-block { margin-top: 32px; margin-bottom: 16px; color: var(--text); font-
 
 @media (max-width: 1000px) {
   :root { --page-inset: 40px; }
-  .card-meta { flex-wrap: wrap; gap: 2px 12px; }
-  .card-credit { font-size: 12px; }
+  .card-meta { flex-direction: column; gap: 4px; }
+  .card-credit { font-size: 14px; text-align: left; }
   .about-layout { grid-template-columns: .8fr 1fr; gap: 32px; }
   .about-title { font-size: 25px; margin-bottom: 28px; }
   .expertise-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
@@ -191,11 +195,11 @@ h3.case-block { margin-top: 32px; margin-bottom: 16px; color: var(--text); font-
   .hero-bio { max-width: 360px; font-size: 16px; line-height: 1.45; margin-bottom: 18px; }
   .hero-actions { gap: 12px; }
   .button { min-height: 44px; font-size: 14px; padding: 11px 13px; border-radius: 17px; }
-  .projects-grid { grid-template-columns: minmax(0, 1fr); gap: 28px; padding-bottom: 60px; }
+  .projects-grid { grid-template-columns: minmax(0, 1fr); padding-bottom: 60px; }
   .project-media { border-radius: 12px; }
-  .card-meta { display: block; padding-top: 8px; }
-  .card-credit { display: none; }
-  .card-title { font-size: 14px; }
+  .revival-intro { margin-bottom: 36px; }
+  .revival-menu { padding-top: 36px; }
+  .revival-menu > .section-label { margin-bottom: 28px; }
   .site-footer { padding-block: 60px 90px; }
   .footer-grid { grid-template-columns: minmax(0, 1fr); gap: 56px; }
   .footer-profile { max-width: 420px; }

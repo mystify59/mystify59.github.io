@@ -1,6 +1,7 @@
 // Public portfolio copy migrated from the current website.
 // Team attribution and prototype/simulation limits are preserved.
 import { thermofluidsProject } from './thermofluids.mjs';
+import { revivalSeries, revivalProjects } from './revival.mjs';
 
 export const siteContent = {
   "projects": [
@@ -788,7 +789,9 @@ export const siteContent = {
 
 // Lead with robotics evidence while retaining the wider design-engineering work.
 siteContent.projects.push(thermofluidsProject);
-const projectOrder = ['s00', 'street-pulse', 'thermofluids', 'aircraft-seating', 'aquatorium'];
+siteContent.projects.push(revivalSeries);
+siteContent.revivals = revivalProjects;
+const projectOrder = ['s00', 'street-pulse', 'thermofluids', 'aircraft-seating', 'aquatorium', 'project-revival'];
 siteContent.projects.sort((a, b) => projectOrder.indexOf(a.slug) - projectOrder.indexOf(b.slug));
 const cardSummaries = {
   s00: 'Humanoid structure · CAD and assembly studies',
@@ -800,4 +803,9 @@ for (const project of siteContent.projects) {
   if (cardSummaries[project.slug]) project.cardSummary = cardSummaries[project.slug];
   // Preserve the user's 12 October choice of the original, static S00 assembly.
   if (project.slug === 's00') project.coverImage = project.heroImage;
+  if (project.slug === 'aircraft-seating') {
+    project.title = 'Re:Seat';
+    project.hoverImage = project.coverImage;
+    project.coverImage = 'project-assets/aircraft-seat/reseat-final-studio.png';
+  }
 }

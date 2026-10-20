@@ -1,6 +1,6 @@
 # Boxuan Wang — portfolio
 
-An independent static portfolio for GitHub Pages, based on the approved dark-blue Tabfolio design. It includes Li Auto S00, Street Pulse, Thermofluids, RE-seat, Aquatorium, About and Resume pages. Project attribution distinguishes personal contributions, team work, concept renders and simulation results.
+An independent static portfolio for GitHub Pages, based on the approved dark-blue Tabfolio design. It includes Li Auto S00, Street Pulse, Thermofluids, Re:Seat, Aquatorium, Project Revival, About and Resume pages. Project attribution distinguishes personal contributions, team work, concept renders and simulation results.
 
 ## Edit and preview
 
@@ -13,6 +13,8 @@ npm run preview
 ```
 
 Open http://127.0.0.1:4180. Edit project stories in `content.mjs`, page templates in `site.tsx`, and visual styles in `styles.css`. The existing hover animations are in `ExplodedProjectCover.tsx`. Replace the public PDF in `public/Boxuan_Wang_CV.pdf`, then rebuild.
+
+`revival.mjs` holds the Project Revival menu and its Anvil/Ghost stories. Each object has a `destination` for its route: `/project-revival/`, `/project-revival/anvil/` and `/project-revival/ghost/`. The build includes child-story assets and routes in the same static output and sitemap. New series projects can follow this pattern without placing every child on the homepage.
 
 ## Publish
 
@@ -31,3 +33,13 @@ The homepage now leads with S00, then Street Pulse, Thermofluids, RE-seat and Aq
 `thermofluids.mjs` holds the new case-study copy. `project-assets/thermofluids/` contains the selected original images; the build copies them into content-hashed local URLs. The public site remains a separate build from the saved Framer editor.
 
 Validation: nine-page production build; desktop (1280px) and phone (390px) review; homepage, new case and resume text/image/overflow checks; section navigation and image zoom/Escape checks; searchable one-page PDF with embedded fonts.
+
+## 20 October 2026 portfolio update
+
+The saved Framer additions are now incorporated into the static build. Project Revival has one homepage entry opening a menu for Anvil and Ghost, with individual stories and return links. Anvil distinguishes original CAD renders from the first printed iteration; Ghost remains labelled as research and development, with a typographic cover and proposed system diagram.
+
+Re:Seat's homepage cover uses the approved studio visualisation of the finished three-seat concept; hover reveals the original bare frame. The studio image is AI-refined from the original CAD image, with minor inferred finishing detail. Its original case-study images and concept status are preserved. S00 keeps its original static assembled CAD cover.
+
+Card typography, spacing and visible stacked phone/tablet metadata match the approved Framer refinements. The newer Thermofluids story, S00-first project order, resume corrections and 18 October public CV are preserved.
+
+Validation: twelve-page production build with 52 local images; all 338 generated local links/media references resolve; desktop and phone review; Revival menu/child/return navigation; section navigation and image zoom/Escape; Re:Seat hover, Street Pulse hover/reassembly/reduced motion, and static S00 cover. Public CV SHA-256 remains `8ba4366d652ecb1ec737faf4d897299e7e73347ca0658cab4e24c806f2cca927`.
