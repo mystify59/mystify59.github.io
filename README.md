@@ -42,4 +42,6 @@ Re:Seat's homepage cover uses the approved studio visualisation of the finished 
 
 Card typography, spacing and visible stacked phone/tablet metadata match the approved Framer refinements. The newer Thermofluids story, S00-first project order, resume corrections and 18 October public CV are preserved.
 
+Later on 20 October, the user selected the blue SUV city render for the Thermofluids cover. `project-assets/thermofluids/vehicle-concept.png` is the original 1920 × 1080 image from Figma node `135:312`, matching the supplied screenshot without its selection border. The source labels it as a Vizcom-generated concept render; its alt text preserves that qualification. The case-study hero, native CAD and CFD evidence are unchanged.
+
 Validation: twelve-page production build with 52 local images; all 338 generated local links/media references resolve; desktop and phone review; Revival menu/child/return navigation; section navigation and image zoom/Escape; Re:Seat hover, Street Pulse hover/reassembly/reduced motion, and static S00 cover. Public CV SHA-256 remains `8ba4366d652ecb1ec737faf4d897299e7e73347ca0658cab4e24c806f2cca927`.

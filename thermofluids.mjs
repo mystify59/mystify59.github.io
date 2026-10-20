@@ -10,7 +10,9 @@ export const thermofluidsProject = {
   "team": "Imperial College London",
   "platform": "Fusion · Ansys Fluent · CFD",
   "cardSummary": "Vehicle CAD and CFD · Team battery cooling",
-  "coverImage": "project-assets/thermofluids/cad-render.png",
+  "coverImage": "project-assets/thermofluids/vehicle-concept.png",
+  "coverAlt": "Blue SUV concept in a city setting. Vizcom-generated concept visualisation from the project report.",
+  "coverFit": "contain",
   "heroImage": "project-assets/thermofluids/cad-render.png",
   "heroCaption": "Render of the simplified Fusion model used for the aerodynamic study.",
   "sections": [

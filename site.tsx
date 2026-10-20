@@ -9,7 +9,7 @@ const portrait = avatar
 type Project = {
     slug: string; title: string; company: string; year?: string; description: string;
     role: string; timeline: string; team: string; platform: string;
-    coverImage: string; heroImage: string; hoverImage?: string; cardSummary?: string; heroCaption?: string;
+    coverImage: string; heroImage: string; hoverImage?: string; cardSummary?: string; heroCaption?: string; coverAlt?: string; coverFit?: 'contain';
     destination?: string; kind?: string; backHref?: string; backLabel?: string;
     sections: {name: string; heading: string; blocks: {type: string; text?: string; src?: string; alt?: string; href?: string}[]}[]
 }
@@ -29,9 +29,9 @@ export function Page({page, projects, revivals = [], assets}: {page: string; pro
 
     const media = (project: Project) => {
         const animated = project.slug === 'street-pulse'
-        return <div className="project-media">
+        return <div className="project-media" data-fit={project.coverFit}>
             {animated ? <div className="cover-mount" data-project={project.slug}><ExplodedProjectCover projectSlug={project.slug}/></div>
-            : <><img src={image(project.coverImage)} alt={project.title + ' project cover'} width="800" height="600" loading="lazy"/>
+            : <><img src={image(project.coverImage)} alt={project.coverAlt || project.title + ' project cover'} width="800" height="600" loading="lazy"/>
                 {project.slug === 'aircraft-seating' && project.hoverImage && <img className="hover-image" src={image(project.hoverImage)} alt="" width="800" height="600" loading="lazy"/>}</>}
         </div>
     }
