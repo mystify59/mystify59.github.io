@@ -2,6 +2,7 @@
 // Team attribution and prototype/simulation limits are preserved.
 import { thermofluidsProject } from './thermofluids.mjs';
 import { revivalSeries, revivalProjects } from './revival.mjs';
+import { aiCadWorkflowProject } from './ai-cad-workflow.mjs';
 
 export const siteContent = {
   "projects": [
@@ -793,8 +794,9 @@ export const siteContent = {
 // Lead with robotics evidence while retaining the wider design-engineering work.
 siteContent.projects.push(thermofluidsProject);
 siteContent.projects.push(revivalSeries);
+siteContent.projects.push(aiCadWorkflowProject);
 siteContent.revivals = revivalProjects;
-const projectOrder = ['s00', 'street-pulse', 'thermofluids', 'aircraft-seating', 'aquatorium', 'project-revival'];
+const projectOrder = ['s00', 'street-pulse', 'ai-cad-workflow', 'thermofluids', 'aircraft-seating', 'aquatorium', 'project-revival'];
 siteContent.projects.sort((a, b) => projectOrder.indexOf(a.slug) - projectOrder.indexOf(b.slug));
 const cardSummaries = {
   s00: 'Humanoid structure · CAD and assembly studies',

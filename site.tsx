@@ -7,7 +7,7 @@ const avatar = 'https://framerusercontent.com/images/S9hhA7RVIq3CuUn5Xm74zwBns.p
 const portrait = avatar
 
 type ImageMetadata = {width: number; height: number; src: string; variants: {src: string; width: number; height: number}[]}
-type ContentBlock = {type: string; text?: string; src?: string; alt?: string; href?: string; comparison?: string}
+type ContentBlock = {type: string; text?: string; src?: string; alt?: string; href?: string; comparison?: string; steps?: {title: string; text: string}[]; columns?: string[]; rows?: string[][]}
 type Project = {
     slug: string; title: string; company: string; year?: string; description: string;
     role: string; timeline: string; team: string; platform: string;
@@ -62,7 +62,19 @@ export function Page({page, projects, revivals = [], assets, imageMetadata = {}}
                 if (block.comparison) while (blocks[j + 1]?.type === 'image' && blocks[j + 1].comparison === block.comparison) group.push(blocks[++j])
                 const figures = group.map(item => <figure className="case-figure" key={item.src}>{zoomImage(item.src!, item.alt || sectionName, false, group.length > 1)}{item.alt && <figcaption className="case-caption">{item.alt}</figcaption>}</figure>)
                 output.push(group.length > 1 ? <div className="case-comparison" key={j} role="group" aria-label={block.comparison}>{figures}</div> : <React.Fragment key={j}>{figures}</React.Fragment>)
-            } else if (block.type === 'heading') output.push(<h3 className="case-block" key={j}>{block.text}</h3>)
+            } else if (block.type === 'workflow' && block.steps?.length) output.push(
+                <ol className="case-workflow" role="list" aria-label={block.text || sectionName + ' workflow'} key={j}>
+                    {block.steps.map((step, index) => <li key={index}><span className="workflow-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span><h3 className="workflow-title">{step.title}</h3><p>{step.text}</p></li>)}
+                </ol>
+            )
+            else if (block.type === 'table' && block.columns?.length && block.rows?.length) output.push(
+                <table className="case-table" key={j}>
+                    <caption>{block.text || sectionName}</caption>
+                    <thead><tr>{block.columns.map((column, index) => <th scope="col" key={index}>{column}</th>)}</tr></thead>
+                    <tbody>{block.rows.map((row, rowIndex) => <tr key={rowIndex}>{block.columns!.map((_, columnIndex) => columnIndex === 0 ? <th scope="row" key={columnIndex}>{row[columnIndex] || ''}</th> : <td key={columnIndex}>{row[columnIndex] || ''}</td>)}</tr>)}</tbody>
+                </table>
+            )
+            else if (block.type === 'heading') output.push(<h3 className="case-block" key={j}>{block.text}</h3>)
             else if (block.type === 'link') output.push(<p className="case-block" key={j}><a href={block.href} target="_blank" rel="noopener noreferrer">{block.text}</a></p>)
             else output.push(<p className="case-block" key={j}>{block.text}</p>)
         }

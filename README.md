@@ -1,6 +1,6 @@
 # Boxuan Wang — portfolio
 
-An independent static portfolio for GitHub Pages, based on the approved dark-blue Tabfolio design. It includes Li Auto S00, Street Pulse, Thermofluids, Re:Seat, Aquatorium, Project Revival, About and Resume pages. Project attribution distinguishes personal contributions, team work, concept renders and simulation results.
+An independent static portfolio for GitHub Pages, based on the approved dark-blue Tabfolio design. It includes Li Auto S00, Street Pulse, AI-assisted CAD workflow, Thermofluids, Re:Seat, Aquatorium, Project Revival, About and Resume pages. Project attribution distinguishes personal contributions, team work, concept renders and simulation results.
 
 ## Edit and preview
 
@@ -15,6 +15,14 @@ npm run preview
 Open http://127.0.0.1:4180. Edit project stories in `content.mjs`, page templates in `site.tsx`, and visual styles in `styles.css`. The existing hover animations are in `ExplodedProjectCover.tsx`. Replace the public downloads in `public/Boxuan_Wang_CV.pdf` and `public/Boxuan_Wang_Portfolio.pdf`, then rebuild.
 
 `image-build.mjs` generates responsive WebP display versions and project-specific sharing images. Original project images remain available in the zoom viewer. Intrinsic image dimensions reserve space before loading. Run `npm test` after building to check responsive image metadata, sharing cards and original-file preservation.
+
+## AI-assisted CAD workflow, 21 October 2026
+
+`ai-cad-workflow.mjs` holds a separate personal tool-development case at `/case-studies/ai-cad-workflow/`, placed after Street Pulse on the homepage. Its four-step workflow and technical tables use native HTML, with the existing dark/blue styling. S00's internship story remains separate.
+
+`project-assets/ai-cad-workflow/` contains three unmodified original Fusion viewport images from 3 September 2026. They show cumulative development trials, including conditional concept results. The case distinguishes these retained models from the separate 4 September scratch-document integration pass (19 checks, zero failures) and its 39-test static suite. These are recorded historical results, not structural or manufacturing validation. Third-party MCP foundations, AI-assisted development and untested SOLIDWORKS/Ansys integrations are explicit.
+
+Validation: thirteen-page build; existing image-delivery tests; desktop and 390/320px phone layouts; original-image zoom and homepage navigation; source-claim review. Original images remain available through the zoom viewer.
 
 ## 21 October 2026 audit fixes
 
