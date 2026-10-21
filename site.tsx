@@ -6,19 +6,21 @@ const email = 'jw4424@ic.ac.uk'
 const avatar = 'https://framerusercontent.com/images/S9hhA7RVIq3CuUn5Xm74zwBns.png'
 const portrait = avatar
 
+type ImageMetadata = {width: number; height: number; src: string; variants: {src: string; width: number; height: number}[]}
+type ContentBlock = {type: string; text?: string; src?: string; alt?: string; href?: string; comparison?: string}
 type Project = {
     slug: string; title: string; company: string; year?: string; description: string;
     role: string; timeline: string; team: string; platform: string;
-    coverImage: string; heroImage: string; hoverImage?: string; cardSummary?: string; heroCaption?: string; coverAlt?: string; coverFit?: 'contain';
+    coverImage: string; heroImage: string; hoverImage?: string; cardSummary?: string; heroCaption?: string; coverAlt?: string; coverCaption?: string; coverFit?: 'contain'; status?: string;
     destination?: string; kind?: string; backHref?: string; backLabel?: string;
-    sections: {name: string; heading: string; blocks: {type: string; text?: string; src?: string; alt?: string; href?: string}[]}[]
+    sections: {name: string; heading: string; blocks: ContentBlock[]}[]
 }
 
 export function projectRoute(project: Project) {
     return (project.destination || '/case-studies/' + project.slug + '/').replace(/^\/+|\/+$/g, '')
 }
 
-export function Page({page, projects, revivals = [], assets}: {page: string; projects: Project[]; revivals?: Project[]; assets: Record<string,string>}) {
+export function Page({page, projects, revivals = [], assets, imageMetadata = {}}: {page: string; projects: Project[]; revivals?: Project[]; assets: Record<string,string>; imageMetadata?: Record<string,ImageMetadata>}) {
     const depth = page === 'home' || page === '404' ? 0 : page.split('/').length
     const path = (value = '') => (page === '404' ? '/' : '../'.repeat(depth)) + value
     const image = (url: string) => path(assets[url] || url)
@@ -26,39 +28,63 @@ export function Page({page, projects, revivals = [], assets}: {page: string; pro
     const isSeries = project?.kind === 'series'
     const isRevival = revivals.some(p => p.slug === project?.slug)
     const nav = page === 'about' ? 'about' : page === 'resume' ? 'resume' : 'home'
+    const imageProps = (src: string, sizes: string) => {
+        const meta = imageMetadata[src]
+        return meta ? {src: path(meta.src), width: meta.width, height: meta.height, srcSet: meta.variants.map(variant => `${path(variant.src)} ${variant.width}w`).join(', '), sizes} : {src: image(src)}
+    }
+    const downloadLinks = <><a href={path('Boxuan_Wang_CV.pdf')} download>Download CV (PDF)</a><a href={path('Boxuan_Wang_Portfolio.pdf')} download>Download portfolio (PDF)</a></>
+    const facts = (project: Project) => <dl className="project-facts">{[['Role',project.role],['Timeline',project.timeline],['Team',project.team],['Focus',project.platform]].filter(([,value]) => value).map(([label,value]) => <div className="fact" key={label}><dt className="fact-label">{label}</dt><dd className="fact-value">{value}</dd></div>)}</dl>
 
     const media = (project: Project) => {
         const animated = project.slug === 'street-pulse'
         return <div className="project-media" data-fit={project.coverFit}>
             {animated ? <div className="cover-mount" data-project={project.slug}><ExplodedProjectCover projectSlug={project.slug}/></div>
-            : <><img src={image(project.coverImage)} alt={project.coverAlt || project.title + ' project cover'} width="800" height="600" loading="lazy"/>
-                {project.slug === 'aircraft-seating' && project.hoverImage && <img className="hover-image" src={image(project.hoverImage)} alt="" width="800" height="600" loading="lazy"/>}</>}
+            : <><img {...imageProps(project.coverImage, '(max-width: 700px) calc(100vw - 36px), (max-width: 1000px) calc((100vw - 104px) / 2), (max-width: 1280px) calc((100vw - 152px) / 2), 564px')} alt={project.coverAlt || project.title + ' project cover'} loading="lazy"/>
+                {project.slug === 'aircraft-seating' && project.hoverImage && <img className="hover-image" {...imageProps(project.hoverImage, '(max-width: 700px) calc(100vw - 36px), 564px')} alt="" loading="lazy"/>}</>}
         </div>
     }
     const card = (project: Project) => <a className="project-card" key={project.slug} href={path(projectRoute(project) + '/')}>
         {media(project)}
+        {project.coverCaption && <p className="card-provenance">{project.coverCaption}</p>}
         <div className="card-meta"><span className="card-title">{project.title}</span><span className="card-credit">{project.company}{project.year ? ' · ' + project.year : ''}</span></div>
+        {project.status && <p className="project-status card-status">{project.status}</p>}
         {project.cardSummary && <p className="card-summary">{project.cardSummary}</p>}
     </a>
-    const zoomImage = (src: string, alt: string, eager = false) => <button className="image-zoom" type="button" aria-label={'Enlarge image: ' + alt}>
-        <img src={image(src)} alt={alt} loading={eager ? 'eager' : 'lazy'}/>
+    const zoomImage = (src: string, alt: string, eager = false, comparison = false) => <button className="image-zoom" type="button" data-full-src={image(src)} aria-label={'Enlarge image: ' + alt}>
+        <img {...imageProps(src, comparison ? '(max-width: 700px) calc((100vw - 48px) / 2), 380px' : eager ? '(max-width: 700px) calc(100vw - 36px), (max-width: 1280px) calc(100vw - 128px), 1152px' : '(max-width: 700px) calc(100vw - 36px), 760px')} alt={alt} loading={eager ? 'eager' : 'lazy'}/>
     </button>
+    const renderBlocks = (blocks: ContentBlock[], sectionName: string) => {
+        const output: React.ReactNode[] = []
+        for (let j = 0; j < blocks.length; j++) {
+            const block = blocks[j]
+            if (block.type === 'image' && block.src) {
+                const group = [block]
+                if (block.comparison) while (blocks[j + 1]?.type === 'image' && blocks[j + 1].comparison === block.comparison) group.push(blocks[++j])
+                const figures = group.map(item => <figure className="case-figure" key={item.src}>{zoomImage(item.src!, item.alt || sectionName, false, group.length > 1)}{item.alt && <figcaption className="case-caption">{item.alt}</figcaption>}</figure>)
+                output.push(group.length > 1 ? <div className="case-comparison" key={j} role="group" aria-label={block.comparison}>{figures}</div> : <React.Fragment key={j}>{figures}</React.Fragment>)
+            } else if (block.type === 'heading') output.push(<h3 className="case-block" key={j}>{block.text}</h3>)
+            else if (block.type === 'link') output.push(<p className="case-block" key={j}><a href={block.href} target="_blank" rel="noopener noreferrer">{block.text}</a></p>)
+            else output.push(<p className="case-block" key={j}>{block.text}</p>)
+        }
+        return output
+    }
 
     return <>
         <a className="skip-link" href="#main">Skip to content</a>
         <div className="shell">
-            <header className="site-header">
-                <div className="hero-glow" aria-hidden="true"/>
+            <header className={'site-header' + (page === 'home' ? '' : ' site-header-compact')}>
+                {page === 'home' && <div className="hero-glow" aria-hidden="true"/>}
                 <div className="hero-top">
-                    <a className="avatar" href={path()} aria-label="Boxuan Wang home"><img src={image(avatar)} alt="" width="60" height="60"/></a>
+                    <a className={page === 'home' ? 'avatar' : 'compact-identity'} href={path()} aria-label="Boxuan Wang home">{page === 'home' ? <img {...imageProps(avatar, '60px')} alt=""/> : <><span className="avatar"><img {...imageProps(avatar, '36px')} alt=""/></span><span>Boxuan Wang</span></>}</a>
                     <nav className="site-nav" aria-label="Main navigation">
                         {[['home','Projects',''],['about','About','about/'],['resume','Resume','resume/']].map(([key,label,target]) =>
                             <a key={key} href={path(target)} aria-current={nav === key && !project ? 'page' : undefined} data-active={nav === key}>{label}</a>)}
                     </nav>
                 </div>
-                {page === 'home' ? <h1 className="hero-name">Boxuan Wang</h1> : <p className="hero-name">Boxuan Wang</p>}
+                {page === 'home' && <><h1 className="hero-name">Boxuan Wang</h1>
                 <p className="hero-bio">{biography}</p>
                 <div className="hero-actions"><a className="button" href={path() + '#projects'}>View projects</a><a className="button button-secondary" href={'mailto:' + email}>Email me</a></div>
+                <nav className="hero-downloads" aria-label="Download application materials">{downloadLinks}</nav></>}
             </header>
 
             <main id="main">
@@ -66,7 +92,7 @@ export function Page({page, projects, revivals = [], assets}: {page: string; pro
 
                 {page === 'about' && <>
                     <section className="about-layout" aria-labelledby="about-title">
-                        <div className="about-photo"><img src={image(portrait)} alt="Portrait of Boxuan Wang" width="600" height="600"/></div>
+                        <div className="about-photo"><img {...imageProps(portrait, '(max-width: 700px) calc(100vw - 36px), 500px')} alt="Portrait of Boxuan Wang"/></div>
                         <div className="about-copy">
                             <h1 className="about-title" id="about-title">Hi, I’m Boxuan.<br/><span>Design Engineering student at Imperial College London</span></h1>
                             <div className="about-body">
@@ -93,7 +119,7 @@ export function Page({page, projects, revivals = [], assets}: {page: string; pro
 
                 {page === 'resume' && <div className="resume">
                     <h1 className="visually-hidden">Resume</h1>
-                    <div className="resume-download"><a className="button button-secondary" href={path('Boxuan_Wang_CV.pdf')} target="_blank" rel="noopener">View CV (PDF)</a></div>
+                    <nav className="resume-download" aria-label="Download application materials">{downloadLinks}</nav>
                     <section className="resume-section" aria-label="Experience">
                         <article className="job-entry"><h2 className="entry-title">Humanoid Development Intern @ Li Auto</h2><p className="entry-date">July – September 2026</p><p className="entry-copy">Designed connector parts and structural supports in SolidWorks, supported by Ansys analysis. Redesigned upper-torso load paths as part of the team, reducing torso weight by 18% and meeting fatigue requirements in Ansys simulations with a safety factor of 3. Developed AI-assisted workflows for 3D-printable validation structures and collected motion-demonstration data using wearable tracking and VR.</p></article>
                         <article className="job-entry"><h2 className="entry-title">Cooperative Robot Intern @ elibot</h2><p className="entry-date">July – August 2023</p><p className="entry-copy">Built a Python data-logging system to track incoming, produced and shipped robots. Created joint-specific fatigue-test sequences and logged faults during testing. Contributed to remote-control app and web interfaces, webpage UX, and the English translation and visual layout of robot user manuals.</p></article>
@@ -120,19 +146,19 @@ export function Page({page, projects, revivals = [], assets}: {page: string; pro
                 </div>}
 
                 {project && <>
-                    <header className="case-header"><a className="back-link" href={project.backHref ? path(project.backHref.replace(/^\//, '')) : path() + '#projects'}>{project.backLabel || '← All projects'}</a><h1 className="case-title">{project.title}</h1><p className="case-description">{project.description}</p>
-                        <dl className="project-facts">{[['Role',project.role],['Timeline',project.timeline],['Team',project.team],['Focus',project.platform]].filter(([,value]) => value).map(([label,value]) => <div className="fact" key={label}><dt className="fact-label">{label}</dt><dd className="fact-value">{value}</dd></div>)}</dl>
+                    <header className="case-header"><a className="back-link" href={project.backHref ? path(project.backHref.replace(/^\//, '')) : path() + '#projects'}>{project.backLabel || '← All projects'}</a><h1 className="case-title">{project.title}</h1>{project.status && <p className="project-status">{project.status}</p>}<p className="case-description">{project.description}</p>
+                        {!isSeries && facts(project)}
                     </header>
                     {isSeries ? <>
-                        <div className="revival-intro">{project.sections.flatMap(section => section.blocks).filter(block => block.type === 'paragraph').map((block,i) => <p key={i}>{block.text}</p>)}</div>
                         <section className="revival-menu" aria-labelledby="revival-menu-title"><h2 className="section-label" id="revival-menu-title">Choose a revival</h2><div className="projects-grid">{revivals.map(card)}</div></section>
+                        <section className="revival-intro" aria-labelledby="revival-intro-title"><h2 className="section-label" id="revival-intro-title">The series</h2>{project.sections.flatMap(section => section.blocks).filter(block => block.type === 'paragraph').map((block,i) => <p key={i}>{block.text}</p>)}{facts(project)}</section>
                     </> : <>
                     <div className="case-hero">{zoomImage(project.heroImage, project.heroCaption || project.title + ' project overview', true)}{project.heroCaption && <p className="case-caption">{project.heroCaption}</p>}</div>
                     <div className="case-layout">
                         <nav className="case-nav" aria-label="Case study sections">{project.sections.map((section,i) => <a key={i} href={'#section-' + i}>{section.name}</a>)}</nav>
                         <div className="case-body">{project.sections.map((section,i) => <section className="case-section" key={i} id={'section-' + i} aria-labelledby={'heading-' + i}>
                             <h2 className="case-heading" id={'heading-' + i}>{section.heading}</h2>
-                            {section.blocks.map((block,j) => block.type === 'image' && block.src ? <figure className="case-figure" key={j}>{zoomImage(block.src, block.alt || section.name)}{block.alt && <figcaption className="case-caption">{block.alt}</figcaption>}</figure> : block.type === 'heading' ? <h3 className="case-block" key={j}>{block.text}</h3> : block.type === 'link' ? <p className="case-block" key={j}><a href={block.href} target="_blank" rel="noopener noreferrer">{block.text}</a></p> : <p className="case-block" key={j}>{block.text}</p>)}
+                            {renderBlocks(section.blocks, section.name)}
                         </section>)}</div>
                     </div>
                     <section className="next-projects" aria-labelledby="more-projects">{isRevival && <a className="back-link" href={path('project-revival/')}>← All revivals</a>}<h2 className="section-label" id="more-projects">{isRevival ? 'More revivals' : 'More projects'}</h2><div className="projects-grid">{(isRevival ? revivals : projects).filter(p => p.slug !== project.slug).slice(0,2).map(card)}</div></section>
@@ -142,7 +168,7 @@ export function Page({page, projects, revivals = [], assets}: {page: string; pro
             </main>
 
             <footer className="site-footer"><div className="footer-grid">
-                <div className="footer-profile"><div className="footer-name"><img src={image(avatar)} alt="" width="32" height="32"/><span>Boxuan Wang</span></div><p>Design Engineering student at Imperial College London.<br/>Product design, mechanical engineering and robotics.</p><p className="template-credit">Design based on Tabfolio by <a href="https://www.sebastianst.design/" target="_blank" rel="noopener noreferrer">Sebastian</a></p></div>
+                <div className="footer-profile"><div className="footer-name"><img {...imageProps(avatar, '32px')} alt=""/><span>Boxuan Wang</span></div><p>Design Engineering student at Imperial College London.<br/>Product design, mechanical engineering and robotics.</p><nav className="footer-downloads" aria-label="Footer downloads">{downloadLinks}</nav><p className="template-credit">Design based on Tabfolio by <a href="https://www.sebastianst.design/" target="_blank" rel="noopener noreferrer">Sebastian</a></p></div>
                 <nav className="footer-links" aria-label="Footer navigation"><p>Links</p><a href={path()}>Projects</a><a href={path('about/')}>About</a><a href={path('resume/')}>Resume</a></nav>
                 <div className="footer-contact"><p>Contact</p><a href={'mailto:' + email}>{email}</a><a href={'mailto:' + email}>Email me</a></div>
             </div></footer>

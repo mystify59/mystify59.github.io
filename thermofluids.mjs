@@ -12,6 +12,7 @@ export const thermofluidsProject = {
   "cardSummary": "Vehicle CAD and CFD · Team battery cooling",
   "coverImage": "project-assets/thermofluids/vehicle-concept.png",
   "coverAlt": "Blue SUV concept in a city setting. Vizcom-generated concept visualisation from the project report.",
+  "coverCaption": "Concept visualisation · Vizcom image from the report",
   "coverFit": "contain",
   "heroImage": "project-assets/thermofluids/cad-render.png",
   "heroCaption": "Render of the simplified Fusion model used for the aerodynamic study.",
@@ -60,11 +61,13 @@ export const thermofluidsProject = {
         {
           "type": "image",
           "src": "project-assets/thermofluids/velocity-side.png",
+          "comparison": "Velocity and pressure in the same CFD study",
           "alt": "Side-plane velocity contour from the scaled CFD model. The low-velocity region behind the body highlights the rear wake."
         },
         {
           "type": "image",
           "src": "project-assets/thermofluids/pressure-side.png",
+          "comparison": "Velocity and pressure in the same CFD study",
           "alt": "Side-plane pressure contour used to examine the nose, roof and rear pressure distribution."
         }
       ]

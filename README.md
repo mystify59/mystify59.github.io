@@ -12,7 +12,15 @@ npm run build
 npm run preview
 ```
 
-Open http://127.0.0.1:4180. Edit project stories in `content.mjs`, page templates in `site.tsx`, and visual styles in `styles.css`. The existing hover animations are in `ExplodedProjectCover.tsx`. Replace the public PDF in `public/Boxuan_Wang_CV.pdf`, then rebuild.
+Open http://127.0.0.1:4180. Edit project stories in `content.mjs`, page templates in `site.tsx`, and visual styles in `styles.css`. The existing hover animations are in `ExplodedProjectCover.tsx`. Replace the public downloads in `public/Boxuan_Wang_CV.pdf` and `public/Boxuan_Wang_Portfolio.pdf`, then rebuild.
+
+`image-build.mjs` generates responsive WebP display versions and project-specific sharing images. Original project images remain available in the zoom viewer. Intrinsic image dimensions reserve space before loading. Run `npm test` after building to check responsive image metadata, sharing cards and original-file preservation.
+
+## 21 October 2026 audit fixes
+
+Project, About and Resume pages use a compact header. Project facts use two columns on phones, Project Revival opens with its project menu, and related enclosure/CFD images are grouped for comparison. Download links on Home, Resume and the footer serve the current CV and twelve-page portfolio. The CV wording is unchanged from the selected 20 October version, with improved text extraction in the public export.
+
+Aquatorium identifies the supported Phase 1 contribution while retaining team attribution for subsequent development. Anvil remains **in development** until its internals are finished and tested; the existing print does not establish a completed mechanism or working sound system. Approved original covers and hover behaviours are preserved, with concise concept-image captions where relevant.
 
 `revival.mjs` holds the Project Revival menu and its Anvil/Ghost stories. Each object has a `destination` for its route: `/project-revival/`, `/project-revival/anvil/` and `/project-revival/ghost/`. The build includes child-story assets and routes in the same static output and sitemap. New series projects can follow this pattern without placing every child on the homepage.
 

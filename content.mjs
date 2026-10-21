@@ -162,7 +162,7 @@ export const siteContent = {
       "company": "Academic team project",
       "year": "",
       "description": "A collapsible live-fish transport concept combining a support frame, individual fish bags, oxygen delivery and cooling.",
-      "role": "Phase 1 concept exploration",
+      "role": "Individual Phase 1 concepts",
       "timeline": "Two project phases",
       "team": "Four-person academic team",
       "platform": "Outdoor product",
@@ -181,7 +181,7 @@ export const siteContent = {
             },
             {
               "type": "paragraph",
-              "text": "My individual Phase 1 work explored six concepts for supporting the transition between activities, including a floating hydro-generator. The team later developed Aquatorium through frame and enclosure prototypes, component-layout studies and manufacturing considerations."
+              "text": "My individual Phase 1 work explored six concepts for supporting the transition between activities, including a floating hydro-generator. The later Aquatorium frame, enclosure prototypes, component layouts and manufacturing study are presented as the team’s development work."
             },
             {
               "type": "heading",
@@ -321,23 +321,26 @@ export const siteContent = {
             },
             {
               "type": "paragraph",
-              "text": "Three enclosure prototypes followed: a basic box, an open test layout and a more focused version with the openings and mounts the components needed. Physical prototypes helped reveal packaging and assembly constraints that were less obvious in CAD."
+              "text": "The team moved from a basic box to a fitted enclosure so that component access, openings and mounts could develop together. These three physical prototypes exposed packaging and assembly constraints that were less obvious in CAD."
             },
             {
               "type": "image",
               "src": "https://framerusercontent.com/images/aJVbXLoTKzD8BeNPKpIQQ3HQRs4.png",
+              "comparison": "Team enclosure iterations",
               "alt": "01 / Basic enclosure",
               "text": "01 / Basic enclosure"
             },
             {
               "type": "image",
               "src": "https://framerusercontent.com/images/h6qNgeBXpXBLCZXq8qpCSR9A4NQ.jpg",
+              "comparison": "Team enclosure iterations",
               "alt": "02 / Test layout",
               "text": "02 / Test layout"
             },
             {
               "type": "image",
               "src": "https://framerusercontent.com/images/xkDyneol6LVCnwu99HUdOBzd8Zg.png",
+              "comparison": "Team enclosure iterations",
               "alt": "03 / Refined openings",
               "text": "03 / Refined openings"
             }
@@ -807,5 +810,7 @@ for (const project of siteContent.projects) {
     project.title = 'Re:Seat';
     project.hoverImage = project.coverImage;
     project.coverImage = 'project-assets/aircraft-seat/reseat-final-studio.png';
+    project.coverAlt = 'Re:Seat modular aircraft-seat concept. AI-refined studio visualisation based on the project CAD, with inferred finishing details.';
+    project.coverCaption = 'Concept visualisation · AI-refined from project CAD';
   }
 }

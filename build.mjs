@@ -6,6 +6,7 @@ import { build } from 'esbuild'
 import React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { siteContent } from './content.mjs'
+import { createResponsiveImage, createSocialImage } from './image-build.mjs'
 
 const root = path.dirname(fileURLToPath(import.meta.url))
 const dist = path.join(root, 'docs')
@@ -24,6 +25,7 @@ for(const project of allProjects) {
     for(const section of project.sections) for(const block of section.blocks) if(block.type==='image' && block.src) urls.add(block.src)
 }
 const assets = {}
+const imageMetadata = {}
 async function saveAsset(url) {
     if (url?.startsWith('project-assets/')) {
         const localRoot = path.resolve(root, 'project-assets');
@@ -35,6 +37,7 @@ async function saveAsset(url) {
         const name = crypto.createHash('sha256').update(bytes).digest('hex').slice(0,18)+extension;
         await fs.writeFile(path.join(dist,'assets',name),bytes);
         assets[url] = 'assets/'+name;
+        imageMetadata[url] = await createResponsiveImage({bytes,original:assets[url],outDir:path.join(dist,'assets'),small:sharedAssets.includes(url)});
         return;
     }
     if(!url || !/^https:\/\//.test(url)) throw new Error('Missing or invalid portfolio image: '+url)
@@ -50,6 +53,7 @@ async function saveAsset(url) {
     }
     await fs.copyFile(cached,path.join(dist,'assets',name))
     assets[url] = 'assets/'+name
+    imageMetadata[url] = await createResponsiveImage({bytes:await fs.readFile(cached),original:assets[url],outDir:path.join(dist,'assets'),small:sharedAssets.includes(url)})
 }
 const pending = [...urls]
 await Promise.all(Array.from({length:4},async()=>{while(pending.length)await saveAsset(pending.shift())}))
@@ -67,8 +71,17 @@ try { await fs.access(fontPath) } catch {
     await fs.writeFile(fontPath,Buffer.from(await font.arrayBuffer()))
 }
 await fs.copyFile(fontPath,path.join(dist,'assets','manrope.woff2'))
+const socialImages = {site:await createSocialImage({outDir:path.join(dist,'assets')})}
+for (const project of allProjects) {
+    socialImages[projectRoute(project)] = await createSocialImage({outDir:path.join(dist,'assets'),title:project.title,imageFile:path.join(dist,assets[project.coverImage]),caption:project.coverCaption})
+}
 // Remove assets retired from the current public pages.
-const currentAssets = new Set([...Object.values(assets).map(asset=>path.basename(asset)), 'manrope.woff2'])
+const currentAssets = new Set([
+    ...Object.values(assets).map(asset=>path.basename(asset)),
+    ...Object.values(imageMetadata).flatMap(image=>image.variants.map(variant=>path.basename(variant.src))),
+    ...Object.values(socialImages).map(image=>path.basename(image.src)),
+    'manrope.woff2'
+])
 for (const file of await fs.readdir(path.join(dist,'assets'))) {
     if (!currentAssets.has(file)) await fs.unlink(path.join(dist,'assets',file))
 }
@@ -81,8 +94,11 @@ const escape = value => String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&
 for(const page of pages) {
     const depth=page.key==='home'||page.key==='404'?0:page.key.split('/').length
     const prefix=page.key==='404'?'/':'../'.repeat(depth)
-    const content=renderToStaticMarkup(React.createElement(Page,{page:page.key,projects:siteContent.projects,revivals:siteContent.revivals,assets}))
-    const html='<!doctype html>\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#111315"><title>'+escape(page.title)+'</title><meta name="description" content="'+escape(page.description)+'"><meta property="og:title" content="'+escape(page.title)+'"><meta property="og:description" content="'+escape(page.description)+'"><meta property="og:type" content="website"><meta property="og:url" content="'+origin+'/'+page.route+'"><meta property="og:image" content="'+origin+'/'+assets[sharedAssets[0]]+'"><link rel="canonical" href="'+origin+'/'+page.route+'"><link rel="icon" href="'+prefix+assets[sharedAssets[0]]+'"><link rel="preload" href="'+prefix+'assets/manrope.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="'+prefix+'styles.css"></head><body>'+content+'<script src="'+prefix+'client.js" defer></script></body></html>'
+    const content=renderToStaticMarkup(React.createElement(Page,{page:page.key,projects:siteContent.projects,revivals:siteContent.revivals,assets,imageMetadata}))
+    const social=socialImages[page.key] || socialImages.site
+    const favicon=imageMetadata[sharedAssets[0]].variants[0]?.src || assets[sharedAssets[0]]
+    const sharing='<meta property="og:image" content="'+origin+'/'+social.src+'"><meta property="og:image:width" content="'+social.width+'"><meta property="og:image:height" content="'+social.height+'"><meta property="og:image:type" content="image/jpeg"><meta property="og:image:alt" content="'+escape(social.alt)+'"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="'+escape(page.title)+'"><meta name="twitter:description" content="'+escape(page.description)+'"><meta name="twitter:image" content="'+origin+'/'+social.src+'"><meta name="twitter:image:alt" content="'+escape(social.alt)+'">'
+    const html='<!doctype html>\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#111315"><title>'+escape(page.title)+'</title><meta name="description" content="'+escape(page.description)+'"><meta property="og:title" content="'+escape(page.title)+'"><meta property="og:description" content="'+escape(page.description)+'"><meta property="og:type" content="website"><meta property="og:url" content="'+origin+'/'+page.route+'">'+sharing+'<link rel="canonical" href="'+origin+'/'+page.route+'"><link rel="icon" href="'+prefix+favicon+'"><link rel="preload" href="'+prefix+'assets/manrope.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="'+prefix+'styles.css"></head><body>'+content+'<script src="'+prefix+'client.js" defer></script></body></html>'
     const output=page.key==='404'?path.join(dist,'404.html'):path.join(dist,page.route,'index.html')
     await fs.mkdir(path.dirname(output),{recursive:true})
     await fs.writeFile(output,html)
@@ -90,4 +106,9 @@ for(const page of pages) {
 await fs.writeFile(path.join(dist,'.nojekyll'),'')
 await fs.writeFile(path.join(dist,'robots.txt'),'User-agent: *\nAllow: /\nSitemap: '+origin+'/sitemap.xml\n')
 await fs.writeFile(path.join(dist,'sitemap.xml'),'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+pages.filter(p=>p.key!=='404').map(p=>'<url><loc>'+origin+'/'+p.route+'</loc></url>').join('')+'</urlset>')
+await fs.writeFile(path.join(staging,'image-manifest.json'),JSON.stringify({
+    images:Object.fromEntries(Object.entries(imageMetadata).sort(([a],[b])=>a.localeCompare(b))),
+    socialImages,
+    totals:{originalBytes:Object.values(imageMetadata).reduce((sum,image)=>sum+image.originalBytes,0),responsiveBytes:Object.values(imageMetadata).flatMap(image=>image.variants).reduce((sum,image)=>sum+image.bytes,0),originals:urls.size,variants:Object.values(imageMetadata).reduce((sum,image)=>sum+image.variants.length,0)}
+},null,2)+'\n')
 console.log('Built '+pages.length+' pages and '+urls.size+' local images in docs/')

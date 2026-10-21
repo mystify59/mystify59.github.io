@@ -12,7 +12,7 @@ if (dialog) {
     document.querySelectorAll<HTMLButtonElement>('.image-zoom').forEach(button => {
         button.addEventListener('click', () => {
             const image = button.querySelector<HTMLImageElement>('img')!
-            expanded.src = image.src
+            expanded.src = button.dataset.fullSrc || image.currentSrc || image.src
             expanded.alt = image.alt
             dialog.showModal()
         })
