@@ -16,6 +16,14 @@ Open http://127.0.0.1:4180. Edit project stories in `content.mjs`, page template
 
 `image-build.mjs` generates responsive WebP display versions and project-specific sharing images. Original project images remain available in the zoom viewer. Intrinsic image dimensions reserve space before loading. Run `npm test` after building to check responsive image metadata, sharing cards and original-file preservation.
 
+## Re:Seat travel concept, 22 October 2026
+
+The Re:Seat case now connects the original flight-experience curves and feature-priority bars to the proposed passenger/service cycle, and closes with the approved finished-seat studio visualisation. The research charts are qualitative synthesis from five review videos, not measured passenger scores. Their SVG versions preserve the source curve paths and relative bar lengths, with separate phone layouts.
+
+`project-assets/reseat-travel/` contains seven unchanged, higher-resolution Figma source images and four chart SVGs. Original CAD and sketch files remain available through image zoom. The closing studio hero is labelled as an AI-refined concept image; personal concept work and shared Team 12 research remain distinct.
+
+Validation: thirteen-page build, three image-delivery tests, 1280/768/390/320px layout checks, chapter links, original-image zoom, and independent source/attribution review.
+
 ## S00 three-part case, 22 October 2026
 
 `s00.mjs` now groups the case into component supports, main-frame FEA, and the wrist-camera mount for VLA data collection. Original Ansys report images in `project-assets/s00-analysis/` match the saved 4 August frame results. The camera section reports the separate 17 August bracket studies in tables. Load, material, boundary and convergence limits are stated with the results; the camera fixture is distinct from the head-camera support. Hand-posture research is omitted.

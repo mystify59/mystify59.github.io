@@ -753,9 +753,9 @@ export const siteContent = {
       "team": "Individual concept · Team 12 research",
       "platform": "Physical product & service system",
       "subtitle": "Modular aircraft seating designed for repair and reuse.",
-      "coverImage": "https://framerusercontent.com/images/FJCGBl9G1KzlCaqfbe0sbgyx6Lw.png",
-      "heroImage": "https://framerusercontent.com/images/ANUUEObA7aLBpLZHYEAKgt9MpbA.png",
-      "hoverImage": "https://framerusercontent.com/images/ANUUEObA7aLBpLZHYEAKgt9MpbA.png",
+      "coverImage": "project-assets/reseat-travel/reseat-bare-frame-original.png",
+      "heroImage": "project-assets/reseat-travel/reseat-assembled-cad-original.png",
+      "hoverImage": "project-assets/reseat-travel/reseat-assembled-cad-original.png",
       "sections": [
         {
           "name": "Overview",
@@ -773,25 +773,56 @@ export const siteContent = {
         },
         {
           "name": "Research",
-          "heading": "Understand what makes a seat hard to maintain.",
+          "heading": "Understand the journey as well as the seat.",
           "blocks": [
             {
+              "type": "heading",
+              "text": "What changes through a flight?"
+            },
+            {
               "type": "paragraph",
-              "text": "Our group dismantled a legacy aircraft seat and mapped its parts, materials and joining methods. Buried fixings, rivets and adhesive-bonded materials made separation difficult or destructive. Removable upholstery offered a useful contrast: the connection made routine cleaning and replacement much more accessible."
+              "text": "Our team analysed **five economy-flight review videos** to map the experience from boarding to arrival. The journey curves below capture two illustrative traveller profiles. They helped us consider when space, storage, a dependable tray and reachable power matter during a flight."
             },
             {
               "type": "image",
-              "src": "https://framerusercontent.com/images/xk97DfwMbFIhXm3PEU6aqwaUUc.png",
-              "alt": "Bonded materials exposed during Team 12’s teardown of the reference seat.",
-              "text": "Bonded materials exposed during Team 12’s teardown of the reference seat."
+              "src": "project-assets/reseat-travel/flight-journey.svg",
+              "mobileSrc": "project-assets/reseat-travel/flight-journey-mobile.svg",
+              "alt": "Flight-experience curves from Team 12’s presentation, redrawn for clarity. Qualitative synthesis from five review videos; these are not measured satisfaction scores."
+            },
+            {
+              "type": "heading",
+              "text": "Different passengers, different priorities."
             },
             {
               "type": "paragraph",
-              "text": "We analysed five economy-flight review videos to build illustrative passenger personas and journey maps. These highlighted legroom, hygiene, stable tray tables and reachable power. A 40-minute interview with a cabin maintenance engineer added operational considerations around modularity, maintenance cost and safety."
+              "text": "The same research compared priorities across six seat features. Both profiles valued **reachable power**, while the balance between legroom, tray use, storage and environmental considerations differed. I used this variation to explore a **shared structure with configurable features**, rather than assume one equipment package suited every journey."
+            },
+            {
+              "type": "image",
+              "src": "project-assets/reseat-travel/feature-priorities.svg",
+              "mobileSrc": "project-assets/reseat-travel/feature-priorities-mobile.svg",
+              "alt": "Illustrative feature priorities from the group’s secondary research. The original relative bar lengths are preserved; they are not passenger survey ratings."
             },
             {
               "type": "paragraph",
-              "text": "Together, the findings framed the challenge: simplify access to parts without sacrificing the comfort and dependable functionality passengers expect. The group’s environmental comparisons also made mass during use a priority for the subsequent concept."
+              "text": "A **40-minute interview with a cabin maintenance engineer**, in which I participated, added the operational perspective. Equipment needs could differ between short and long flights, while comfort, reliable functions, maintenance access and safety remained central. This connected the passenger research to the proposed modular architecture."
+            },
+            {
+              "type": "heading",
+              "text": "Make the seat easier to maintain."
+            },
+            {
+              "type": "paragraph",
+              "text": "Our group dismantled a legacy aircraft seat and mapped its parts, materials and joining methods. **Buried fixings, rivets and adhesive-bonded materials** made separation difficult or destructive. Removable upholstery offered a useful contrast: its connections made routine cleaning and replacement more accessible."
+            },
+            {
+              "type": "image",
+              "src": "project-assets/reseat-travel/reseat-teardown-original.jpeg",
+              "alt": "Bonded materials exposed during Team 12’s teardown of the reference seat."
+            },
+            {
+              "type": "takeaway",
+              "text": "Design direction: keep a durable supporting structure, configure the features around the journey, and make worn parts accessible for replacement."
             }
           ]
         },
@@ -809,21 +840,24 @@ export const siteContent = {
             },
             {
               "type": "image",
-              "src": "https://framerusercontent.com/images/37jASjV69Eh93P4d6kFI8PiS0U.png",
-              "alt": "Base frame",
-              "text": "Base frame"
+              "src": "project-assets/reseat-travel/reseat-frame-sketch-original.jpeg",
+              "alt": "Base frame — a common supporting structure.",
+              "comparison": "Three layers of the modular seat concept",
+              "gallery": true
             },
             {
               "type": "image",
-              "src": "https://framerusercontent.com/images/lJkCYCDk5Emcvdmuo9ffSAepqc.png",
-              "alt": "Essential features",
-              "text": "Essential features"
+              "src": "project-assets/reseat-travel/reseat-essential-sketch-original.jpeg",
+              "alt": "Essential features — the parts needed for everyday use.",
+              "comparison": "Three layers of the modular seat concept",
+              "gallery": true
             },
             {
               "type": "image",
-              "src": "https://framerusercontent.com/images/4dohcjSygKE9GvjBz3l7E4800U4.png",
-              "alt": "Optional modules",
-              "text": "Optional modules"
+              "src": "project-assets/reseat-travel/reseat-optional-sketch-original.jpeg",
+              "alt": "Optional modules — equipment configured around the journey.",
+              "comparison": "Three layers of the modular seat concept",
+              "gallery": true
             },
             {
               "type": "paragraph",
@@ -841,9 +875,8 @@ export const siteContent = {
             },
             {
               "type": "image",
-              "src": "https://framerusercontent.com/images/FJCGBl9G1KzlCaqfbe0sbgyx6Lw.png",
-              "alt": "Three-seat CAD configuration showing the proposed supporting frame.",
-              "text": "Three-seat CAD configuration showing the proposed supporting frame."
+              "src": "project-assets/reseat-travel/reseat-bare-frame-original.png",
+              "alt": "Three-seat CAD configuration showing the proposed supporting frame."
             },
             {
               "type": "paragraph",
@@ -855,23 +888,52 @@ export const siteContent = {
             },
             {
               "type": "image",
-              "src": "https://framerusercontent.com/images/ED0CYrQeC1xYNnpHPW9LVThfPE.png",
-              "alt": "Removable headrest and backrest cushion modules, shown as CAD studies.",
-              "text": "Removable headrest and backrest cushion modules, shown as CAD studies."
+              "src": "project-assets/reseat-travel/reseat-cushion-modules-original.png",
+              "alt": "Removable headrest and backrest cushion modules, shown as CAD studies."
             }
           ]
         },
         {
-          "name": "Service system",
-          "heading": "Design the return route as well as the seat.",
+          "name": "Travel concept",
+          "heading": "Choose for the trip. Renew between journeys.",
           "blocks": [
             {
               "type": "paragraph",
-              "text": "The service proposal connects feature selection before a flight with inspection and component replacement on the ground. Staff would log damaged or stained modules, remove them and fit prepared replacements. Returned parts would be cleaned, repaired or separated according to condition, then re-enter a shared pool."
+              "text": "The service proposal begins **before boarding**. Passengers would select optional features relevant to their trip, while staff would prepare the cabin using a shared module inventory. After use, damaged or stained parts would leave the seat for treatment, keeping the supporting structure in service."
+            },
+            {
+              "type": "workflow",
+              "text": "Proposed Re:Seat travel and service cycle",
+              "steps": [
+                {
+                  "title": "Choose features",
+                  "text": "At booking, the passenger selects the optional equipment relevant to their journey."
+                },
+                {
+                  "title": "Inspect and log",
+                  "text": "After the previous flight, staff check the seats and record damaged or stained modules."
+                },
+                {
+                  "title": "Prepare and fit",
+                  "text": "The required configuration and maintenance record guide which modules staff prepare and install."
+                },
+                {
+                  "title": "Use during the flight",
+                  "text": "The configured seat supports the passenger’s chosen activities and practical needs on board."
+                },
+                {
+                  "title": "Clean, repair or separate",
+                  "text": "Removed modules are treated off the aircraft according to condition; worn units can be disassembled."
+                },
+                {
+                  "title": "Return to the shared pool",
+                  "text": "Serviceable modules become available for another seat, connecting replacement to reuse."
+                }
+              ]
             },
             {
               "type": "paragraph",
-              "text": "Mapping this cycle made the operational dependencies visible. Spare-module availability, demand forecasting, storage and turnaround time would determine whether the system could work. Designing a detachable component was only one part of the task; the service also needed to deliver the right replacement when required."
+              "text": "This is a **proposed operating model**. Spare stock, demand planning, secure connections, storage and a workable turnaround window would determine its feasibility. Mapping the cycle made those dependencies visible: the design needed both a detachable part and a practical route for delivering its replacement."
             }
           ]
         },
@@ -888,8 +950,24 @@ export const siteContent = {
               "text": "The work connected disassembly research to CAD and a proposed service cycle. Its next step would be a physical prototype to assess fit, comfort, replacement time and repeated connector use, followed by structural and certification assessment. The key lesson was that lighter components, maintainable connections and practical service logistics need to develop together."
             }
           ]
+        },
+        {
+          "name": "Final concept",
+          "heading": "One structure. A longer life in use.",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "The finished-seat concept brings the frame, replaceable cushioning and configurable accessories together. It shows the intended product direction; the next stage would test the physical connections, ergonomics and service process."
+            },
+            {
+              "type": "image",
+              "src": "project-assets/aircraft-seat/reseat-final-studio.png",
+              "alt": "Re:Seat final concept. AI-refined studio visualisation based on the project CAD, with inferred finishing details."
+            }
+          ]
         }
-      ]
+      ],
+      "heroCaption": "Assembled Re:Seat concept, shown in the original project CAD visualisation."
     }
   ]
 };
