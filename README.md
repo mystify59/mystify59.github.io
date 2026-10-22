@@ -18,6 +18,8 @@ Open http://127.0.0.1:4180. Edit project stories in `content.mjs`, page template
 
 ## Work in progress, 22 October 2026
 
+The public CV and twelve-page portfolio downloads are aligned with the current website narrative. S00 follows component supports, main-frame FEA and the wrist-camera mount; Aquatorium follows research/concepts, team development and electronics/functions; Street Pulse combines its research strands and explains the physical-module/VR evaluation; Revival shows separate Anvil/Ghost progress. Current contribution and simulation/prototype boundaries are preserved, including Aquatorium's calculated duty-cycle runtime. The PDF portfolio remains a selected four-project edition. The general CV remains one A4 page.
+
 The homepage groups Project Revival and Personal Workbench below the six main projects in a separate Work in progress section. Numbered progress lists show recorded stages, current development and future work. Project Revival keeps its Anvil and Ghost menu; both child pages and the series hub show their stages. Anvil internals remain unfinished and untested. Personal Workbench is a local prototype, with its earlier demonstration image labelled and historical checks dated.
 
 Edit these cases in `revival.mjs` and `workbench.mjs`. Each `progress` block has steps with `title`, `text`, `state` (`done`, `current` or `next`) and an optional visible `label`. Development states are evidence-based, not completion percentages.
