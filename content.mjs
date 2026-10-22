@@ -437,15 +437,15 @@ export const siteContent = {
     },
     {
       "slug": "s00",
-      "title": "S00: internal structure & hand studies",
+      "title": "S00: internal structure design",
       "company": "Li Auto",
       "year": "2026",
-      "description": "Internal component planning, mounting and assembly details for a humanoid robot, alongside research into fixed hand postures for demonstration models.",
+      "description": "Internal component planning, mounting and assembly details for a humanoid robot.",
       "role": "Humanoid Development Intern",
       "timeline": "2026 · internship",
       "team": "Li Auto",
       "platform": "Humanoid robot",
-      "subtitle": "Internal component planning, mounting and assembly details for a humanoid robot, alongside research into fixed hand postures for demonstration models.",
+      "subtitle": "Internal component planning, mounting and assembly details for a humanoid robot.",
       "coverImage": "https://framerusercontent.com/images/SK9iStEVzzOaDHT3DwrC1dWv0.png",
       "heroImage": "https://framerusercontent.com/images/lGYDA5qCnlmbGxKQ3tNd2XX24g4.png",
       "hoverImage": "https://framerusercontent.com/images/lGYDA5qCnlmbGxKQ3tNd2XX24g4.png",
@@ -460,7 +460,7 @@ export const siteContent = {
             },
             {
               "type": "paragraph",
-              "text": "I refined component supports, fixing positions and assembly details, documenting the changes and unresolved questions in a structural review. Alongside this work, I organised a posture-reference study for fixed demonstration hands, exploring greeting, fist and relaxed forms."
+              "text": "I refined component supports, fixing positions and assembly details, documenting the changes and unresolved questions in a structural review."
             },
             {
               "type": "image",
@@ -593,37 +593,6 @@ export const siteContent = {
           ]
         },
         {
-          "name": "Hand studies",
-          "heading": "Researching how a fixed hand should read.",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Alongside the internal structure, I researched hand postures for fixed demonstration hands. The brief explored moulded or 3D-printed forms for a humanoid showcase model, including open-palm greeting, closed-fist and relaxed neutral poses."
-            },
-            {
-              "type": "heading",
-              "text": "Organising the reference study"
-            },
-            {
-              "type": "paragraph",
-              "text": "I collected references across relaxed hanging, reaching and waving gestures, then compared fist shapes and downward-motion poses. Separating whole-arm posture from hand and wrist shape helped structure the visual research."
-            },
-            {
-              "type": "link",
-              "text": "Relaxed hand reference collected for the posture atlas · third-party source via Pinterest",
-              "href": "https://www.pinterest.com/pin/425238389822090369/"
-            },
-            {
-              "type": "paragraph",
-              "text": "The study focused on proportions from different views, finger grouping and smooth surface transitions. The brief called for continuous fixed forms, with articulated joint and mechanism details removed."
-            },
-            {
-              "type": "paragraph",
-              "text": "Reference image source: Pinterest."
-            }
-          ]
-        },
-        {
           "name": "Reflection",
           "heading": "From local parts to a coherent assembly.",
           "blocks": [
@@ -633,7 +602,7 @@ export const siteContent = {
             },
             {
               "type": "paragraph",
-              "text": "Further work would need to verify those points and confirm the manufacturing approach before resolving the optional alignment feature. The hand study provided a separate set of posture and proportion references for the demonstration model."
+              "text": "Further work would need to verify those points and confirm the manufacturing approach before resolving the optional alignment feature."
             }
           ]
         }
