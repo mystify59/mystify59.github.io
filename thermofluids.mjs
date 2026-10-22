@@ -5,7 +5,7 @@ export const thermofluidsProject = {
   "company": "Imperial",
   "year": "2026",
   "description": "Two connected studies: shaping a compact SUV through aerodynamic research, and using battery-cooling CFD to investigate pressure loss and uneven temperatures.",
-  "role": "Individual SUV study; team battery cooling",
+  "role": "Individual SUV design; cooling design contribution",
   "timeline": "2026 · academic project",
   "team": "Imperial College London",
   "platform": "Fusion · Fluent · Ansys Discovery",
@@ -102,6 +102,10 @@ export const thermofluidsProject = {
         {
           "type": "paragraph",
           "text": "The team’s second study developed a **hybrid spiral–serpentine cold plate** beneath a 420 × 210 × 70 mm battery block. The aim was to cover the battery effectively while controlling the resistance encountered by the coolant. We compared channel layouts, then used Ansys Discovery CFD to inspect pressure and temperature fields."
+        },
+        {
+          "type": "paragraph",
+          "text": "My contribution was **channel and aspect-ratio research, design iterations and CAD development** for the team’s selected concept. I also **assisted with CFD and interpreted the results**, using the findings to guide improvements. The simulation results and overall cooling design are presented as team work."
         },
         {
           "type": "paragraph",
