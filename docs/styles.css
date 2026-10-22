@@ -79,9 +79,27 @@ button { cursor: pointer; }
 .card-provenance + .card-meta { padding-top: 6px; }
 .project-status { color: var(--blue-text); font-size: 14px; margin: 0 0 16px; }
 .card-status { margin: 8px 0 0; font-size: 13px; }
+.card-progress-link { display: inline-block; margin-top: 12px; color: var(--blue-text); font-size: 13px; }
+.work-in-progress { border-top: 1px solid var(--line); padding-top: 40px; scroll-margin-top: 108px; }
+.progress-section-header { max-width: 680px; margin-bottom: 32px; }
+.progress-section-header h2 { font-size: 32px; letter-spacing: -.8px; margin-bottom: 14px; }
+.progress-section-header p { color: var(--muted); margin: 0; line-height: 1.65; }
+.project-progress { list-style: none; padding: 0; margin: 28px 0 40px; }
+.progress-step { position: relative; display: grid; grid-template-columns: 44px minmax(0, 1fr); column-gap: 20px; padding-bottom: 30px; }
+.progress-step:last-child { padding-bottom: 0; }
+.progress-step:not(:last-child)::before { content: ''; position: absolute; left: 21px; top: 44px; bottom: 0; width: 1px; background: var(--line); }
+.progress-number { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 50%; background: var(--background); color: var(--muted); font-size: 14px; font-variant-numeric: tabular-nums; }
+.progress-state { display: block; color: var(--muted); font-size: 12px; margin-bottom: 6px; }
+.progress-copy h3 { color: var(--text); font-size: 20px; margin-bottom: 10px; }
+.progress-copy p { color: var(--muted); font-size: 15px; line-height: 1.65; margin: 0; }
+.progress-copy strong { color: var(--text); font-weight: 600; }
+.progress-step[data-state="done"] .progress-number { color: var(--blue-text); border-color: #59799e; }
+.progress-step[data-state="current"] .progress-number { color: #11151b; border-color: var(--blue); background: var(--blue); }
+.progress-step[data-state="done"] .progress-state, .progress-step[data-state="current"] .progress-state { color: var(--blue-text); }
 .revival-intro { max-width: 850px; margin-bottom: 48px; color: var(--muted); }
 .revival-intro p:last-child { margin-bottom: 0; }
 .revival-intro .section-label { color: var(--text); }
+.revival-intro .case-heading { color: var(--text); }
 .revival-intro .project-facts { border: 0; padding-bottom: 0; }
 .revival-menu { border-top: 1px solid var(--line); padding-top: 32px; }
 .revival-menu > .section-label { margin-bottom: 32px; }
@@ -301,6 +319,13 @@ h3.case-block { margin-top: 32px; margin-bottom: 16px; color: var(--text); font-
   .case-block { line-height: 1.6; }
   .journey-notes { grid-template-columns: 1fr; gap: 18px; }
   .case-workflow { grid-template-columns: minmax(0, 1fr); gap: 24px; margin-block: 24px; }
+  .work-in-progress { padding-top: 32px; scroll-margin-top: 92px; }
+  .progress-section-header h2 { font-size: 28px; }
+  .project-progress { margin-block: 24px 32px; }
+  .progress-step { grid-template-columns: 34px minmax(0, 1fr); column-gap: 14px; }
+  .progress-step:not(:last-child)::before { left: 16px; top: 34px; }
+  .progress-number { width: 34px; height: 34px; font-size: 12px; }
+  .progress-copy h3 { font-size: 19px; }
   .workflow-title { font-size: 19px; }
   .case-table { margin-block: 24px; font-size: 13px; }
   .case-table th, .case-table td { padding: 12px 10px 12px 0; }

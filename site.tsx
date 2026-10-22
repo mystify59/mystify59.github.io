@@ -7,12 +7,12 @@ const avatar = 'https://framerusercontent.com/images/S9hhA7RVIq3CuUn5Xm74zwBns.p
 const portrait = avatar
 
 type ImageMetadata = {width: number; height: number; src: string; variants: {src: string; width: number; height: number}[]}
-type ContentBlock = {type: string; text?: string; src?: string; mobileSrc?: string; alt?: string; framing?: 'square-bottom' | 'portrait'; href?: string; comparison?: string; gallery?: boolean; attribution?: string; observations?: string[]; steps?: {title: string; text: string}[]; columns?: string[]; rows?: string[][]}
+type ContentBlock = {type: string; text?: string; src?: string; mobileSrc?: string; alt?: string; framing?: 'square-bottom' | 'portrait'; href?: string; comparison?: string; gallery?: boolean; attribution?: string; observations?: string[]; steps?: {title: string; text: string; state?: 'done' | 'current' | 'next'; label?: string}[]; columns?: string[]; rows?: string[][]}
 type Project = {
     slug: string; title: string; company: string; year?: string; description: string;
     role: string; timeline: string; team: string; platform: string;
     coverImage: string; heroImage: string; showHero?: boolean; hoverImage?: string; cardSummary?: string; heroCaption?: string; coverAlt?: string; coverCaption?: string; coverFit?: 'contain'; status?: string;
-    destination?: string; kind?: string; backHref?: string; backLabel?: string;
+    destination?: string; kind?: string; backHref?: string; backLabel?: string; portfolioGroup?: 'work-in-progress';
     sections: {name: string; heading: string; blocks: ContentBlock[]}[]
 }
 
@@ -31,6 +31,8 @@ export function Page({page, projects, revivals = [], assets, imageMetadata = {}}
     const project = [...projects, ...revivals].find(p => page === projectRoute(p))
     const isSeries = project?.kind === 'series'
     const isRevival = revivals.some(p => p.slug === project?.slug)
+    const inProgressProjects = projects.filter(p => p.portfolioGroup === 'work-in-progress')
+    const selectedProjects = projects.filter(p => p.portfolioGroup !== 'work-in-progress')
     const nav = page === 'about' ? 'about' : page === 'resume' ? 'resume' : 'home'
     const imageProps = (src: string, sizes: string) => {
         const meta = imageMetadata[src]
@@ -53,6 +55,7 @@ export function Page({page, projects, revivals = [], assets, imageMetadata = {}}
         <div className="card-meta"><span className="card-title">{project.title}</span><span className="card-credit">{project.company}{project.year ? ' · ' + project.year : ''}</span></div>
         {project.status && <p className="project-status card-status">{project.status}</p>}
         {project.cardSummary && <p className="card-summary">{project.cardSummary}</p>}
+        {project.portfolioGroup === 'work-in-progress' && <span className="card-progress-link">Follow the progress <span aria-hidden="true">→</span></span>}
     </a>
     const zoomImage = (src: string, alt: string, eager = false, comparison = false, mobileSrc?: string, gallery = false) => {
         const img = <img {...imageProps(src, gallery ? '(max-width: 700px) calc(100vw - 36px), 380px' : comparison ? '(max-width: 700px) calc((100vw - 48px) / 2), 380px' : eager ? '(max-width: 700px) calc(100vw - 36px), (max-width: 1280px) calc(100vw - 128px), 1152px' : '(max-width: 700px) calc(100vw - 36px), 760px')} alt={alt} loading={eager ? 'eager' : 'lazy'}/>
@@ -69,7 +72,15 @@ export function Page({page, projects, revivals = [], assets, imageMetadata = {}}
                 if (block.comparison) while (blocks[j + 1]?.type === 'image' && blocks[j + 1].comparison === block.comparison) group.push(blocks[++j])
                 const figures = group.map(item => <figure className="case-figure" data-framing={item.framing} key={item.src}>{zoomImage(item.src!, item.alt || sectionName, false, group.length > 1, item.mobileSrc, block.gallery)}{item.alt && <figcaption className="case-caption">{item.alt}</figcaption>}</figure>)
                 output.push(group.length > 1 ? <div className={'case-comparison' + (block.gallery ? ' case-sketches' : '')} key={j} role="group" aria-label={block.comparison}>{figures}</div> : <React.Fragment key={j}>{figures}</React.Fragment>)
-            } else if (block.type === 'workflow' && block.steps?.length) output.push(
+            } else if (block.type === 'progress' && block.steps?.length) output.push(
+                <ol className="project-progress" role="list" aria-label={block.text || sectionName + ' progress'} key={j}>
+                    {block.steps.map((step, index) => <li className="progress-step" data-state={step.state || 'next'} key={index}>
+                        <span className="progress-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+                        <div className="progress-copy"><span className="progress-state">{step.label || ({done: 'Recorded', current: 'In progress', next: 'Next'}[step.state || 'next'])}</span><h3>{step.title}</h3><p>{inlineText(step.text)}</p></div>
+                    </li>)}
+                </ol>
+            )
+            else if (block.type === 'workflow' && block.steps?.length) output.push(
                 <ol className="case-workflow" role="list" aria-label={block.text || sectionName + ' workflow'} key={j}>
                     {block.steps.map((step, index) => <li key={index}><span className="workflow-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span><h3 className="workflow-title">{step.title}</h3><p>{step.text}</p></li>)}
                 </ol>
@@ -110,7 +121,13 @@ export function Page({page, projects, revivals = [], assets, imageMetadata = {}}
             </header>
 
             <main id="main">
-                {page === 'home' && <div className="projects-grid" id="projects">{projects.map(card)}</div>}
+                {page === 'home' && <>
+                    <div className="projects-grid" id="projects">{selectedProjects.map(card)}</div>
+                    {inProgressProjects.length > 0 && <section className="work-in-progress" id="work-in-progress" aria-labelledby="work-in-progress-title">
+                        <header className="progress-section-header"><h2 id="work-in-progress-title">Work in progress</h2><p>Personal builds and tools, documented step by step. Follow what is made, what is being developed and what comes next.</p></header>
+                        <div className="projects-grid">{inProgressProjects.map(card)}</div>
+                    </section>}
+                </>}
 
                 {page === 'about' && <>
                     <section className="about-layout" aria-labelledby="about-title">
@@ -168,12 +185,12 @@ export function Page({page, projects, revivals = [], assets, imageMetadata = {}}
                 </div>}
 
                 {project && <>
-                    <header className="case-header"><a className="back-link" href={project.backHref ? path(project.backHref.replace(/^\//, '')) : path() + '#projects'}>{project.backLabel || '← All projects'}</a><h1 className="case-title">{project.title}</h1>{project.status && <p className="project-status">{project.status}</p>}<p className="case-description">{project.description}</p>
+                    <header className="case-header"><a className="back-link" href={project.backHref ? path(project.backHref.replace(/^\//, '')) : path() + (project.portfolioGroup === 'work-in-progress' ? '#work-in-progress' : '#projects')}>{project.backLabel || (project.portfolioGroup === 'work-in-progress' ? '← Work in progress' : '← All projects')}</a><h1 className="case-title">{project.title}</h1>{project.status && <p className="project-status">{project.status}</p>}<p className="case-description">{project.description}</p>
                         {!isSeries && facts(project)}
                     </header>
                     {isSeries ? <>
                         <section className="revival-menu" aria-labelledby="revival-menu-title"><h2 className="section-label" id="revival-menu-title">Choose a revival</h2><div className="projects-grid">{revivals.map(card)}</div></section>
-                        <section className="revival-intro" aria-labelledby="revival-intro-title"><h2 className="section-label" id="revival-intro-title">The series</h2>{project.sections.flatMap(section => section.blocks).filter(block => block.type === 'paragraph').map((block,i) => <p key={i}>{block.text}</p>)}{facts(project)}</section>
+                        <div className="revival-intro">{project.sections.map((section,i) => <section className="case-section" id={'section-' + i} aria-labelledby={'heading-' + i} key={i}><h2 className="case-heading" id={'heading-' + i}>{section.heading}</h2>{renderBlocks(section.blocks, section.name)}</section>)}{facts(project)}</div>
                     </> : <>
                     {project.showHero !== false && <div className="case-hero">{zoomImage(project.heroImage, project.heroCaption || project.title + ' project overview', true)}{project.heroCaption && <p className="case-caption">{project.heroCaption}</p>}</div>}
                     <div className="case-layout">
@@ -183,7 +200,7 @@ export function Page({page, projects, revivals = [], assets, imageMetadata = {}}
                             {renderBlocks(section.blocks, section.name)}
                         </section>)}</div>
                     </div>
-                    <section className="next-projects" aria-labelledby="more-projects">{isRevival && <a className="back-link" href={path('project-revival/')}>← All revivals</a>}<h2 className="section-label" id="more-projects">{isRevival ? 'More revivals' : 'More projects'}</h2><div className="projects-grid">{(isRevival ? revivals : projects).filter(p => p.slug !== project.slug).slice(0,2).map(card)}</div></section>
+                    <section className="next-projects" aria-labelledby="more-projects">{isRevival && <a className="back-link" href={path('project-revival/')}>← All revivals</a>}<h2 className="section-label" id="more-projects">{isRevival ? 'More revivals' : project.portfolioGroup === 'work-in-progress' ? 'More work in progress' : 'More projects'}</h2><div className="projects-grid">{(isRevival ? revivals : project.portfolioGroup === 'work-in-progress' ? inProgressProjects : projects).filter(p => p.slug !== project.slug).slice(0,2).map(card)}</div></section>
                     </>}
                 </>}
                 {page === '404' && <section className="case-header"><h1 className="case-title">Page not found</h1><p className="case-description">This link may have moved. Browse the portfolio to find the project.</p><a className="button" href={path()}>View projects</a></section>}

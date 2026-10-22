@@ -2,10 +2,26 @@
 // Rendered CAD, a printed first iteration and proposed systems are distinguished.
 const media = 'project-assets/revival/';
 
+const anvilProgress = [
+  {title: 'Translate the reference into CAD', text: 'The original Fusion model separates the game-inspired form into eleven components for a nonfunctional prop.', state: 'done', label: 'CAD recorded'},
+  {title: 'Print the first full-scale iteration', text: 'The first iteration was printed in China and remains there. The images on this page show the CAD rather than photographs of that print.', state: 'done', label: 'First print confirmed'},
+  {title: 'Continue the internal development', text: 'The internal arrangement and sound module remain unfinished. Later CAD studies explore the direction, but their physical operation is untested.', state: 'current'},
+  {title: 'Check the assembled prop', text: 'Record fit, assembly, movement, durability and sound checks before describing the internal design as complete.', state: 'next'},
+];
+
+const ghostProgress = [
+  {title: 'Define the desk companion', text: 'Research establishes the direction: a Destiny-inspired floating shell, a lit eye and spoken conversation.', state: 'done', label: 'Research recorded'},
+  {title: 'Map the separate systems', text: 'The documented plan separates stock levitation from stationary computing and audio, with a staged build and validation sequence.', state: 'done', label: 'Plan documented'},
+  {title: 'Resolve the build choices', text: 'The exact computer, final enclosure and eye behaviour remain open. The current work is research and planning.', state: 'current'},
+  {title: 'Prototype and test in stages', text: 'Check stock levitation and a representative load, prove voice on the bench, then print and integrate the shell. No integrated prototype is demonstrated yet.', state: 'next'},
+];
+
 export const revivalSeries = {
   slug: 'project-revival',
   destination: '/project-revival/',
   kind: 'series',
+  portfolioGroup: 'work-in-progress',
+  status: 'Work in progress',
   title: 'Project Revival',
   company: 'Personal series',
   year: '2026',
@@ -15,7 +31,7 @@ export const revivalSeries = {
   timeline: '2026 · Ongoing',
   team: 'Personal project',
   platform: 'Film and game-inspired physical builds',
-  cardSummary: 'Anvil · In development; Ghost · Research and planning',
+  cardSummary: 'Anvil: first print, internals in development · Ghost: research and planning',
   coverImage: media + 'anvil-assembled.png',
   heroImage: media + 'anvil-assembled.png',
   heroCaption: 'Anvil assembled CAD with a game-inspired finish. A visual study, not a photograph of the printed object.',
@@ -27,6 +43,16 @@ export const revivalSeries = {
       blocks: [
         {type: 'paragraph', text: 'Project Revival is a personal series exploring how recognisable screen objects can become printable components and hands-on builds. Each revival follows its own path from reference and research to modelling, making and testing.'},
         {type: 'paragraph', text: 'My aim is to make complex builds accessible to younger makers and give them the experience of creating something substantial. This is the intended direction of the series; workshops and educational outcomes have not yet been delivered.'},
+      ],
+    },
+    {
+      name: 'Progress',
+      heading: 'Two revivals, at different stages.',
+      blocks: [
+        {type: 'heading', text: 'Anvil · From CAD to a first print'},
+        {type: 'progress', steps: anvilProgress},
+        {type: 'heading', text: 'Ghost · From research to a build plan'},
+        {type: 'progress', steps: ghostProgress},
       ],
     },
   ],
@@ -45,7 +71,7 @@ export const revivalProjects = [
     revivalNumber: 'Revival 01',
     reference: 'ARC Raiders',
     status: 'In development · Internals unfinished and untested',
-    description: 'A full-scale recreation developed through component modelling and printable architecture. A first iteration is printed; the internal mechanism and sound system still need completion and testing.',
+    description: 'A full-scale nonfunctional prop developed through component modelling and printable architecture. A first iteration is printed; the internal arrangement and sound system still need completion and testing.',
     role: 'Original Fusion model, component architecture & build development',
     timeline: '2026 · Ongoing',
     team: 'Personal project',
@@ -56,6 +82,11 @@ export const revivalProjects = [
     heroImage: media + 'anvil-assembled.png',
     heroCaption: 'Assembled CAD with a game-inspired finish. This is a visual study, not a photograph of the printed object.',
     sections: [
+      {
+        name: 'Progress',
+        heading: 'A first print, with more development ahead.',
+        blocks: [{type: 'progress', steps: anvilProgress}],
+      },
       {
         name: 'Reference',
         heading: 'From reference to assembly.',
@@ -130,6 +161,11 @@ export const revivalProjects = [
     heroImage: media + 'ghost-development.svg',
     heroCaption: 'Research and system planning. No finished-product render or integrated prototype is shown.',
     sections: [
+      {
+        name: 'Progress',
+        heading: 'A documented direction. The build comes next.',
+        blocks: [{type: 'progress', steps: ghostProgress}],
+      },
       {
         name: 'Direction',
         heading: 'Define the companion before building it.',

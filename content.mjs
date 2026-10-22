@@ -3,6 +3,7 @@
 import { thermofluidsProject } from './thermofluids.mjs';
 import { revivalSeries, revivalProjects } from './revival.mjs';
 import { aiCadWorkflowProject } from './ai-cad-workflow.mjs';
+import { workbenchProject } from './workbench.mjs';
 import { s00Project } from './s00.mjs';
 
 export const siteContent = {
@@ -976,8 +977,9 @@ export const siteContent = {
 siteContent.projects.push(thermofluidsProject);
 siteContent.projects.push(revivalSeries);
 siteContent.projects.push(aiCadWorkflowProject);
+siteContent.projects.push(workbenchProject);
 siteContent.revivals = revivalProjects;
-const projectOrder = ['s00', 'street-pulse', 'ai-cad-workflow', 'thermofluids', 'aircraft-seating', 'aquatorium', 'project-revival'];
+const projectOrder = ['s00', 'street-pulse', 'ai-cad-workflow', 'thermofluids', 'aircraft-seating', 'aquatorium', 'project-revival', 'codex-workbench'];
 siteContent.projects.sort((a, b) => projectOrder.indexOf(a.slug) - projectOrder.indexOf(b.slug));
 const cardSummaries = {
   s00: 'Component supports · Main-frame FEA · Camera mounts',
