@@ -1,6 +1,6 @@
 # Boxuan Wang — portfolio
 
-An independent static portfolio for GitHub Pages, based on the approved dark-blue Tabfolio design. It includes Li Auto S00, Street Pulse, Humanoid Design, Thermofluids, Re:Seat, Aquatorium, Project Revival, Codex Workbench, About and Resume pages. Project attribution distinguishes personal contributions, team work, concept renders and simulation results.
+An independent static portfolio for GitHub Pages, based on the approved dark-blue Tabfolio design. It includes Li Auto S00, Street Pulse, Humanoid Design, Thermofluids, Re:Seat, Aquatorium, Project Revival, About and Resume pages. Project attribution distinguishes personal contributions, team work, concept renders and simulation results.
 
 ## Edit and preview
 
@@ -16,11 +16,11 @@ Open http://127.0.0.1:4180. Edit project stories in `content.mjs`, page template
 
 `image-build.mjs` generates responsive WebP display versions and project-specific sharing images. Original project images remain available in the zoom viewer. Intrinsic image dimensions reserve space before loading. Run `npm test` after building to check responsive image metadata, sharing cards and original-file preservation.
 
-## Humanoid Design and Workbench, 22 October 2026
+## Humanoid Design, 22 October 2026
 
 The existing AI-assisted CAD case is now named **Humanoid Design**, with a generated blue humanoid/H logo cover and the descriptor AI-assisted CAD skill. Its route remains `/case-studies/ai-cad-workflow/`. Original Fusion evidence stays inside the case; the new In development chapter distinguishes drafted mechanical scenarios, unreleased assembly/thread controls and planned independent evaluation.
 
-`workbench.mjs` adds **Codex Workbench**, a separate working local prototype at `/case-studies/codex-workbench/`. Its image shows clearly labelled demonstration tasks. The case explains task relationships, activity/checkpoint review and selected-source lexical retrieval. Both projects carry In development labels; no production release, parallel execution or native CAD integration is claimed for Workbench.
+The project carries an In development label. Following the author's scope clarification, this update includes only Humanoid Design; the separate Workbench draft is not part of the public portfolio.
 
 ## Re:Seat travel concept, 22 October 2026
 
