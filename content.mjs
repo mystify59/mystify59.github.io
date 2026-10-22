@@ -19,7 +19,7 @@ export const siteContent = {
       "platform": "Physical product & experience",
       "subtitle": "Modular haptic floor tiles that combine vibration and light to bring audiences into street performances. From field research and tessellation studies to electronics prototyping and user testing.",
       "coverImage": "https://framerusercontent.com/images/Tcpkpbi0RUAt7TA3haeo4ws.png",
-      "heroImage": "https://framerusercontent.com/images/5QOld1RBtYfbZhGwvoMlTzKB8M.png",
+      "heroImage": "https://framerusercontent.com/images/BYuq0wGwUvYCQKh4LM9cy7VfPqc.png",
       "hoverImage": "https://framerusercontent.com/images/5QOld1RBtYfbZhGwvoMlTzKB8M.png",
       "sections": [
         {
@@ -37,58 +37,93 @@ export const siteContent = {
           ]
         },
         {
-          "name": "Research",
-          "heading": "Two experiences sharing one street.",
+          "name": "User research",
+          "heading": "From street interviews to tile arrangements.",
           "blocks": [
             {
-              "type": "paragraph",
-              "text": "We studied performances in Covent Garden, Leicester Square, and around King’s Cross, St Pancras and Euston. Observations and interviews covered both performers and audiences: how crowds form, where people stand, what invites participation, and the work involved in setting up and moving between locations."
+              "type": "heading",
+              "text": "Interviews"
             },
             {
               "type": "paragraph",
-              "text": "The research exposed two different time scales. An audience member needs a reason to stop within a brief encounter. A performer has a full day of travel, setup and repeated performances, so additional equipment must earn its place. Journey maps and an audience-density model helped connect these needs to the physical space."
+              "text": "I carried out **almost all of the user research**, combining field observations with interviews with performers and audience members. We visited Covent Garden, Leicester Square, and locations around King’s Cross, St Pancras and Euston to understand **what makes people stop, where they stand and how they join in**."
+            },
+            {
+              "type": "image",
+              "src": "project-assets/street-pulse-research/fieldwork-crowd.jpeg",
+                "framing": "portrait",
+              "alt": "Original fieldwork: observing how a performer gathers an audience.",
+              "comparison": "Field observations"
+            },
+            {
+              "type": "image",
+              "src": "project-assets/street-pulse-research/fieldwork-station.jpeg",
+                "framing": "portrait",
+              "alt": "Original fieldwork: a station performance alongside passing pedestrian traffic.",
+              "comparison": "Field observations"
+            },
+            {
+              "type": "quote",
+              "text": "Humour and connection",
+              "attribution": "Performer interview · initial research report"
+            },
+            {
+              "type": "paragraph",
+              "text": "**Performers described the work of gathering and positioning a crowd.** Their views differed on whether a dedicated product was needed, so the design had to support their existing performance. Audience interviews highlighted **clear views, sound quality and low-pressure participation**, including clapping, rhythm games and simple call-and-response."
+            },
+            {
+              "type": "quote",
+              "text": "invites quiet participation",
+              "attribution": "Audience interview · initial research report"
+            },
+            {
+              "type": "paragraph",
+              "text": "We also compared the performer’s full day of travel, setup and repeated performances with the audience’s brief encounter. A useful intervention needed to **catch attention quickly while remaining easy for performers to use**."
+            },
+            {
+              "type": "heading",
+              "text": "Audience heat map"
+            },
+            {
+              "type": "paragraph",
+              "text": "We translated the field observations into a **3D audience-density map** based on the Leicester Square setting. It shows active participants close to the performer, a less involved outer ring, curious groups at the edges and people listening from seating. This is a qualitative synthesis of our observations."
             },
             {
               "type": "image",
               "src": "https://framerusercontent.com/images/RmhaaPPldkFzbg292yL9M2LEU.png",
-              "alt": "Audience-density model synthesising field observations of where people gathered.",
-              "text": "Audience-density model synthesising field observations of where people gathered."
+              "alt": "Audience-density map: a qualitative synthesis of observed crowd patterns around the performance."
+            },
+            {
+              "type": "takeaway",
+              "text": "**Design implication:** give people a clear invitation to join, with room for different levels of involvement. The arrangement should help a performer shape the audience without continually directing everyone."
+            },
+            {
+              "type": "heading",
+              "text": "Tessellation studies"
             },
             {
               "type": "paragraph",
-              "text": "Our design question became: how could we invite people to join a performance and help shape the audience’s position without the performer continually directing them? This set the direction for a low-effort, sensory invitation."
-            }
-          ]
-        },
-        {
-          "name": "Form & concept",
-          "heading": "One tile, many ways to gather.",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Co-design explored ways to create curiosity, wonder and excitement. The team compared spotlight systems, adjustable-height platforms and haptic floor modules, using public feedback and feasibility discussions to narrow the direction. Early sensory comparisons supported developing vibration together with lighting."
+              "text": "Co-design explored ways to create curiosity, wonder and excitement. The team compared spotlight systems, adjustable-height platforms and haptic floor modules, using public feedback and feasibility discussions to narrow the direction. Early sensory comparisons supported developing **vibration together with lighting**."
             },
             {
               "type": "paragraph",
-              "text": "I developed the tessellation and exterior design. Sketches, small-scale modules and figures helped us explore how repeated trapezium units could form different performance spaces. Co-design with a choreographer informed the arrangements, while surface-pattern studies and perimeter lighting developed the visual identity."
+              "text": "I developed the **tessellation and exterior design**, using sketches to explore how repeated units could fit different performance spaces. Standard modules offered more flexibility than singular or irregular pieces, allowing us to investigate radial, circular and other arrangements."
             },
             {
               "type": "image",
               "src": "https://framerusercontent.com/images/Mrf9LxqHgVnnCA6krTANJDnv76o.png",
-              "alt": "Initial tessellation sketches.",
-              "text": "Initial tessellation sketches."
+              "alt": "Initial tessellation sketches: comparing repeated tile geometries.",
+              "comparison": "Tessellation sketches"
             },
             {
               "type": "image",
               "src": "https://framerusercontent.com/images/bxj1xjV2PELgmiMWL0lH7GyQbqU.png",
-              "alt": "Alternative radial arrangements.",
-              "text": "Alternative radial arrangements."
+              "alt": "Further studies: radial, spiral and hexagonal arrangements.",
+              "comparison": "Tessellation sketches"
             },
             {
-              "type": "image",
-              "src": "https://framerusercontent.com/images/BYuq0wGwUvYCQKh4LM9cy7VfPqc.png",
-              "alt": "The intended audience experience, shown in the team’s virtual street environment.",
-              "text": "The intended audience experience, shown in the team’s virtual street environment."
+              "type": "paragraph",
+              "text": "We used **1:30 printed modules and figures** in co-design with Etta, a performance-company owner and choreographer, to explore the layouts. Her feedback also informed how visible the exterior should be: bolder outdoor patterns could attract attention, while indoor settings called for greater restraint. The studies led towards **repeatable trapezium units with perimeter lighting**."
             }
           ]
         },
@@ -156,7 +191,8 @@ export const siteContent = {
             }
           ]
         }
-      ]
+      ],
+      "heroCaption": "Street Pulse in the team’s Unreal Engine 5 street-performance simulation — the proposed audience experience."
     },
     {
       "slug": "aquatorium",

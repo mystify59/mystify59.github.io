@@ -7,7 +7,7 @@ const avatar = 'https://framerusercontent.com/images/S9hhA7RVIq3CuUn5Xm74zwBns.p
 const portrait = avatar
 
 type ImageMetadata = {width: number; height: number; src: string; variants: {src: string; width: number; height: number}[]}
-type ContentBlock = {type: string; text?: string; src?: string; mobileSrc?: string; alt?: string; framing?: 'square-bottom'; href?: string; comparison?: string; gallery?: boolean; attribution?: string; observations?: string[]; steps?: {title: string; text: string}[]; columns?: string[]; rows?: string[][]}
+type ContentBlock = {type: string; text?: string; src?: string; mobileSrc?: string; alt?: string; framing?: 'square-bottom' | 'portrait'; href?: string; comparison?: string; gallery?: boolean; attribution?: string; observations?: string[]; steps?: {title: string; text: string}[]; columns?: string[]; rows?: string[][]}
 type Project = {
     slug: string; title: string; company: string; year?: string; description: string;
     role: string; timeline: string; team: string; platform: string;

@@ -197,6 +197,7 @@ h3.case-block { margin-top: 32px; margin-bottom: 16px; color: var(--text); font-
 .case-comparison:has(> :nth-child(3)) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .case-comparison .case-figure { min-width: 0; margin: 0; }
 .case-comparison .image-zoom { background: var(--surface-soft); aspect-ratio: 4 / 3; }
+.case-comparison .case-figure[data-framing="portrait"] .image-zoom { aspect-ratio: 3 / 4; }
 .case-comparison img { height: 100%; max-height: 100%; }
 .case-comparison .case-caption { font-size: 13px; }
 .case-comparison.case-sketches { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 20px; }
