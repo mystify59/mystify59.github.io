@@ -22,7 +22,10 @@ for(const project of allProjects) {
     urls.add(project.coverImage)
     urls.add(project.heroImage)
     if(project.slug==='aircraft-seating' && project.hoverImage) urls.add(project.hoverImage)
-    for(const section of project.sections) for(const block of section.blocks) if(block.type==='image' && block.src) urls.add(block.src)
+    for(const section of project.sections) for(const block of section.blocks) if(block.type==='image') {
+        if(block.src) urls.add(block.src)
+        if(block.mobileSrc) urls.add(block.mobileSrc)
+    }
 }
 const assets = {}
 const imageMetadata = {}

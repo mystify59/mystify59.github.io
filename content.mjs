@@ -179,11 +179,11 @@ export const siteContent = {
           "blocks": [
             {
               "type": "paragraph",
-              "text": "Aquatorium is a collapsible live-fish transport concept for backcountry anglers moving between hiking and fishing. The challenge was to carry and manage the catch without making an already full equipment load harder to handle. The concept combines three individual fish bags, oxygen delivery and cooling within a folding support frame."
+              "text": "Aquatorium is a **collapsible live-fish transport concept** for backcountry anglers moving between hiking and fishing. The challenge was to carry and manage the catch without making an already full equipment load harder to handle. The concept combines three individual fish bags, oxygen delivery and cooling within a folding support frame."
             },
             {
               "type": "paragraph",
-              "text": "My individual Phase 1 work explored six concepts for supporting the transition between activities, including a floating hydro-generator. The later Aquatorium frame, enclosure prototypes, component layouts and manufacturing study are presented as the team’s development work."
+              "text": "My **individual Phase 1 work** explored six concepts for supporting the transition between activities, including a floating hydro-generator. The later Aquatorium frame, enclosure prototypes, component layouts and manufacturing study are presented as the **team’s development work**."
             },
             {
               "type": "heading",
@@ -191,7 +191,57 @@ export const siteContent = {
             },
             {
               "type": "paragraph",
-              "text": "Our initial research brought together interviews with two experienced hikers and two anglers. We organised quoted evidence into pain points and emerging insights, then compared equipment inventories, existing products, personas and the stages of a trip."
+              "text": "Our initial research brought together interviews with **two experienced hikers and two anglers**. We organised quoted evidence into pain points and emerging insights, then compared equipment inventories, existing products and the stages of a trip. The participant photos below come from our project report."
+            },
+            {
+              "type": "heading",
+              "text": "Hiking / Weight, power and reliability"
+            },
+            {
+              "type": "image",
+              "comparison": "Hiking research participants",
+              "src": "project-assets/aquatorium-research/interview-he.jpeg",
+              "alt": "Mr He · long-route hiking and custom equipment."
+            },
+            {
+              "type": "image",
+              "comparison": "Hiking research participants",
+              "src": "project-assets/aquatorium-research/interview-bromley.jpeg",
+              "alt": "Mr Bromley · mountaineering and long-distance hiking."
+            },
+            {
+              "type": "quote",
+              "text": "“Solar panels are **rigid and don’t fit well on backpacks**.”",
+              "attribution": "Hiking interview notes · team research"
+            },
+            {
+              "type": "paragraph",
+              "text": "**Carried weight limited longer trips.** Power banks added bulk, while charging products could be awkward to pack or use on the move. The notes also raised concerns about improvised repairs and pointed towards **modular, dependable equipment** that could earn its place in the pack."
+            },
+            {
+              "type": "heading",
+              "text": "Fishing / Access in wet, messy conditions"
+            },
+            {
+              "type": "image",
+              "comparison": "Fishing research participants",
+              "src": "project-assets/aquatorium-research/interview-jojo.jpeg",
+              "alt": "Mr Jojo · 15 years of fly-fishing experience."
+            },
+            {
+              "type": "image",
+              "comparison": "Fishing research participants",
+              "src": "project-assets/aquatorium-research/interview-vuttigrai.jpeg",
+              "alt": "Mr Vuttigrai · leisure and sport fishing."
+            },
+            {
+              "type": "quote",
+              "text": "“If I use bait or touch the fish, **my hands get sticky and smell fishy**.”",
+              "attribution": "Fishing interview notes · team research"
+            },
+            {
+              "type": "paragraph",
+              "text": "Tools were spread across separate items and could become buried or slow to reach. Wet, messy hands made handling less comfortable and precise, while overpacking added clutter. **Organisation during use** mattered as much as storage: tools needed **predictable access and wet-hand handling**."
             },
             {
               "type": "heading",
@@ -199,15 +249,15 @@ export const siteContent = {
             },
             {
               "type": "paragraph",
-              "text": "Weight and pack space: adding fishing equipment compounds an already full hiking load. Any new function needed to justify its mass and bulk."
+              "text": "**Weight and pack space:** adding fishing equipment compounds an already full hiking load. Any new function needed to justify its mass and bulk."
             },
             {
               "type": "paragraph",
-              "text": "Access during use: buried tools, repeated unpacking and wet or dirty hands made simple tasks awkward. We prioritised predictable access and straightforward handling."
+              "text": "**Access during use:** buried tools, repeated unpacking and wet or dirty hands made simple tasks awkward. We prioritised predictable access and straightforward handling."
             },
             {
               "type": "paragraph",
-              "text": "Confidence away from help: power limitations, equipment failure and improvised fixes raised reliability concerns. Modularity, protection and repair access became recurring requirements."
+              "text": "**Confidence away from help:** power limitations, equipment failure and improvised fixes raised reliability concerns. Modularity, protection and repair access became recurring requirements."
             },
             {
               "type": "heading",
@@ -215,25 +265,37 @@ export const siteContent = {
             },
             {
               "type": "paragraph",
-              "text": "We used three illustrative personas and a journey map to compare hiking, fishing and the combined experience. The synthesis highlighted repeated changes between walking, setting up, handling equipment and carrying the catch."
+              "text": "We used a journey map to compare **hiking, fishing and the combined experience**. The synthesis highlighted repeated changes between walking, setting up, handling equipment and carrying the catch."
             },
             {
               "type": "image",
-              "src": "https://framerusercontent.com/images/qE9xt8WsdWPaHq8HLMqqWzEeM.png",
-              "alt": "Part 1: illustrative personas and a journey map synthesising the team’s research.",
-              "text": "Part 1: illustrative personas and a journey map synthesising the team’s research."
+              "src": "project-assets/aquatorium-research/journey-chart.svg",
+              "mobileSrc": "project-assets/aquatorium-research/journey-chart-mobile.svg",
+              "alt": "Journey map: hikers (dashed grey), fishers (dotted teal) and backcountry anglers (solid blue). The curves interpret the team’s research; they are not measured scores. Numbered observations describe the trip below."
+            },
+            {
+              "type": "journey-notes",
+              "observations": [
+                "Fishers start off relaxed, while hikers and anglers worry about **what to pack** when preparing.",
+                "All are **excited upon initial arrival**.",
+                "Hikers and anglers lose some excitement over **tedious terrain and weather**, but recover after seeing extraordinary scenery.",
+                "The angler **settles down and starts fishing**, behaving similarly to the fisher.",
+                "The fisher starts getting bored, but quickly **gets excited after each catch**.",
+                "Upon leaving the great scenery, **tiredness catches up with the hiker**. Enjoyment diminishes until they camp for the night, where it recovers.",
+                "The fisher and angler are both **happy with the day’s haul** and leave or camp for the night."
+              ]
             },
             {
               "type": "paragraph",
-              "text": "Our product benchmarking compared quick-access storage, folding structures, compact powered equipment and outdoor reliability. It suggested that existing products addressed individual needs, while the transition between hiking and fishing remained a useful focus for design."
+              "text": "Our product benchmarking compared quick-access storage, folding structures, compact powered equipment and outdoor reliability. It suggested that existing products addressed individual needs, while **the transition between hiking and fishing** remained a useful focus for design."
             },
             {
               "type": "heading",
               "text": "The question that focused the project"
             },
             {
-              "type": "paragraph",
-              "text": "How might we support backcountry anglers during the transition between hiking and fishing?"
+              "type": "takeaway",
+              "text": "How might we support backcountry anglers during **the transition between hiking and fishing**?"
             }
           ]
         },

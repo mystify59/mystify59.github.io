@@ -7,7 +7,7 @@ const avatar = 'https://framerusercontent.com/images/S9hhA7RVIq3CuUn5Xm74zwBns.p
 const portrait = avatar
 
 type ImageMetadata = {width: number; height: number; src: string; variants: {src: string; width: number; height: number}[]}
-type ContentBlock = {type: string; text?: string; src?: string; alt?: string; href?: string; comparison?: string; steps?: {title: string; text: string}[]; columns?: string[]; rows?: string[][]}
+type ContentBlock = {type: string; text?: string; src?: string; mobileSrc?: string; alt?: string; href?: string; comparison?: string; attribution?: string; observations?: string[]; steps?: {title: string; text: string}[]; columns?: string[]; rows?: string[][]}
 type Project = {
     slug: string; title: string; company: string; year?: string; description: string;
     role: string; timeline: string; team: string; platform: string;
@@ -19,6 +19,10 @@ type Project = {
 export function projectRoute(project: Project) {
     return (project.destination || '/case-studies/' + project.slug + '/').replace(/^\/+|\/+$/g, '')
 }
+
+// Keep emphasis semantic and escape all other content through React.
+const inlineText = (text = '') => text.split(/(\*\*[^*]+\*\*)/g).map((part, index) =>
+    part.startsWith('**') && part.endsWith('**') ? <strong key={index}>{part.slice(2, -2)}</strong> : part)
 
 export function Page({page, projects, revivals = [], assets, imageMetadata = {}}: {page: string; projects: Project[]; revivals?: Project[]; assets: Record<string,string>; imageMetadata?: Record<string,ImageMetadata>}) {
     const depth = page === 'home' || page === '404' ? 0 : page.split('/').length
@@ -50,9 +54,12 @@ export function Page({page, projects, revivals = [], assets, imageMetadata = {}}
         {project.status && <p className="project-status card-status">{project.status}</p>}
         {project.cardSummary && <p className="card-summary">{project.cardSummary}</p>}
     </a>
-    const zoomImage = (src: string, alt: string, eager = false, comparison = false) => <button className="image-zoom" type="button" data-full-src={image(src)} aria-label={'Enlarge image: ' + alt}>
-        <img {...imageProps(src, comparison ? '(max-width: 700px) calc((100vw - 48px) / 2), 380px' : eager ? '(max-width: 700px) calc(100vw - 36px), (max-width: 1280px) calc(100vw - 128px), 1152px' : '(max-width: 700px) calc(100vw - 36px), 760px')} alt={alt} loading={eager ? 'eager' : 'lazy'}/>
-    </button>
+    const zoomImage = (src: string, alt: string, eager = false, comparison = false, mobileSrc?: string) => {
+        const img = <img {...imageProps(src, comparison ? '(max-width: 700px) calc((100vw - 48px) / 2), 380px' : eager ? '(max-width: 700px) calc(100vw - 36px), (max-width: 1280px) calc(100vw - 128px), 1152px' : '(max-width: 700px) calc(100vw - 36px), 760px')} alt={alt} loading={eager ? 'eager' : 'lazy'}/>
+        return <button className="image-zoom" type="button" data-full-src={image(src)} aria-label={'Enlarge image: ' + alt}>
+            {mobileSrc ? <picture><source media="(max-width: 700px)" srcSet={image(mobileSrc)} width={imageMetadata[mobileSrc]?.width} height={imageMetadata[mobileSrc]?.height}/>{img}</picture> : img}
+        </button>
+    }
     const renderBlocks = (blocks: ContentBlock[], sectionName: string) => {
         const output: React.ReactNode[] = []
         for (let j = 0; j < blocks.length; j++) {
@@ -60,7 +67,7 @@ export function Page({page, projects, revivals = [], assets, imageMetadata = {}}
             if (block.type === 'image' && block.src) {
                 const group = [block]
                 if (block.comparison) while (blocks[j + 1]?.type === 'image' && blocks[j + 1].comparison === block.comparison) group.push(blocks[++j])
-                const figures = group.map(item => <figure className="case-figure" key={item.src}>{zoomImage(item.src!, item.alt || sectionName, false, group.length > 1)}{item.alt && <figcaption className="case-caption">{item.alt}</figcaption>}</figure>)
+                const figures = group.map(item => <figure className="case-figure" key={item.src}>{zoomImage(item.src!, item.alt || sectionName, false, group.length > 1, item.mobileSrc)}{item.alt && <figcaption className="case-caption">{item.alt}</figcaption>}</figure>)
                 output.push(group.length > 1 ? <div className="case-comparison" key={j} role="group" aria-label={block.comparison}>{figures}</div> : <React.Fragment key={j}>{figures}</React.Fragment>)
             } else if (block.type === 'workflow' && block.steps?.length) output.push(
                 <ol className="case-workflow" role="list" aria-label={block.text || sectionName + ' workflow'} key={j}>
@@ -74,9 +81,12 @@ export function Page({page, projects, revivals = [], assets, imageMetadata = {}}
                     <tbody>{block.rows.map((row, rowIndex) => <tr key={rowIndex}>{block.columns!.map((_, columnIndex) => columnIndex === 0 ? <th scope="row" key={columnIndex}>{row[columnIndex] || ''}</th> : <td key={columnIndex}>{row[columnIndex] || ''}</td>)}</tr>)}</tbody>
                 </table>
             )
+            else if (block.type === 'journey-notes' && block.observations?.length) output.push(<ol className="journey-notes" aria-label="Journey map observations" key={j}>{block.observations.map((observation, index) => <li key={index}><span className="journey-note-number" aria-hidden="true">{index + 1}</span><p>{inlineText(observation)}</p></li>)}</ol>)
+            else if (block.type === 'quote') output.push(<figure className="case-quote" key={j}><blockquote><p>{inlineText(block.text)}</p></blockquote>{block.attribution && <figcaption>{block.attribution}</figcaption>}</figure>)
+            else if (block.type === 'takeaway') output.push(<p className="case-block case-takeaway" key={j}>{inlineText(block.text)}</p>)
             else if (block.type === 'heading') output.push(<h3 className="case-block" key={j}>{block.text}</h3>)
             else if (block.type === 'link') output.push(<p className="case-block" key={j}><a href={block.href} target="_blank" rel="noopener noreferrer">{block.text}</a></p>)
-            else output.push(<p className="case-block" key={j}>{block.text}</p>)
+            else output.push(<p className="case-block" key={j}>{inlineText(block.text)}</p>)
         }
         return output
     }
