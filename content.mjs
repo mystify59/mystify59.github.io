@@ -412,20 +412,6 @@ export const siteContent = {
             {
               "type": "paragraph",
               "text": "During later team prototyping, the turbine’s output proved too low to justify its size and weight. The team moved towards Aquatorium: a collapsible fish-transport concept with oxygen delivery and cooling. Portability, access and reliability remained criteria to test throughout development."
-            },
-            {
-              "type": "heading",
-              "text": "The integrated system"
-            },
-            {
-              "type": "paragraph",
-              "text": "The concept brings three individual fish bags together with a support frame, load-cell-controlled pumping, oxygen delivery and a cooling/control enclosure. The arrangement links the physical structure to the water and electronics systems while retaining access to the main components."
-            },
-            {
-              "type": "image",
-              "src": "https://framerusercontent.com/images/PSPqKfbFw5INA4jg55QGDocSNh8.png",
-              "alt": "Concept visualisations from the team’s project materials.",
-              "text": "Concept visualisations from the team’s project materials."
             }
           ]
         },
@@ -486,87 +472,211 @@ export const siteContent = {
         },
         {
           "name": "Manufacture",
-          "heading": "Designed for assembly and replacement.",
+          "heading": "Designed to be made, taken apart and maintained.",
           "blocks": [
             {
-              "type": "paragraph",
-              "text": "The manufacturing study considered a 2 mm enclosure shell, 3 mm support walls and 1° draft, alongside fillets and continuous geometry for moulding."
+              "type": "heading",
+              "text": "Design for manufacturing"
             },
             {
               "type": "paragraph",
-              "text": "Separate frame, handle, bag and electronics subassemblies were proposed to improve build access. Splice plates and screws join the frame, while removable bags and electronics modules support cleaning and replacement."
+              "text": "The team developed the enclosure around **a 2 mm shell, 3 mm internal supports and 1° draft**. Controlled wall thickness, radiused corners and continuous geometry were proposed to support injection moulding and part release."
             },
             {
               "type": "image",
-              "src": "https://framerusercontent.com/images/yE8l8wXzTMdaSAV4YWIUDBQvbs.jpg",
-              "alt": "Enclosure CAD from the team’s manufacturing study.",
-              "text": "Enclosure CAD from the team’s manufacturing study."
+              "src": "project-assets/aquatorium-final/dfm-shell.jpeg",
+              "alt": "Enclosure manufacturing study: wall thickness, radii and draft considered in CAD."
             },
             {
-              "type": "image",
-              "src": "https://framerusercontent.com/images/bcgSxh7in5p8tSIsvEs8hXvNRc.jpg",
-              "alt": "Frame joint and fastening study.",
-              "text": "Frame joint and fastening study."
+              "type": "heading",
+              "text": "Design for disassembly"
             },
             {
               "type": "paragraph",
-              "text": "These are proposed manufacturing details, rather than evidence of production tooling or certification. Removable modules and standard fixings were considered to support cleaning, repair and replacement."
+              "text": "The frame splits into two halves joined by **removable splice plates and M4 flat-head screws**. The outer bag is screwed to the frame so it can be removed for cleaning or replacement. Separate handle, fish-bag and electronics subassemblies provide access to individual parts."
+            },
+            {
+              "type": "image",
+              "src": "project-assets/aquatorium-final/dfd-frame.jpeg",
+              "alt": "Frame connection: removable splice plate and screw arrangement — team CAD study."
+            },
+            {
+              "type": "paragraph",
+              "text": "The **electronics enclosure is a removable module**, with predominantly M3 fixings and plug-in connections where maintenance is needed. The Peltier and heat sinks are thermally bonded as a cooling assembly, which is then secured into the housing with machine screws."
+            },
+            {
+              "type": "image",
+              "src": "project-assets/aquatorium-final/dfd-electronics.jpeg",
+              "alt": "Cooling assembly and enclosure: screw-mounted components and access for assembly — team CAD study."
+            },
+            {
+              "type": "paragraph",
+              "text": "These details describe the team’s **manufacturing and serviceability proposal**. Prototype assembly informed the design; production tooling and repeated disassembly testing would be later steps."
             }
           ]
         },
         {
-          "name": "Testing",
-          "heading": "What the prototype demonstrated.",
+          "name": "Electronics",
+          "heading": "From circuit diagram to working prototype.",
           "blocks": [
             {
-              "type": "heading",
-              "text": "About 4 hours of cooling"
-            },
-            {
               "type": "paragraph",
-              "text": "The team report records around four hours of cooling runtime for the tested prototype. Endurance remained below the intended use case."
+              "text": "The electronics were developed as **two separate systems: water pumping and active cooling**. Building and testing them on the bench exposed the wiring, power and packaging needs before they were integrated into the enclosure."
             },
             {
               "type": "heading",
-              "text": "22 L unfolded → 8 L folded"
+              "text": "The cooling circuit"
             },
             {
               "type": "paragraph",
-              "text": "The reported unfolded and folded volumes demonstrate the packaging direction. These values describe the prototype evaluated in the project."
+              "text": "A **12 V battery powers the XY-T01 temperature controller, a TEC1-12703 Peltier module and two fans**. The probe provides temperature feedback; the controller’s relay switches the cooling assembly. Fans move air across the cold-side and hot-side heat sinks."
+            },
+            {
+              "type": "image",
+              "src": "project-assets/aquatorium-final/circuit-cooling-4x.png",
+              "alt": "Original cooling circuit: battery, temperature probe/controller, Peltier module and fans. Enlarge to inspect the wiring."
+            },
+            {
+              "type": "workflow",
+              "text": "Temperature-control sequence documented in the team report",
+              "steps": [
+                {
+                  "title": "Set the target",
+                  "text": "The user sets a target temperature on the XY-T01 controller."
+                },
+                {
+                  "title": "Read the probe",
+                  "text": "The temperature probe feeds the current reading back to the controller."
+                },
+                {
+                  "title": "Switch on cooling",
+                  "text": "The report describes activation at 1°C above the selected target; the relay switches the Peltier and fans."
+                },
+                {
+                  "title": "Return and repeat",
+                  "text": "The cooling assembly brings the reading towards the target while the controller continues monitoring."
+                }
+              ]
             },
             {
               "type": "heading",
-              "text": "Temperature and connection tests"
+              "text": "The pumping circuit"
             },
             {
               "type": "paragraph",
-              "text": "The report records a temperature reading falling from 25°C to 20°C in about three minutes in the test setup. This is a reported sensor reading, not a demonstrated cooling rate for a fully loaded container."
+              "text": "An **ESP32-S reads load-cell feedback through an HX711 module** and controls the R320 pump through a relay. Buttons and a display support setting and checking the fill operation. This circuit manages water filling separately from the temperature-control loop."
+            },
+            {
+              "type": "image",
+              "src": "project-assets/aquatorium-final/circuit-pumping-4x.png",
+              "alt": "Original pumping circuit: ESP32-S, load-cell interface, buttons, display, relay and pump. Enlarge to inspect the connections."
+            },
+            {
+              "type": "heading",
+              "text": "Building and packaging the prototype"
             },
             {
               "type": "paragraph",
-              "text": "An isolated pump-wire connection remained operational during an immersion test at approximately 0.5 m for 30 minutes. Whole-product weather protection still required development."
+              "text": "The team assembled the controls and cooling hardware on the bench, then fitted the cooling unit into an insulated enclosure. These **original prototype photographs** show the physical wiring, heat sinks, fans and component packaging behind the concept."
+            },
+            {
+              "type": "image",
+              "src": "project-assets/aquatorium-final/electronics-bench-prototype.png",
+              "alt": "Bench integration of the controls and Peltier cooling hardware — original team prototype photograph."
+            },
+            {
+              "type": "image",
+              "src": "project-assets/aquatorium-final/cooling-enclosure-integration.jpeg",
+              "alt": "Cooling unit fitted inside the enclosure.",
+              "comparison": "Cooling prototype packaging"
+            },
+            {
+              "type": "image",
+              "src": "project-assets/aquatorium-final/cooling-insulated-test-box.jpeg",
+              "alt": "Insulated enclosure used during prototype testing.",
+              "comparison": "Cooling prototype packaging"
+            },
+            {
+              "type": "table",
+              "text": "Prototype results and engineering estimates",
+              "columns": [
+                "Check",
+                "Reported result",
+                "What it establishes"
+              ],
+              "rows": [
+                [
+                  "Temperature response",
+                  "25°C → 20°C in about 3 minutes",
+                  "A sensor reading in the test setup; not a cooling rate for a fully loaded container."
+                ],
+                [
+                  "Cooling endurance estimate",
+                  "About 47 minutes continuously; about 4 hours at an assumed 20% duty cycle",
+                  "Battery sizing calculation, not a measured all-day endurance result."
+                ],
+                [
+                  "Pump-wire immersion",
+                  "Approximately 0.5 m for 30 minutes",
+                  "The isolated connection remained operational; this was not a whole-product weather-protection test."
+                ]
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "The next iteration needed to improve **battery endurance, rain protection, charging convenience and carrying weight**, while retaining access for cleaning and repair."
             }
           ]
         },
         {
-          "name": "Next steps",
-          "heading": "Portability and access.",
+          "name": "Final design",
+          "heading": "Set up, use and pack away.",
           "blocks": [
             {
               "type": "paragraph",
-              "text": "Reducing the frame from four bays to three created more room for electronics and improved access. The enclosure iterations reinforced the same lesson: component layout, handling and assembly needed to develop together."
+              "text": "The concept brings three individual fish bags together with a support frame, load-cell-controlled pumping, oxygen delivery and a cooling/control enclosure. The arrangement links the physical structure to the water and electronics systems while retaining access to the main components."
+            },
+            {
+              "type": "workflow",
+              "text": "Intended Aquatorium use sequence",
+              "steps": [
+                {
+                  "title": "Load and organise",
+                  "text": "Unfold the frame, fit the three individual fish bags and keep the controls accessible in the side compartment."
+                },
+                {
+                  "title": "Fill and monitor",
+                  "text": "Use the load-cell-based pumping system to fill a bag to the selected target, then monitor the cooling system through its controls."
+                },
+                {
+                  "title": "Carry and pack away",
+                  "text": "Use the folding handles for carrying; empty and dry the bags, then collapse the body for storage. The report records 22 L unfolded and 8 L folded."
+                }
+              ]
             },
             {
               "type": "paragraph",
-              "text": "Battery endurance, rain protection, charging convenience and carrying weight remained priorities for the next iteration. Further work would need to address these constraints while preserving access for cleaning, repair and replacement."
+              "text": "The final proposal brings together **separate fish storage, controlled water filling, oxygen delivery and active cooling** in a collapsible format. The renders below show the intended product arrangement and appearance; the preceding prototype work records what was built and tested."
             },
             {
-              "type": "heading",
-              "text": "Team credit"
+              "type": "image",
+                "src": "project-assets/aquatorium-final/final-open-render.png",
+                "framing": "square-bottom",
+              "alt": "Final concept visualisation — open configuration, with the bags, supporting frame and side controls visible."
+            },
+            {
+              "type": "image",
+              "src": "project-assets/aquatorium-final/final-closed-render.png",
+              "alt": "Final concept visualisation — closed configuration for carrying."
+            },
+            {
+              "type": "image",
+              "src": "project-assets/aquatorium-final/final-folded-render.png",
+              "alt": "Final concept visualisation — folded configuration for storage."
             },
             {
               "type": "paragraph",
-              "text": "Developed by Joseph Wang, Joe Chen, Jason Wang and Peppe Aphiphunya. Academic team project at Imperial College London."
+              "text": "Developed by **Joseph Wang, Joe Chen, Jason Wang and Peppe Aphiphunya**. Academic team project at Imperial College London."
             }
           ]
         }
