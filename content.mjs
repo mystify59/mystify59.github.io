@@ -3,6 +3,7 @@
 import { thermofluidsProject } from './thermofluids.mjs';
 import { revivalSeries, revivalProjects } from './revival.mjs';
 import { aiCadWorkflowProject } from './ai-cad-workflow.mjs';
+import { s00Project } from './s00.mjs';
 
 export const siteContent = {
   "projects": [
@@ -435,179 +436,7 @@ export const siteContent = {
         }
       ]
     },
-    {
-      "slug": "s00",
-      "title": "S00: internal structure design",
-      "company": "Li Auto",
-      "year": "2026",
-      "description": "Internal component planning, mounting and assembly details for a humanoid robot.",
-      "role": "Humanoid Development Intern",
-      "timeline": "2026 · internship",
-      "team": "Li Auto",
-      "platform": "Humanoid robot",
-      "subtitle": "Internal component planning, mounting and assembly details for a humanoid robot.",
-      "coverImage": "https://framerusercontent.com/images/SK9iStEVzzOaDHT3DwrC1dWv0.png",
-      "heroImage": "https://framerusercontent.com/images/lGYDA5qCnlmbGxKQ3tNd2XX24g4.png",
-      "hoverImage": "https://framerusercontent.com/images/lGYDA5qCnlmbGxKQ3tNd2XX24g4.png",
-      "sections": [
-        {
-          "name": "Overview",
-          "heading": "Making the inside work together.",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "During my Li Auto internship, I worked on the internal layout of the S00 humanoid robot. Cameras, a microphone, the display, cooling hardware and the CCU had to share limited space while remaining mountable and accessible."
-            },
-            {
-              "type": "paragraph",
-              "text": "I refined component supports, fixing positions and assembly details, documenting the changes and unresolved questions in a structural review."
-            },
-            {
-              "type": "image",
-              "src": "https://framerusercontent.com/images/QIGqG8tNUaKLbfzSczfh93zCEhk.jpg",
-              "alt": "Rebuilt main frame before topology optimisation, showing the revised shoulder transitions and internal equipment supports.",
-              "text": "Rebuilt main frame before topology optimisation, showing the revised shoulder transitions and internal equipment supports."
-            }
-          ]
-        },
-        {
-          "name": "Packaging",
-          "heading": "Start with the surrounding assembly.",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "I planned supports around existing component positions and interfaces. This meant checking where hardware could attach, where neighbouring parts needed clearance, and how each local change affected the assembly as a whole."
-            },
-            {
-              "type": "heading",
-              "text": "Working with existing interfaces"
-            },
-            {
-              "type": "paragraph",
-              "text": "In an earlier control-box mounting exploration, I worked around four existing fixing holes. I corrected the proposed pattern from a square to a cross and identified the need for a vertical extension fastening to the side of the body-frame beam."
-            },
-            {
-              "type": "heading",
-              "text": "Screen position and mass distribution"
-            },
-            {
-              "type": "paragraph",
-              "text": "The display module sat to one side to meet the exterior form. I adjusted the support’s central opening towards the opposite side, revised hole positions and cut back its lower area to clear the control box. I flagged the remaining mass-balance question for further assessment."
-            },
-            {
-              "type": "heading",
-              "text": "Fan support and component clearance"
-            },
-            {
-              "type": "paragraph",
-              "text": "For the lighter fan module, I used an open support frame and shaped it around the neighbouring hardware. The review documented the packaging clearance and the aim of keeping this support light."
-            },
-            {
-              "type": "image",
-              "src": "https://framerusercontent.com/images/ZF0Yw8DAFfgWFubn9Q4dcX93klQ.png",
-              "alt": "Offset display support: opening and lower geometry revised around the control box.",
-              "text": "Offset display support: opening and lower geometry revised around the control box."
-            },
-            {
-              "type": "image",
-              "src": "https://framerusercontent.com/images/SK9iStEVzzOaDHT3DwrC1dWv0.png",
-              "alt": "Open fan support shaped to clear neighbouring components.",
-              "text": "Open fan support shaped to clear neighbouring components."
-            }
-          ]
-        },
-        {
-          "name": "Mounts",
-          "heading": "Separate the mounts. Resolve the details.",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "I retained the eye-camera bracket’s position and defined a three-screw fixing arrangement. An alignment feature was considered, but left open until the manufacturing approach was clearer."
-            },
-            {
-              "type": "paragraph",
-              "text": "For the microphone, I separated its support from the eye-camera bracket, extended it and fixed it directly to the main structure. The longer span raised a stiffness concern, so I added ribs at the internal corners while keeping the central M2 fixing holes clear."
-            },
-            {
-              "type": "image",
-              "src": "https://framerusercontent.com/images/qxd9lNlAKKv0zbyzcefBSchoYfY.png",
-              "alt": "Microphone support separated from the eye-camera mount.",
-              "text": "Microphone support separated from the eye-camera mount."
-            },
-            {
-              "type": "image",
-              "src": "https://framerusercontent.com/images/SEoP8wTXfrsGzHOxYWO9MVHPRg.png",
-              "alt": "Corner ribs added while retaining the central M2 fixing holes.",
-              "text": "Corner ribs added while retaining the central M2 fixing holes."
-            },
-            {
-              "type": "paragraph",
-              "text": "These revisions connected the overall layout to practical details: fastening positions, local reinforcement and access for the components being mounted."
-            }
-          ]
-        },
-        {
-          "name": "Assembly",
-          "heading": "Fit, seal and locate the CCU.",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "The new CCU air duct introduced a coupled problem: its geometry needed to fit the assembly while providing an interface for adhesive foam sealing. I broke this into the duct structure, its fixing points and the surrounding fit."
-            },
-            {
-              "type": "paragraph",
-              "text": "The documented arrangement uses two identical sealing parts mounted with the CCU. I specified M4 fixings and added corresponding positions in the main structure, avoiding the other CCU components."
-            },
-            {
-              "type": "image",
-              "src": "https://framerusercontent.com/images/arWRCc9fW0rP8mVXLeAyimKwY.png",
-              "alt": "CCU with the paired sealing components.",
-              "text": "CCU with the paired sealing components."
-            },
-            {
-              "type": "image",
-              "src": "https://framerusercontent.com/images/fMdJxgjV2hk1XksfV4KhOlgPzzQ.png",
-              "alt": "Matching mounting positions in the surrounding structure.",
-              "text": "Matching mounting positions in the surrounding structure."
-            },
-            {
-              "type": "heading",
-              "text": "Designing for assembly"
-            },
-            {
-              "type": "paragraph",
-              "text": "I shaped the internal recess around the CCU assembly, retained space at the corners for foam, and added a lower locating groove to help alignment during assembly."
-            },
-            {
-              "type": "image",
-              "src": "https://framerusercontent.com/images/IyzgpiqNXXfc8O41jCHPt7u0gxc.png",
-              "alt": "Internal fit and space for foam sealing.",
-              "text": "Internal fit and space for foam sealing."
-            },
-            {
-              "type": "image",
-              "src": "https://framerusercontent.com/images/cuIM2CH2YitfJio7Cq5yICCcCc.png",
-              "alt": "Lower locating feature intended to aid assembly alignment.",
-              "text": "Lower locating feature intended to aid assembly alignment."
-            }
-          ]
-        },
-        {
-          "name": "Reflection",
-          "heading": "From local parts to a coherent assembly.",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Extending the microphone support raised a stiffness concern, while the offset display left a mass-balance question. Recording these alongside the CAD revisions kept the remaining checks visible as the design developed."
-            },
-            {
-              "type": "paragraph",
-              "text": "Further work would need to verify those points and confirm the manufacturing approach before resolving the optional alignment feature."
-            }
-          ]
-        }
-      ]
-    },
+    s00Project,
     {
       "slug": "aircraft-seating",
       "title": "RE-seat",
@@ -768,7 +597,7 @@ siteContent.revivals = revivalProjects;
 const projectOrder = ['s00', 'street-pulse', 'ai-cad-workflow', 'thermofluids', 'aircraft-seating', 'aquatorium', 'project-revival'];
 siteContent.projects.sort((a, b) => projectOrder.indexOf(a.slug) - projectOrder.indexOf(b.slug));
 const cardSummaries = {
-  s00: 'Humanoid structure · CAD and assembly studies',
+  s00: 'Component supports · Main-frame FEA · Camera mounts',
   'street-pulse': 'Electronics prototyping · Assembly and testing',
   'aircraft-seating': 'Modular seat concept · CAD and Eco Audit',
   aquatorium: 'Individual concepts · Team product development',

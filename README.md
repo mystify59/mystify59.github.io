@@ -16,6 +16,10 @@ Open http://127.0.0.1:4180. Edit project stories in `content.mjs`, page template
 
 `image-build.mjs` generates responsive WebP display versions and project-specific sharing images. Original project images remain available in the zoom viewer. Intrinsic image dimensions reserve space before loading. Run `npm test` after building to check responsive image metadata, sharing cards and original-file preservation.
 
+## S00 three-part case, 22 October 2026
+
+`s00.mjs` now groups the case into component supports, main-frame FEA, and the wrist-camera mount for VLA data collection. Original Ansys report images in `project-assets/s00-analysis/` match the saved 4 August frame results. The camera section reports the separate 17 August bracket studies in tables. Load, material, boundary and convergence limits are stated with the results; the camera fixture is distinct from the head-camera support. Hand-posture research is omitted.
+
 ## AI-assisted CAD workflow, 21 October 2026
 
 `ai-cad-workflow.mjs` holds a separate personal tool-development case at `/case-studies/ai-cad-workflow/`, placed after Street Pulse on the homepage. Its four-step workflow and technical tables use native HTML, with the existing dark/blue styling. S00's internship story remains separate.
