@@ -4,19 +4,20 @@ const media = 'project-assets/ai-cad-workflow/';
 
 export const aiCadWorkflowProject = {
   slug: 'ai-cad-workflow',
-  title: 'AI-assisted CAD workflow',
+  title: 'Humanoid Design',
   company: 'Personal tool development',
   year: '2026',
   description: 'A reusable Codex skill for taking mechanical design briefs into native CAD, with explicit design intent, capability checks and evidence of what the model actually contains.',
   role: 'Workflow design, iteration & Fusion trials with Codex',
-  timeline: 'August–September 2026',
+  timeline: 'August 2026–ongoing',
   team: 'Personal project · AI-assisted development',
   platform: 'Codex skills · MCP · Autodesk Fusion',
-  cardSummary: 'Engineering intent · Native CAD · Verification',
-  coverImage: media + 'fusion-examples-01.png',
+  status: 'In development',
+  cardSummary: 'AI-assisted CAD skill · Design intent and verification',
+  coverImage: 'project-assets/humanoid-design/humanoid-design-cover.png',
   heroImage: media + 'fusion-examples-03.png',
   coverFit: 'contain',
-  coverAlt: 'Original Fusion viewport showing mechanical test parts made during development of the CAD workflow.',
+  coverAlt: 'Humanoid Design — a blue articulated humanoid and H monogram. AI-assisted CAD skill.',
   heroCaption: 'Original Fusion viewport, 3 September 2026: nine test parts alongside two earlier mounting studies. Geometry examples used to develop the workflow; not manufactured or structurally validated parts.',
   sections: [
     {
@@ -24,7 +25,7 @@ export const aiCadWorkflowProject = {
       heading: 'Make the design intent checkable.',
       blocks: [
         {type: 'paragraph', text: 'A CAD command can report success while creating the wrong envelope, acting on an outdated body reference, or leaving geometry behind after a failed operation. I wanted an AI-assisted workflow that could explain what it intended to build and check the resulting model before continuing.'},
-        {type: 'paragraph', text: 'I developed the humanoid-cad-simulation skill with Codex, shaping its engineering questions, review rules and iteration criteria through mechanical examples. The scope grew from humanoid structures to parts and assemblies more broadly. This is a personal tool-development project, separate from the S00 internship work.'},
+        {type: 'paragraph', text: 'Humanoid Design is the project identity for the humanoid-cad-simulation skill I developed with Codex. I shaped its engineering questions, review rules and iteration criteria through mechanical examples. The scope grew from humanoid structures to parts and assemblies more broadly. This is a personal tool-development project, separate from the S00 internship work.'},
       ],
     },
     {
@@ -87,11 +88,23 @@ export const aiCadWorkflowProject = {
       ],
     },
     {
+      name: 'In development',
+      heading: 'Extend the scope, then test it in the application.',
+      blocks: [
+        {type: 'paragraph', text: 'The retained Fusion examples and September integration pass establish a starting point. The next strands of work are at different stages; the earlier checks do not validate these newer extensions.'},
+        {type: 'table', text: 'Current development strands', columns: ['Strand', 'Current state and next check'], rows: [
+          ['Broader mechanical briefs', 'Guidance drafted for enclosures, fixtures and linkages. The written scenarios still need evaluation in native applications.'],
+          ['Assembly and thread control', 'A separate, unreleased bridge extension adds explicit component targeting, thread designation and handedness, with feature readback. Native acceptance checks are still outstanding.'],
+          ['Independent reliability evaluation', 'Planned comparisons on unfamiliar briefs, using independent runs and a consistent baseline to assess completion, recovery and unnecessary tool calls.'],
+        ]},
+      ],
+    },
+    {
       name: 'Reflection',
       heading: 'Let failures improve the next instruction.',
       blocks: [
         {type: 'paragraph', text: 'Across five documented iterations, the work moved from a general engineering checklist to more specific rules for coordinate checks, capability gaps, topology changes and recovery. The most useful feedback came from failures in the native application: a rejected plane reference or ambiguous cleanup could be traced to a concrete change in the skill or bridge.'},
-        {type: 'paragraph', text: 'The next step is to test unfamiliar briefs with independent agent runs and a consistent baseline. That would help measure reliability, conversation length and fallback behaviour. The existing record supports a working research prototype; it does not yet support a percentage time-saving claim or unattended engineering approval.'},
+        {type: 'paragraph', text: 'The existing record supports a working research prototype. A useful workflow has to make the model and its limits inspectable; a percentage time-saving claim or unattended engineering approval would require further evidence.'},
       ],
     },
   ],
