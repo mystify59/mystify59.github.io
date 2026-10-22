@@ -305,23 +305,91 @@ export const siteContent = {
           "blocks": [
             {
               "type": "heading",
-              "text": "My initial direction: using downtime to support the next activity"
+              "text": "My six initial concepts"
             },
             {
               "type": "paragraph",
-              "text": "My individual Phase 1 work explored six concepts for support across hiking and fishing, including a floating hydro-generator. Survey feedback and a follow-up interview supported developing that direction. Feedback about still or slow-moving water raised questions about flow conditions and possible wind generation."
+              "text": "My individual Phase 1 work explored **six different ways to support the transition between hiking and fishing**: generating power, sharing supplies, combining equipment and preparing for the next stop. These original sketches show the range of ideas before I selected one for further development."
             },
             {
               "type": "image",
-              "src": "https://framerusercontent.com/images/6ESlahrWPuexcJs5TYKQatAMywM.jpg",
-              "alt": "My early floating hydro-generator concept — Phase 1.",
-              "text": "My early floating hydro-generator concept — Phase 1."
+              "src": "project-assets/aquatorium-concepts/concept-1.jpeg",
+              "comparison": "My six initial concepts",
+              "gallery": true,
+              "alt": "01 / Pendulum-generator backpack. Harvesting energy from walking for use while fishing or at camp."
             },
             {
               "type": "image",
-              "src": "https://framerusercontent.com/images/YSUa2Qz0ALMttGBeL5JWBjnyE.jpg",
-              "alt": "Joe Chen’s early dual-chamber catch-bag concept — Phase 1.",
-              "text": "Joe Chen’s early dual-chamber catch-bag concept — Phase 1."
+              "src": "project-assets/aquatorium-concepts/concept-2.jpeg",
+              "comparison": "My six initial concepts",
+              "gallery": true,
+              "alt": "02 / Angler’s supply cache. Leaving spare tackle and supplies at fishing sites for later visitors."
+            },
+            {
+              "type": "image",
+              "src": "project-assets/aquatorium-concepts/concept-3.jpeg",
+              "comparison": "My six initial concepts",
+              "gallery": true,
+              "alt": "03 / Floating hydro-generator. Using flowing water to charge a battery between activities."
+            },
+            {
+              "type": "image",
+              "src": "project-assets/aquatorium-concepts/concept-4.jpeg",
+              "comparison": "My six initial concepts",
+              "gallery": true,
+              "alt": "04 / Gaiters that become a seat. Folding frames extending into a fishing seat."
+            },
+            {
+              "type": "image",
+              "src": "project-assets/aquatorium-concepts/concept-5.jpeg",
+              "comparison": "My six initial concepts",
+              "gallery": true,
+              "alt": "05 / Drifting depth detector. Measuring depth and anchoring at a suitable spot while the angler walks downstream."
+            },
+            {
+              "type": "image",
+              "src": "project-assets/aquatorium-concepts/concept-6.jpeg",
+              "comparison": "My six initial concepts",
+              "gallery": true,
+              "alt": "06 / Self-drying bait holder. Separating, cleaning and drying wet bait while walking to the next stop."
+            },
+            {
+              "type": "heading",
+              "text": "Developing the proposed generator in CAD"
+            },
+            {
+              "type": "paragraph",
+              "text": "Survey feedback and a follow-up interview supported developing the **floating hydro-generator**. Feedback about still or slow-moving water raised questions about flow conditions and possible wind generation. I developed the proposal around **two modules: the turbine and a separate anchor/battery unit**."
+            },
+            {
+              "type": "image",
+              "src": "project-assets/aquatorium-concepts/generator-turbine-exploded.png",
+              "alt": "Proposed turbine module — original exploded CAD render from my Phase 1 work, showing the front guard, generator support, housing and tail-support rings."
+            },
+            {
+              "type": "paragraph",
+              "text": "The CAD work explored **assembly, retrieval and packing**: a removable front guard, an accessible generator mount and a fabric tail supported by collapsible rings. I placed the battery in the anchoring module to reduce its exposure to water, with folding pegs and a rubber-lined loop proposed for different anchoring conditions. These views show the design proposal at this stage."
+            },
+            {
+              "type": "image",
+              "src": "project-assets/aquatorium-concepts/generator-anchor-exploded.png",
+              "alt": "Proposed anchor module — original exploded CAD render showing the ring housing, inner lining and folding peg."
+            },
+            {
+              "type": "paragraph",
+              "text": "Within the housing, I added **reinforcing ribs to hollow parts** and developed **M3 screw mounting for the generator holder**, making the assembly details part of the concept development."
+            },
+            {
+              "type": "image",
+              "src": "project-assets/aquatorium-concepts/generator-rib-detail.png",
+              "comparison": "Generator CAD assembly details",
+              "alt": "Internal rib in the hollow housing — original CAD detail."
+            },
+            {
+              "type": "image",
+              "src": "project-assets/aquatorium-concepts/generator-fastener-detail.png",
+              "comparison": "Generator CAD assembly details",
+              "alt": "Threaded mounting points for screw-based assembly — original CAD detail."
             },
             {
               "type": "heading",
@@ -330,6 +398,12 @@ export const siteContent = {
             {
               "type": "paragraph",
               "text": "Joe Chen’s strand explored catch storage and handling, including an anchored net and a dual-chamber bag for refreshing water. Concepts were assessed through user feedback and weighted criteria covering feasibility, problem fit, portability, durability and complexity."
+            },
+            {
+              "type": "image",
+              "src": "https://framerusercontent.com/images/YSUa2Qz0ALMttGBeL5JWBjnyE.jpg",
+              "alt": "Joe Chen’s early dual-chamber catch-bag concept — Phase 1.",
+              "text": "Joe Chen’s early dual-chamber catch-bag concept — Phase 1."
             },
             {
               "type": "heading",
