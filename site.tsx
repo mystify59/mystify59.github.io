@@ -11,7 +11,7 @@ type ContentBlock = {type: string; text?: string; src?: string; mobileSrc?: stri
 type Project = {
     slug: string; title: string; company: string; year?: string; description: string;
     role: string; timeline: string; team: string; platform: string;
-    coverImage: string; heroImage: string; hoverImage?: string; cardSummary?: string; heroCaption?: string; coverAlt?: string; coverCaption?: string; coverFit?: 'contain'; status?: string;
+    coverImage: string; heroImage: string; showHero?: boolean; hoverImage?: string; cardSummary?: string; heroCaption?: string; coverAlt?: string; coverCaption?: string; coverFit?: 'contain'; status?: string;
     destination?: string; kind?: string; backHref?: string; backLabel?: string;
     sections: {name: string; heading: string; blocks: ContentBlock[]}[]
 }
@@ -175,7 +175,7 @@ export function Page({page, projects, revivals = [], assets, imageMetadata = {}}
                         <section className="revival-menu" aria-labelledby="revival-menu-title"><h2 className="section-label" id="revival-menu-title">Choose a revival</h2><div className="projects-grid">{revivals.map(card)}</div></section>
                         <section className="revival-intro" aria-labelledby="revival-intro-title"><h2 className="section-label" id="revival-intro-title">The series</h2>{project.sections.flatMap(section => section.blocks).filter(block => block.type === 'paragraph').map((block,i) => <p key={i}>{block.text}</p>)}{facts(project)}</section>
                     </> : <>
-                    <div className="case-hero">{zoomImage(project.heroImage, project.heroCaption || project.title + ' project overview', true)}{project.heroCaption && <p className="case-caption">{project.heroCaption}</p>}</div>
+                    {project.showHero !== false && <div className="case-hero">{zoomImage(project.heroImage, project.heroCaption || project.title + ' project overview', true)}{project.heroCaption && <p className="case-caption">{project.heroCaption}</p>}</div>}
                     <div className="case-layout">
                         <nav className="case-nav" aria-label="Case study sections">{project.sections.map((section,i) => <a key={i} href={'#section-' + i}>{section.name}</a>)}</nav>
                         <div className="case-body">{project.sections.map((section,i) => <section className="case-section" key={i} id={'section-' + i} aria-labelledby={'heading-' + i}>

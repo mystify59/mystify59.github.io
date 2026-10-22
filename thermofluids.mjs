@@ -1,15 +1,15 @@
-// Project report and ownership reviewed 18 October 2026.
+// Vehicle and battery-cooling source reports reviewed 22 October 2026.
 export const thermofluidsProject = {
   "slug": "thermofluids",
   "title": "Thermofluids: vehicle & battery cooling",
   "company": "Imperial",
   "year": "2026",
-  "description": "Developing a compact SUV from sketches to Fusion geometry and CFD, alongside a team study of battery cold-plate design.",
-  "role": "Individual aerodynamics; team cooling contribution",
+  "description": "Two connected studies: shaping a compact SUV through aerodynamic research, and using battery-cooling CFD to investigate pressure loss and uneven temperatures.",
+  "role": "Individual SUV study; team battery cooling",
   "timeline": "2026 · academic project",
   "team": "Imperial College London",
-  "platform": "Fusion · Ansys Fluent · CFD",
-  "cardSummary": "Vehicle CAD and CFD · Team battery cooling",
+  "platform": "Fusion · Fluent · Ansys Discovery",
+  "cardSummary": "SUV profile design · Battery-cooling CFD",
   "coverImage": "project-assets/thermofluids/vehicle-concept.png",
   "coverAlt": "Blue SUV concept in a city setting. Vizcom-generated concept visualisation from the project report.",
   "coverCaption": "Concept visualisation · Vizcom image from the report",
@@ -18,107 +18,205 @@ export const thermofluidsProject = {
   "heroCaption": "Render of the simplified Fusion model used for the aerodynamic study.",
   "sections": [
     {
-      "name": "Overview",
-      "heading": "A practical body shape, examined through flow.",
+      "name": "01 · SUV profile",
+      "heading": "Part 1 / SUV aerodynamics & profile design",
       "blocks": [
         {
-          "type": "paragraph",
-          "text": "The brief brought together two engineering problems: shaping a compact SUV around space and aerodynamic constraints, and exploring how a cold plate could distribute coolant beneath a battery. The work moved from benchmarking and sketches into CAD, CFD interpretation and cooling-channel concepts."
+          "type": "heading",
+          "text": "Researching SUV aerodynamics"
         },
         {
           "type": "paragraph",
-          "text": "I carried out the vehicle aerodynamics work individually: concept development, Fusion modelling, Fluent setup and interpretation of the flow results. Battery cooling was a team effort in which I participated. The outcome is a documented design and simulation study; the vehicle and cold plate were not physically validated."
-        }
-      ]
-    },
-    {
-      "name": "Form & CAD",
-      "heading": "Keeping useful space while shaping the rear.",
-      "blocks": [
-        {
-          "type": "paragraph",
-          "text": "I compared three rear profiles, balancing cargo space against a smoother roof-to-tail transition. The selected direction combined a gently sloping roof with a compact, near-vertical tailgate. Sketches explored how the nose, wheel areas and rear could manage airflow."
+          "text": "I began with the trade-off at the heart of a compact SUV: **useful cabin space and a raised driving position**, alongside the aerodynamic challenges of a larger frontal area, exposed underbody and upright rear. My research focused on how the roofline, wheel areas and tailgate could work together without losing the vehicle’s practicality."
         },
         {
           "type": "paragraph",
-          "text": "Using Fusion’s Form tools, I modelled half the body and mirrored it, then refined the surface continuity. The simplified geometry retained the overall shape, wheel forms and rear slope. Details such as mirrors, the proposed air dam and active features were outside this model’s scope."
+          "text": "In the report, I compared the **Volvo EX90, Tesla Model Y and Porsche Cayenne** as different approaches to space, a continuous roof-to-tail profile and active aerodynamic features. This benchmarking informed the shape studies below; it did not establish a measured drag improvement for my concept."
+        },
+        {
+          "type": "heading",
+          "text": "Developing the profile"
+        },
+        {
+          "type": "paragraph",
+          "text": "Side-profile and perspective sketches explored the body proportions before narrowing the rear shape to three alternatives. I selected **a gently sloping roof with a short, near-vertical tailgate** as a compromise between a smoother transition and usable luggage space."
+        },
+        {
+          "type": "image",
+          "src": "project-assets/thermofluids-two-parts/suv-profile-studies.jpeg",
+          "alt": "Original side-profile studies exploring the roofline, cabin proportions and rear treatment."
+        },
+        {
+          "type": "image",
+          "src": "project-assets/thermofluids-two-parts/suv-selected-profile.jpeg",
+          "alt": "Selected / Sloping roof and compact tailgate, balancing the rear transition with useful space.",
+          "comparison": "Three rear-profile alternatives"
+        },
+        {
+          "type": "image",
+          "src": "project-assets/thermofluids-two-parts/suv-fastback-profile.jpeg",
+          "alt": "Alternative / Continuous fastback, with a greater compromise in luggage space.",
+          "comparison": "Three rear-profile alternatives"
+        },
+        {
+          "type": "image",
+          "src": "project-assets/thermofluids-two-parts/suv-upright-profile.jpeg",
+          "alt": "Alternative / Upright SUV rear, retaining a conventional spacious profile.",
+          "comparison": "Three rear-profile alternatives"
+        },
+        {
+          "type": "paragraph",
+          "text": "The chosen profile led into sketches of the nose, wheel-area airflow and rear treatment. I then built a **simplified, mirrored Fusion body** to examine the overall form in Fluent. That initial study highlighted the rear wake and wheel areas as priorities for refinement. The proposed air dam and active features remained concept details outside the simplified model."
+        },
+        {
+          "type": "image",
+          "src": "project-assets/thermofluids-two-parts/suv-airflow-sketch.jpeg",
+          "alt": "Design intent: the proposed airflow around the chosen form. These drawn arrows are not CFD results.",
+          "comparison": "From intended airflow to analysis geometry"
         },
         {
           "type": "image",
           "src": "project-assets/thermofluids/cad-side.png",
-          "alt": "Fusion side view: the sloping roof and rear profile carried through into the simplified analysis geometry."
+          "alt": "Simplified Fusion geometry used for the initial vehicle aerodynamics study.",
+          "comparison": "From intended airflow to analysis geometry"
+        },
+        {
+          "type": "heading",
+          "text": "The final vehicle concept"
+        },
+        {
+          "type": "image",
+          "src": "project-assets/thermofluids/vehicle-concept.png",
+          "alt": "Final SUV concept visualisation developed using Vizcom, following the profile studies. The CFD used the separate simplified Fusion model."
         }
       ]
     },
     {
-      "name": "CFD setup",
-      "heading": "From a surface model to an analysis model.",
+      "name": "02 · Battery cooling",
+      "heading": "Part 2 / Resolving the cooling-plate trade-offs",
       "blocks": [
         {
+          "type": "heading",
+          "text": "The problem: cooling coverage versus pressure loss"
+        },
+        {
           "type": "paragraph",
-          "text": "I prepared a 1:17-scale half-body model in Ansys Fluent with a symmetry plane, a 30.5 m/s inlet and the standard k–ε turbulence model. The mesh contained 399,659 cells. I reviewed pressure and velocity contours, streamlines, and lift and drag coefficient histories over a 500-iteration run."
+          "text": "The team’s second study developed a **hybrid spiral–serpentine cold plate** beneath a 420 × 210 × 70 mm battery block. The aim was to cover the battery effectively while controlling the resistance encountered by the coolant. We compared channel layouts, then used Ansys Discovery CFD to inspect pressure and temperature fields."
+        },
+        {
+          "type": "paragraph",
+          "text": "The initial dense spiral produced a reported **6.1 kPa pressure drop**, with a maximum battery temperature of **45.4 °C** and an average of **38.5 °C**. The long route and repeated tight turns became the main hydraulic design concern. The temperature field also showed that a reasonable average could conceal uneven cooling across the battery."
+        },
+        {
+          "type": "heading",
+          "text": "Changing the geometry"
+        },
+        {
+          "type": "paragraph",
+          "text": "The next iteration **reduced the spiral density, shortened the route to 3.40 m and widened the channel**. Spiral spacing increased from 4 mm to 17 mm. Rather than simply maximising channel coverage, the revised design sought to preserve heat removal with fewer turns and less flow resistance."
         },
         {
           "type": "image",
-          "src": "project-assets/thermofluids/velocity-side.png",
-          "comparison": "Velocity and pressure in the same CFD study",
-          "alt": "Side-plane velocity contour from the scaled CFD model. The low-velocity region behind the body highlights the rear wake."
+          "src": "project-assets/thermofluids-two-parts/battery-baseline-channel-cad.png",
+          "alt": "Initial CAD: a densely packed spiral with many turns.",
+          "comparison": "Cooling-channel geometry before and after iteration"
         },
         {
           "type": "image",
-          "src": "project-assets/thermofluids/pressure-side.png",
-          "comparison": "Velocity and pressure in the same CFD study",
-          "alt": "Side-plane pressure contour used to examine the nose, roof and rear pressure distribution."
-        }
-      ]
-    },
-    {
-      "name": "Findings",
-      "heading": "The rear wake became the next design priority.",
-      "blocks": [
+          "src": "project-assets/thermofluids-two-parts/battery-revised-channel-cad.png",
+          "alt": "Revised CAD: a more open spiral and a shorter 3.40 m channel route.",
+          "comparison": "Cooling-channel geometry before and after iteration"
+        },
         {
           "type": "paragraph",
-          "text": "The simulated flow followed much of the upper body before separating near the rear. Pressure and velocity views highlighted the wake behind the tailgate, while local streamline views showed disturbances around the wheels. These observations directed the next iteration towards rear pressure recovery, wheel-area geometry and underbody treatment."
+          "text": "Two elliptical cross-sections were then compared on the revised route. **Profile 1 was 8 mm wide × 6.67 mm deep; Profile 2 was 6.67 mm wide × 8 mm deep.** Swapping these dimensions retained the same cross-sectional area while changing the channel orientation relative to the battery."
+        },
+        {
+          "type": "heading",
+          "text": "What the CFD showed"
         },
         {
           "type": "image",
-          "src": "project-assets/thermofluids/streamlines.png",
-          "alt": "Fluent streamline view from the 500-iteration study. This is a simulation of the simplified body."
-        },
-        {
-          "type": "paragraph",
-          "text": "The analysis supports qualitative design decisions. A scaled model, omitted details and a single mesh limit quantitative conclusions; mesh independence and full-scale Reynolds-number similarity were not established. Symmetry in this zero-yaw model is not evidence of crosswind stability."
-        }
-      ]
-    },
-    {
-      "name": "Battery cooling",
-      "heading": "Balancing channel coverage and flow-path complexity.",
-      "blocks": [
-        {
-          "type": "paragraph",
-          "text": "In the team cold-plate study, we compared serpentine and parallel channel arrangements, then explored a hybrid of manifolds and branched paths. The design questions were how to distribute coolant, avoid excessive path length and pressure loss, and keep the layout practical to manufacture."
+          "src": "project-assets/thermofluids-two-parts/battery-baseline-pressure.png",
+          "alt": "Initial run: reported pressure drop of 6.1 kPa. Read the scale in pascals.",
+          "comparison": "Reported pressure fields before and after iteration"
         },
         {
           "type": "image",
-          "src": "project-assets/thermofluids/cold-plate.jpeg",
-          "alt": "Cold-plate channel concept from the team study. The drawing explores manifolds and repeated branches; it does not establish a measured cooling performance."
+          "src": "project-assets/thermofluids-two-parts/battery-profile-1-pressure.png",
+          "alt": "Revised Profile 1: reported pressure drop of 1.26 kPa. The colour scale differs from the initial plot.",
+          "comparison": "Reported pressure fields before and after iteration"
+        },
+        {
+          "type": "table",
+          "text": "Reported CFD results for the two revised profiles",
+          "columns": [
+            "Result",
+            "Profile 1",
+            "Profile 2"
+          ],
+          "rows": [
+            [
+              "Pressure drop",
+              "1.26 kPa",
+              "1.24 kPa"
+            ],
+            [
+              "Maximum battery temperature",
+              "44.8 °C",
+              "45.6 °C"
+            ],
+            [
+              "Average battery temperature",
+              "38.5 °C",
+              "39.0 °C"
+            ]
+          ]
         },
         {
           "type": "paragraph",
-          "text": "The report selected a single-inlet concept with a tapered manifold over a more complex dual-inlet option. Smooth bends and balanced branches were design intentions to investigate further. My participation was shared with the team; no temperature-reduction or pressure-drop result is claimed."
-        }
-      ]
-    },
-    {
-      "name": "Next iteration",
-      "heading": "Use the model to make the next comparison stronger.",
-      "blocks": [
+          "text": "The report selected **Profile 1**, accepting its slightly higher pressure loss in return for lower reported battery temperatures. The revised runs recorded much lower pressure losses than the initial layout, while average temperatures remained close. This made the thermal–hydraulic trade-off visible rather than treating more densely packed channels as automatically better."
+        },
         {
           "type": "paragraph",
-          "text": "The project connected shape decisions to a repeatable simulation workflow and made the limits of a simplified model visible. A next iteration would check mesh sensitivity and consistent reference values, compare rear and wheel-area variants under the same conditions, and evaluate cold-plate flow distribution and pressure loss before physical testing."
+          "text": "These values are **reported simulation outputs**, not physical test results. A mesh-independence study and identical boundary settings across every iteration were not documented, so the comparison indicates a design direction rather than a validated percentage improvement."
+        },
+        {
+          "type": "heading",
+          "text": "The remaining issue: uneven cooling"
+        },
+        {
+          "type": "paragraph",
+          "text": "The revised temperature field still showed hotter regions towards the outlet side. Reducing hydraulic resistance had not removed the temperature imbalance: coolant continued to warm as it travelled through the long route."
+        },
+        {
+          "type": "image",
+          "src": "project-assets/thermofluids-two-parts/battery-profile-1-temperature.png",
+          "alt": "Profile 1 battery-temperature field: the reported maximum is 44.8 °C, with uneven cooling still visible."
+        },
+        {
+          "type": "paragraph",
+          "text": "The proposed next iteration **split the large central spiral into smaller routes and moved denser channel coverage towards the outlet region**. Multiple inlet and outlet arrangements were also considered to shorten local flow paths. These were recommendations for further simulation, rather than tested fixes."
+        },
+        {
+          "type": "image",
+          "src": "project-assets/thermofluids-two-parts/battery-proposed-next-route.jpeg",
+          "alt": "Proposed next layout: smaller spiral regions and redistributed channel coverage. This sketch was not validated by the reported CFD runs."
+        },
+        {
+          "type": "heading",
+          "text": "Checking the model assumptions"
+        },
+        {
+          "type": "paragraph",
+          "text": "The hand calculations provided an energy balance and pressure-loss estimate, but their temperature predictions differed sharply from the CFD. Reviewing the setup reveals differences in **flow rate, heat input, battery conductivity and thermal boundaries**. Those assumptions need to be aligned before the two methods can be used as a direct validation comparison."
+        },
+        {
+          "type": "takeaway",
+          "text": "**Design learning:** use pressure and temperature fields together. The simpler channel layout returned lower reported pressure losses, while the remaining thermal imbalance defined the next geometry study."
         }
       ]
     }
-  ]
+  ],
+  "showHero": false
 };
