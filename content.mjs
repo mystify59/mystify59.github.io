@@ -19,7 +19,7 @@ export const siteContent = {
       "platform": "Physical product & experience",
       "subtitle": "Modular haptic floor tiles that combine vibration and light to bring audiences into street performances. From field research and tessellation studies to electronics prototyping and user testing.",
       "coverImage": "https://framerusercontent.com/images/Tcpkpbi0RUAt7TA3haeo4ws.png",
-      "heroImage": "https://framerusercontent.com/images/BYuq0wGwUvYCQKh4LM9cy7VfPqc.png",
+      "heroImage": "project-assets/street-pulse-originals/street-performance-unreal.png",
       "hoverImage": "https://framerusercontent.com/images/5QOld1RBtYfbZhGwvoMlTzKB8M.png",
       "sections": [
         {
@@ -51,15 +51,15 @@ export const siteContent = {
             {
               "type": "image",
               "src": "project-assets/street-pulse-research/fieldwork-crowd.jpeg",
-                "framing": "portrait",
+              "framing": "portrait",
               "alt": "Original fieldwork: observing how a performer gathers an audience.",
               "comparison": "Field observations"
             },
             {
               "type": "image",
-              "src": "project-assets/street-pulse-research/fieldwork-station.jpeg",
-                "framing": "portrait",
-              "alt": "Original fieldwork: a station performance alongside passing pedestrian traffic.",
+              "src": "project-assets/street-pulse-originals/fieldwork-crowd-edge.jpeg",
+              "framing": "portrait",
+              "alt": "Original fieldwork: observing different levels of involvement around the edge of the crowd.",
               "comparison": "Field observations"
             },
             {
@@ -90,7 +90,7 @@ export const siteContent = {
             },
             {
               "type": "image",
-              "src": "https://framerusercontent.com/images/RmhaaPPldkFzbg292yL9M2LEU.png",
+              "src": "project-assets/street-pulse-originals/audience-density-model.png",
               "alt": "Audience-density map: a qualitative synthesis of observed crowd patterns around the performance."
             },
             {
@@ -111,13 +111,13 @@ export const siteContent = {
             },
             {
               "type": "image",
-              "src": "https://framerusercontent.com/images/Mrf9LxqHgVnnCA6krTANJDnv76o.png",
+              "src": "project-assets/street-pulse-originals/tessellation-initial.jpeg",
               "alt": "Initial tessellation sketches: comparing repeated tile geometries.",
               "comparison": "Tessellation sketches"
             },
             {
               "type": "image",
-              "src": "https://framerusercontent.com/images/bxj1xjV2PELgmiMWL0lH7GyQbqU.png",
+              "src": "project-assets/street-pulse-originals/tessellation-arrangements.jpeg",
               "alt": "Further studies: radial, spiral and hexagonal arrangements.",
               "comparison": "Tessellation sketches"
             },
@@ -147,9 +147,25 @@ export const siteContent = {
             },
             {
               "type": "image",
-              "src": "https://framerusercontent.com/images/eB7vLuYcIUHqzlhc9xkkb83A.png",
-              "alt": "Breadboard electronics prototype from the delivery report.",
-              "text": "Breadboard electronics prototype from the delivery report."
+              "src": "project-assets/street-pulse-originals/electronics-breadboard.jpeg",
+              "alt": "Electronics prototype: Arduino-compatible board and DRV2605L haptic driver.",
+              "comparison": "Physical haptic prototyping",
+              "framing": "portrait"
+            },
+            {
+              "type": "image",
+              "src": "project-assets/street-pulse-originals/prototype-haptic-surface-test.jpeg",
+              "alt": "Bench testing the haptic response through a surface.",
+              "comparison": "Physical haptic prototyping",
+              "framing": "portrait"
+            },
+            {
+              "type": "heading",
+              "text": "Putting the prototype in context"
+            },
+            {
+              "type": "paragraph",
+              "text": "To help testers experience Street Pulse in its intended setting, we paired the **working vibration module** with a **3D street-performance video viewed through a VR headset**. Participants could feel the plate under their feet while seeing the proposed installation around them. The team built the virtual environment in Unreal Engine 5; I carried out the physical testing and assembly."
             }
           ]
         },
@@ -158,18 +174,25 @@ export const siteContent = {
           "heading": "Test the rhythm, then the experience.",
           "blocks": [
             {
+              "type": "heading",
+              "text": "Choosing the vibration pattern"
+            },
+            {
               "type": "paragraph",
               "text": "I carried out all testing. In a 20-person preference test, participants ranked three vibration patterns while listening to the same song: a metronome, the full song signal and selected rhythmic elements. The selected-rhythm pattern ranked best, guiding us towards a more focused haptic response."
             },
             {
+              "type": "heading",
+              "text": "Experiencing Street Pulse in situ"
+            },
+            {
               "type": "paragraph",
-              "text": "For the experience evaluation, 19 participants wore a VR headset while standing on a functional vibration module. The virtual performance let us evaluate the physical sensation in the context of the proposed larger installation."
+              "text": "For the experience evaluation, **19 participants stood on the functional module while watching the 3D video through a VR headset**. The physical prototype provided vibration underfoot, while the virtual performance showed how it could feel to stand among the Street Pulse plates in a street setting. Participants then completed an online survey about the combined experience."
             },
             {
               "type": "image",
-              "src": "https://framerusercontent.com/images/ZAPPsPPs7eslCl70ux4V3IG2qw.png",
-              "alt": "Virtual performance environment used alongside a working vibration module in the 19-person evaluation.",
-              "text": "Virtual performance environment used alongside a working vibration module in the 19-person evaluation."
+              "src": "project-assets/street-pulse-originals/vr-performance-view.png",
+              "alt": "The team’s Unreal Engine 5 street scene, used for the 3D video shown in VR alongside the working vibration module."
             },
             {
               "type": "paragraph",
