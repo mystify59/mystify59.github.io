@@ -18,7 +18,7 @@ Open http://127.0.0.1:4180. Edit project stories in `content.mjs`, page template
 
 ## Material journal portfolio download, 23 October 2026
 
-The public portfolio PDF contains 21 pages across eight projects in the approved Material journal design. Serif titles, asymmetric evidence layouts and a different text accent for each project organise the existing content. Original evidence images and the distinction between personal contributions, team work, simulations, concept imagery and unfinished development are preserved. The portfolio covers S00, Aquatorium, Street Pulse, Re:Seat, Thermofluids, Humanoid Design, Project Revival and Personal Workbench. It has selectable text, embedded fonts, eight project bookmarks and 42 contact links. The general CV remains the aligned one-page edition from 22 October.
+The public portfolio PDF contains 22 pages: a minimal navy cover with only “Boxuan Wang” and “Portfolio”, followed by the existing 21 pages across eight projects in the approved Material journal design. Serif titles, asymmetric evidence layouts and a different text accent for each project organise the existing content. Original evidence images and the distinction between personal contributions, team work, simulations, concept imagery and unfinished development are preserved. The portfolio covers S00, Aquatorium, Street Pulse, Re:Seat, Thermofluids, Humanoid Design, Project Revival and Personal Workbench. It has selectable text, embedded fonts, eight project bookmarks and 42 contact links; the bookmarks now open one page later to account for the cover. The general CV remains unchanged.
 
 ## Work in progress, 22 October 2026
 
