@@ -16,9 +16,9 @@ Open http://127.0.0.1:4180. Edit project stories in `content.mjs`, page template
 
 `image-build.mjs` generates responsive WebP display versions and project-specific sharing images. Original project images remain available in the zoom viewer. Intrinsic image dimensions reserve space before loading. Run `npm test` after building to check responsive image metadata, sharing cards and original-file preservation.
 
-## Expanded portfolio download, 23 October 2026
+## Material journal portfolio download, 23 October 2026
 
-The public portfolio PDF now has 21 pages across eight projects. It preserves the established dark design and the verified S00, Aquatorium, Street Pulse and Project Revival chapters, adding Re:Seat, Thermofluids, Humanoid Design and a concise Personal Workbench development page. Research, personal/team contributions, simulations, concept imagery and unfinished work remain distinguished. The PDF contains selectable text, embedded fonts, 21 bookmarks and 42 contact links. The general CV remains the aligned one-page edition from 22 October.
+The public portfolio PDF contains 21 pages across eight projects in the approved Material journal design. Serif titles, asymmetric evidence layouts and a different text accent for each project organise the existing content. Original evidence images and the distinction between personal contributions, team work, simulations, concept imagery and unfinished development are preserved. The portfolio covers S00, Aquatorium, Street Pulse, Re:Seat, Thermofluids, Humanoid Design, Project Revival and Personal Workbench. It has selectable text, embedded fonts, eight project bookmarks and 42 contact links. The general CV remains the aligned one-page edition from 22 October.
 
 ## Work in progress, 22 October 2026
 
