@@ -16,9 +16,13 @@ Open http://127.0.0.1:4180. Edit project stories in `content.mjs`, page template
 
 `image-build.mjs` generates responsive WebP display versions and project-specific sharing images. Original project images remain available in the zoom viewer. Intrinsic image dimensions reserve space before loading. Run `npm test` after building to check responsive image metadata, sharing cards and original-file preservation.
 
+## Expanded portfolio download, 23 October 2026
+
+The public portfolio PDF now has 21 pages across eight projects. It preserves the established dark design and the verified S00, Aquatorium, Street Pulse and Project Revival chapters, adding Re:Seat, Thermofluids, Humanoid Design and a concise Personal Workbench development page. Research, personal/team contributions, simulations, concept imagery and unfinished work remain distinguished. The PDF contains selectable text, embedded fonts, 21 bookmarks and 42 contact links. The general CV remains the aligned one-page edition from 22 October.
+
 ## Work in progress, 22 October 2026
 
-The public CV and twelve-page portfolio downloads are aligned with the current website narrative. S00 follows component supports, main-frame FEA and the wrist-camera mount; Aquatorium follows research/concepts, team development and electronics/functions; Street Pulse combines its research strands and explains the physical-module/VR evaluation; Revival shows separate Anvil/Ghost progress. Current contribution and simulation/prototype boundaries are preserved, including Aquatorium's calculated duty-cycle runtime. The PDF portfolio remains a selected four-project edition. The general CV remains one A4 page.
+The public CV and the then-current twelve-page portfolio were aligned with the website narrative. S00 follows component supports, main-frame FEA and the wrist-camera mount; Aquatorium follows research/concepts, team development and electronics/functions; Street Pulse combines its research strands and explains the physical-module/VR evaluation; Revival shows separate Anvil/Ghost progress. Current contribution and simulation/prototype boundaries are preserved, including Aquatorium's calculated duty-cycle runtime. The expanded edition above retains these four chapters.
 
 The homepage groups Project Revival and Personal Workbench below the six main projects in a separate Work in progress section. Numbered progress lists show recorded stages, current development and future work. Project Revival keeps its Anvil and Ghost menu; both child pages and the series hub show their stages. Anvil internals remain unfinished and untested. Personal Workbench is a local prototype, with its earlier demonstration image labelled and historical checks dated.
 
