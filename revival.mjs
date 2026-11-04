@@ -1,6 +1,7 @@
 // Public copy migrated from the saved Project Revival pages.
 // Rendered CAD, a printed first iteration and proposed systems are distinguished.
 const media = 'project-assets/revival/';
+const ghostCad = 'project-assets/ghost-v3/';
 
 const anvilProgress = [
   {title: 'Translate the reference into CAD', text: 'The original Fusion model separates the game-inspired form into eleven components for a nonfunctional prop.', state: 'done', label: 'CAD recorded'},
@@ -10,9 +11,9 @@ const anvilProgress = [
 ];
 
 const ghostProgress = [
-  {title: 'Define the desk companion', text: 'Research establishes the direction: a Destiny-inspired floating shell, a lit eye and spoken conversation.', state: 'done', label: 'Research recorded'},
-  {title: 'Map the separate systems', text: 'The documented plan separates stock levitation from stationary computing and audio, with a staged build and validation sequence.', state: 'done', label: 'Plan documented'},
-  {title: 'Resolve the build choices', text: 'The exact computer, final enclosure and eye behaviour remain open. The current work is research and planning.', state: 'current'},
+  {title: 'Define the companion and its systems', text: 'The documented plan separates a Destiny-inspired floating shell and lit eye from stationary computing and audio.', state: 'done', label: 'Research and plan recorded'},
+  {title: 'Develop the proposed shell in CAD', text: 'The V3 Fusion proposal develops an eight-panel shell, a larger central cavity and a layered eye. The CAD and export checks were recorded on 28 October 2026.', state: 'done', label: 'Proposed CAD recorded'},
+  {title: 'Resolve weight and assembly', text: 'Weight reduction, panel retention and core fasteners remain in development. Electronics access and the levitation attachment still need to be designed and checked.', state: 'current'},
   {title: 'Prototype and test in stages', text: 'Check stock levitation and a representative load, prove voice on the bench, then print and integrate the shell. No integrated prototype is demonstrated yet.', state: 'next'},
 ];
 
@@ -31,7 +32,7 @@ export const revivalSeries = {
   timeline: '2026 · Ongoing',
   team: 'Personal project',
   platform: 'Film and game-inspired physical builds',
-  cardSummary: 'Anvil: first print, internals in development · Ghost: research and planning',
+  cardSummary: 'Anvil: first print, internals in development · Ghost: proposed CAD in development',
   coverImage: media + 'anvil-assembled.png',
   heroImage: media + 'anvil-assembled.png',
   heroCaption: 'Anvil assembled CAD with a game-inspired finish. A visual study, not a photograph of the printed object.',
@@ -51,7 +52,7 @@ export const revivalSeries = {
       blocks: [
         {type: 'heading', text: 'Anvil · From CAD to a first print'},
         {type: 'progress', steps: anvilProgress},
-        {type: 'heading', text: 'Ghost · From research to a build plan'},
+        {type: 'heading', text: 'Ghost · From research to a proposed CAD model'},
         {type: 'progress', steps: ghostProgress},
       ],
     },
@@ -148,30 +149,48 @@ export const revivalProjects = [
     year: '2026',
     revivalNumber: 'Revival 02',
     reference: 'Destiny 2',
-    status: 'Research & planning · In development',
-    description: 'An early design study for a hovering desk companion with a lit eye and spoken conversation. The current work defines the architecture and staged build plan.',
-    role: 'Research, system architecture & build planning',
-    timeline: 'In development · Plan documented 11 October 2026',
+    status: 'Proposed CAD · In development',
+    description: 'A proposed hovering desk companion with a lit eye and spoken conversation. The V3 shell study turns the system plan into an eight-panel CAD model, with weight reduction and assembly development still ahead.',
+    role: 'Design direction, system planning & AI-assisted Fusion CAD',
+    timeline: 'Ongoing · V3 CAD recorded 28 October 2026',
     team: 'Personal project',
-    platform: 'Physical computing · Product development',
-    cardSummary: 'Research and system planning · In development',
-    hasProductRender: false,
-    coverType: 'typographic',
-    coverImage: media + 'ghost-development.svg',
-    heroImage: media + 'ghost-development.svg',
-    heroCaption: 'Research and system planning. No finished-product render or integrated prototype is shown.',
+    platform: 'Fusion CAD · Physical computing · Product development',
+    cardSummary: 'Eight-panel shell proposal · Weight and assembly in development',
+    hasProductRender: true,
+    coverFit: 'contain',
+    coverImage: ghostCad + 'ghost-v3-isometric.png',
+    coverAlt: 'Fusion CAD view of the proposed V3 Ghost shell and layered eye. In development.',
+    heroImage: ghostCad + 'ghost-v3-isometric.png',
+    heroCaption: 'Proposed V3 shell in Fusion, recorded 28 October 2026. User-directed, AI-assisted CAD development; this is a model view, not a built or levitating prototype.',
     sections: [
       {
         name: 'Progress',
-        heading: 'A documented direction. The build comes next.',
+        heading: 'From a system plan to a shell proposal.',
         blocks: [{type: 'progress', steps: ghostProgress}],
       },
       {
         name: 'Direction',
         heading: 'Define the companion before building it.',
         blocks: [
-          {type: 'paragraph', text: 'The second project in Project Revival explores a Destiny-inspired companion with physical presence, a lit eye and spoken conversation. The current work defines a proposed architecture, researches candidate components and sets out a staged plan for prototyping and validation.'},
-          {type: 'paragraph', text: 'Independent operation is preferred, with wireless processing retained as an alternative. Destiny 2 provides the appearance reference; this page documents the proposed build direction.'},
+          {type: 'paragraph', text: 'The second project in Project Revival explores a Destiny-inspired companion with physical presence, a lit eye and spoken conversation. The system research now has a proposed shell model alongside the staged plan for prototyping and validation.'},
+          {type: 'paragraph', text: 'I directed the design and revisions, using Codex and Fusion MCP assistance to develop the CAD. Destiny 2 by Bungie provides the appearance reference. Independent operation remains the preferred direction, with wireless processing as an alternative.'},
+        ],
+      },
+      {
+        name: 'Proposed CAD',
+        heading: 'A fuller shell, with more room at the centre.',
+        blocks: [
+          {type: 'paragraph', text: 'The **V3 proposal** retains the eight folded panels, recessed channels, gold tips and layered eye, while increasing wall thickness and enlarging the central cavity. The focus is the shell and its internal space; this revision does not add motors or servo pockets.'},
+          {type: 'image', src: ghostCad + 'ghost-v3-front.png', alt: 'Eye-facing CAD view of the proposed V3 shell: folded panels, recessed details and layered central eye.', comparison: 'V3 shell CAD views'},
+          {type: 'image', src: ghostCad + 'ghost-v3-side.png', alt: 'Side CAD view showing the panel depth, separation and central core. Panel attachment is still to be resolved.', comparison: 'V3 shell CAD views'},
+          {type: 'table', text: 'V3 design changes and recorded geometry', columns: ['Design detail', 'Proposed V3 model'], rows: [
+            ['Panel wall thickness', 'Increased from 1.2 mm to 1.8 mm'],
+            ['Central core diameter', 'Increased from 46 mm to 54 mm'],
+            ['Overall envelope', 'Approximately 133 × 133 × 95 mm'],
+            ['Model structure', '31 solid bodies forming the panels, core, eye and trim'],
+          ]},
+          {type: 'paragraph', text: 'The saved export checks record **31 watertight STL meshes and 31 STEP solids**. These confirm the exported geometry, while print tolerances, panel retention, assembly and physical performance still need their own checks.'},
+          {type: 'takeaway', text: '**Weight is the next design constraint.** The CAD-volume estimate is approximately 89 g in PLA before electronics and attachment hardware; it is not a measured print. The shell needs further weight and attachment development before a levitation trial.'},
         ],
       },
       {
@@ -193,21 +212,21 @@ export const revivalProjects = [
         name: 'Build plan',
         heading: 'Prototype in stages.',
         blocks: [
-          {type: 'paragraph', text: 'The build plan starts by checking stock levitation and a representative load, then proving the voice pipeline on the bench. Shell printing and progressive integration follow those checks.'},
+          {type: 'paragraph', text: 'The next stage is to reduce shell mass and resolve its attachments, check stock levitation with a representative load, and prove the voice pipeline on the bench. Fit coupons, shell printing and progressive integration follow those checks.'},
         ],
       },
       {
         name: 'Validation',
         heading: 'What needs validating.',
         blocks: [
-          {type: 'paragraph', text: 'Payload balance, heat, nearby magnetic components, microphone noise and response delay are identified as design risks. Acceptance targets are defined; test results are not yet available.'},
+          {type: 'paragraph', text: 'Panel retention, core fasteners, print clearances and electronics access remain unresolved. Payload balance, heat, nearby magnetic components, microphone noise and response delay also need physical checks. No print, strength, electrical or levitation test results are recorded for V3.'},
         ],
       },
       {
         name: 'Current status',
-        heading: 'Research and build planning are documented.',
+        heading: 'CAD proposed. Physical integration still ahead.',
         blocks: [
-          {type: 'paragraph', text: 'The exact computer, final enclosure and reactive-eye implementation remain open decisions. A working integrated prototype has not been demonstrated.'},
+          {type: 'paragraph', text: 'The V3 shell and its geometry checks are documented. Weight reduction, attachments, the exact computer and reactive-eye implementation remain open. A working integrated prototype has not been demonstrated.'},
         ],
       },
     ],

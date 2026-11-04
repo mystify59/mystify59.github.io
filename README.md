@@ -2,6 +2,12 @@
 
 An independent static portfolio for GitHub Pages, based on the approved dark-blue Tabfolio design. It includes Li Auto S00, Street Pulse, Humanoid Design, Thermofluids, Re:Seat, Aquatorium, Project Revival, Personal Workbench, About and Resume pages. Project attribution distinguishes personal contributions, team work, concept renders and simulation results.
 
+## Ghost proposed CAD — 4 November 2026
+
+Project Revival 02 now shows the proposed Ghost V3 shell recorded in Fusion on 28 October. The Revival menu and Ghost hero use the original isometric CAD view; a new Proposed CAD section adds the two technical views, dimensions and wall/core revisions. Images in `project-assets/ghost-v3/` are unchanged source exports, with full-size originals available through image zoom.
+
+The homepage/series progress and related cards now identify CAD development rather than research alone. User-directed, AI-assisted modelling, Destiny 2 reference credit, recorded geometry/export checks and pending weight, attachment and physical validation remain explicit. The downloadable CV/portfolio and Figma materials were not changed.
+
 ## Edit and preview
 
 Install Node.js, then run:
