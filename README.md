@@ -22,6 +22,8 @@ Open http://127.0.0.1:4180. Edit project stories in `content.mjs`, page template
 
 `image-build.mjs` generates responsive WebP display versions and project-specific sharing images. Original project images remain available in the zoom viewer. Intrinsic image dimensions reserve space before loading. Run `npm test` after building to check responsive image metadata, sharing cards and original-file preservation.
 
+The header links between the English pages and their Simplified Chinese counterparts under `/zh/`. When editing English copy, update its matching translation in the `zh-*.mjs` files and rebuild both editions. Both editions link to the shared English PDF downloads.
+
 ## Material journal portfolio download, 23 October 2026
 
 The public portfolio PDF contains 22 pages: a minimal navy cover with only “Boxuan Wang” and “Portfolio”, followed by the existing 21 pages across eight projects in the approved Material journal design. Serif titles, asymmetric evidence layouts and a different text accent for each project organise the existing content. Original evidence images and the distinction between personal contributions, team work, simulations, concept imagery and unfinished development are preserved. The portfolio covers S00, Aquatorium, Street Pulse, Re:Seat, Thermofluids, Humanoid Design, Project Revival and Personal Workbench. It has selectable text, embedded fonts, eight project bookmarks and 42 contact links; the bookmarks now open one page later to account for the cover. The general CV remains unchanged.

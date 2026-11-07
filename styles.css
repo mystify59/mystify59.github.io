@@ -50,6 +50,9 @@ button { cursor: pointer; }
 .site-nav { position: fixed; z-index: 30; top: 40px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 0; padding: 4px; border: 1px solid #353b42; border-radius: 20px; background: #282e35; box-shadow: 0 0 0 2px rgba(112, 154, 201, .05); font-size: 14px; line-height: 1; }
 .site-nav a { display: block; padding: 13px 12px; border-radius: 15px; color: #d9dde2; transition: background-color 160ms, color 160ms; }
 .site-nav a[aria-current="page"], .site-nav a[data-active="true"] { color: var(--blue-text); background: var(--background); }
+.site-nav .language-switch { color: var(--blue-text); margin-left: 4px; box-shadow: -1px 0 0 #4a5766; white-space: nowrap; }
+html:lang(zh) body { font-family: Manrope, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif; }
+html:lang(zh) :is(.case-title, .case-heading, .about-title, .section-label, .entry-title) { letter-spacing: normal; }
 .hero-name { font-size: 40px; letter-spacing: -1.5px; margin-bottom: 10px; }
 .hero-bio { max-width: 350px; color: var(--muted); font-size: 16px; line-height: 1.45; margin-bottom: 22px; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
@@ -270,7 +273,7 @@ h3.case-block { margin-top: 32px; margin-bottom: 16px; color: var(--text); font-
   .site-header-compact { min-height: 0; padding-block: 18px 22px; margin-bottom: 24px; }
   .site-header-compact .hero-top { min-height: 44px; gap: 10px; }
   .site-header-compact .site-nav { position: static; transform: none; margin-left: auto; font-size: 13px; }
-  .site-header-compact .site-nav a { padding: 12px 10px; }
+  .site-header-compact .site-nav a { padding: 12px 8px; }
   .compact-identity { font-size: 14px; }
   .compact-identity .avatar { display: none; }
   .button { min-height: 44px; font-size: 14px; padding: 11px 13px; border-radius: 17px; }

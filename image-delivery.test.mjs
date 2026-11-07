@@ -52,8 +52,10 @@ test('sharing metadata uses a landscape image and project-specific previews', as
         assert.equal(actual.width, 1200)
         assert.equal(actual.height, 630)
         if (file.includes(`${path.sep}case-studies${path.sep}`) || file.includes(`${path.sep}project-revival${path.sep}`)) {
-            assert.ok(!previews.has(meta['og:image']), `Project sharing preview reused by ${file} and ${previews.get(meta['og:image'])}`)
-            previews.set(meta['og:image'], file)
+            const project = new URL(meta['og:url']).pathname.replace(/^\/zh\//, '/')
+            const existingProject = previews.get(meta['og:image'])
+            assert.ok(!existingProject || existingProject === project, `Project sharing preview reused by ${project} and ${existingProject}`)
+            previews.set(meta['og:image'], project)
         }
     }
 })

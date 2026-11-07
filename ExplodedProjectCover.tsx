@@ -3,6 +3,7 @@ import * as React from "react"
 
 interface ExplodedProjectCoverProps {
     projectSlug?: string
+    chinese?: boolean
     previewExploded?: boolean
     style?: React.CSSProperties
 }
@@ -52,15 +53,15 @@ function useCoverProgress(active: boolean, staticRenderer: boolean) {
  * @framerIntrinsicHeight 600
  */
 export default function ExplodedProjectCover(props: ExplodedProjectCoverProps) {
-    const { projectSlug = "street-pulse", previewExploded = false, style } = props
+    const { projectSlug = "street-pulse", chinese = false, previewExploded = false, style } = props
     const isStatic = false
     const [hovered, setHovered] = React.useState(false)
     const progress = useCoverProgress(previewExploded || hovered, isStatic)
     const supported = projectSlug === "street-pulse" || projectSlug === "s00"
     if (!supported) return null
     const label = projectSlug === "street-pulse"
-        ? "Street Pulse construction illustration. Hover to separate the product layers."
-        : "S00 internal layout illustration. Hover to separate the mounting and control modules from the intact framework."
+        ? (chinese ? "Street Pulse 结构示意图。将鼠标悬停在图上可展开各层结构。" : "Street Pulse construction illustration. Hover to separate the product layers.")
+        : (chinese ? "S00 内部布局示意图。将鼠标悬停在图上可查看安装件、控制模块和主框架的分解视图。" : "S00 internal layout illustration. Hover to separate the mounting and control modules from the intact framework.")
     return (
         <div
             role="img"
@@ -85,7 +86,7 @@ export default function ExplodedProjectCover(props: ExplodedProjectCoverProps) {
         >
             <svg width="100%" height="100%" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet" aria-hidden="true" style={{ display: "block" }}>
                 {projectSlug === "street-pulse"
-                    ? <StreetPulseScene progress={progress} />
+                    ? <StreetPulseScene progress={progress} chinese={chinese} />
                     : <S00Scene progress={progress} />}
             </svg>
         </div>
@@ -100,7 +101,7 @@ export default function ExplodedProjectCover(props: ExplodedProjectCoverProps) {
  * Geometry is illustrative, not CAD or an engineering assembly drawing.
  * The parent animates progress from 0 (assembled) to 1 (exploded).
  */
-function StreetPulseScene({ progress }: { progress: number }) {
+function StreetPulseScene({ progress, chinese }: { progress: number; chinese: boolean }) {
     const p = Math.max(0, Math.min(1, Number.isFinite(progress) ? progress : 0))
     type XY = [number, number]
     const outer: XY[] = [[-145, -98], [145, -98], [205, 108], [-205, 108]]
@@ -134,7 +135,7 @@ function StreetPulseScene({ progress }: { progress: number }) {
     )
 
     return (
-        <svg viewBox="0 0 800 600" width="100%" height="100%" role="img" aria-label="Illustrated Street Pulse trapezium module separating into a rim, patterned contact surface, perimeter lighting, structural ribs and electronics" style={{ display: "block", overflow: "hidden" }}>
+        <svg viewBox="0 0 800 600" width="100%" height="100%" style={{ display: "block", overflow: "hidden" }}>
             <g transform={`translate(0 ${-25 * (1-p)}) translate(385 324) scale(${1.14 - 0.14*p}) translate(-385 -324)`}>
             <ellipse cx={392 - p * 12} cy={449 + p * 66} rx={184 - p * 22} ry="24" fill="#010711" opacity="0.24" />
 
@@ -216,11 +217,11 @@ function StreetPulseScene({ progress }: { progress: number }) {
             </g>
 
             </g>
-            {label("SILVER RIM", 136, [238, 136])}
-            {label("CONTACT SURFACE", 221, [254, 221])}
-            {label("PERIMETER LIGHTING", 296, [239, 296])}
-            {label("TRIANGULAR SUPPORTS", 391, [220, 391])}
-            {label("ELECTRONICS + DAMPING", 484, [269, 484])}
+            {label(chinese ? "银色边框" : "SILVER RIM", 136, [238, 136])}
+            {label(chinese ? "接触表面" : "CONTACT SURFACE", 221, [254, 221])}
+            {label(chinese ? "周边照明" : "PERIMETER LIGHTING", 296, [239, 296])}
+            {label(chinese ? "三角支撑" : "TRIANGULAR SUPPORTS", 391, [220, 391])}
+            {label(chinese ? "电子元件与减振结构" : "ELECTRONICS + DAMPING", 484, [269, 484])}
             <text x="400" y="569" textAnchor="middle" fill="#A0B5C9" fontFamily="Inter, Arial, sans-serif" fontSize="12" letterSpacing="0.6">Exploded illustration</text>
         </svg>
     )
