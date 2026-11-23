@@ -111,14 +111,14 @@ export function Page({page, projects, revivals = [], assets, imageMetadata = {},
             <header className={'site-header' + (page === 'home' ? '' : ' site-header-compact')}>
                 {page === 'home' && <div className="hero-glow" aria-hidden="true"/>}
                 <div className="hero-top">
-                    <a className={page === 'home' ? 'avatar' : 'compact-identity'} href={pagePath()} aria-label={t("Boxuan Wang home")}>{page === 'home' ? <img {...imageProps(avatar, '60px')} alt=""/> : <><span className="avatar"><img {...imageProps(avatar, '36px')} alt=""/></span><span>Boxuan Wang</span></>}</a>
+                    <a className={page === 'home' ? 'avatar' : 'compact-identity'} href={pagePath()} aria-label={t("Boxuan Wang home")}>{page === 'home' ? <img {...imageProps(avatar, '60px')} alt=""/> : <><span className="avatar"><img {...imageProps(avatar, '36px')} alt=""/></span><span>{t("Boxuan Wang")}</span></>}</a>
                     <nav className="site-nav" aria-label={t("Main navigation")}>
                         {[['home','Projects',''],['about','About','about/'],['resume','Resume','resume/']].map(([key,label,target]) =>
                             <a key={key} href={pagePath(target)} aria-current={nav === key && !project ? 'page' : undefined} data-active={nav === key}>{t(label)}</a>)}
                         <a className="language-switch" href={path((chinese ? '' : 'zh/') + route)} hrefLang={chinese ? 'en' : 'zh-CN'} lang={chinese ? 'en' : 'zh-CN'}>{chinese ? 'English' : '中文'}</a>
                     </nav>
                 </div>
-                {page === 'home' && <><h1 className="hero-name">Boxuan Wang</h1>
+                {page === 'home' && <><h1 className="hero-name">{t("Boxuan Wang")}</h1>
                 <p className="hero-bio">{t(biography)}</p>
                 <div className="hero-actions"><a className="button" href={pagePath() + '#projects'}>{t("View projects")}</a><a className="button button-secondary" href={'mailto:' + email}>{t("Email me")}</a></div>
                 <nav className="hero-downloads" aria-label={t("Download application materials")}>{downloadLinks}</nav></>}
@@ -211,7 +211,7 @@ export function Page({page, projects, revivals = [], assets, imageMetadata = {},
             </main>
 
             <footer className="site-footer"><div className="footer-grid">
-                <div className="footer-profile"><div className="footer-name"><img {...imageProps(avatar, '32px')} alt=""/><span>Boxuan Wang</span></div><p>{t("Design Engineering student at Imperial College London.")}<br/>{t("Product design, mechanical engineering and robotics.")}</p><nav className="footer-downloads" aria-label={t("Footer downloads")}>{downloadLinks}</nav><p className="template-credit">{t("Design based on Tabfolio by")} <a href="https://www.sebastianst.design/" target="_blank" rel="noopener noreferrer">Sebastian</a></p></div>
+                <div className="footer-profile"><div className="footer-name"><img {...imageProps(avatar, '32px')} alt=""/><span>{t("Boxuan Wang")}</span></div><p>{t("Design Engineering student at Imperial College London.")}<br/>{t("Product design, mechanical engineering and robotics.")}</p><nav className="footer-downloads" aria-label={t("Footer downloads")}>{downloadLinks}</nav><p className="template-credit">{t("Design based on Tabfolio by")} <a href="https://www.sebastianst.design/" target="_blank" rel="noopener noreferrer">Sebastian</a></p></div>
                 <nav className="footer-links" aria-label={t("Footer navigation")}><p>{t("Links")}</p><a href={pagePath()}>{t("Projects")}</a><a href={pagePath('about/')}>{t("About")}</a><a href={pagePath('resume/')}>{t("Resume")}</a></nav>
                 <div className="footer-contact"><p>{t("Contact")}</p><a href={'mailto:' + email}>{email}</a><a href={'mailto:' + email}>{t("Email me")}</a></div>
             </div></footer>
